@@ -8,7 +8,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from './Home/Home';
 import { useEffect, useState } from 'react';
 import { Ws36 } from './MapForm/Ws36';
-// fdsfsdf
 let GLOBALSTR:boolean;
 let SETGBSTR:any;
 export const changeGlobalStr = ()=>{
