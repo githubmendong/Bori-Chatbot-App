@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable no-undef */
 $('.menu').click(function () {
   $(this).parent().toggleClass('close');
@@ -19,10 +20,19 @@ window.onresize = function (event) {
   innerWidthsize.textContent = innerWidth;
 };
 
-// var innerHeightsize = document.getElementById("size");
-// window.onresize = function(event){
-// 	var innerHeight = window.innerHeight;
-// 	innerHeightsize.textContent = innerHeight;
-// }
-// $(window).height(windowHeight); // returns height of browser viewport
-// $(document).height(); // returns height of HTML document
+
+$('.menu a, .menu > label').click(function() {
+  $(this).css({
+      'background-color': '#fff',
+      'color': '#000'
+  });
+
+  setTimeout(function() {
+      $(this).css({
+          'background-color': '#142239',
+          'color': '#fff'
+      });
+  }.bind(this), 1000);
+});
+// background-color: #142239;
+// color: #fff;
