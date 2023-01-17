@@ -9,7 +9,7 @@ import KMap from './K_Map/KMap';
 import Direction from './K_Map/Direction';
 import { POSTDATA } from '../chatbot-src/Chatting';
 
-export const URL = 'https://2b7c-2001-2d8-6b80-ac8b-d83b-85b-3130-1bd1.jp.ngrok.io';
+export const URL = 'https://e786-220-68-223-111.jp.ngrok.io';
 
 export const Ws36 = ()=>{
   const webviewRef:any = useRef();
