@@ -9,12 +9,14 @@
 import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, Image, Text, TouchableOpacity, View} from 'react-native';
+import { setTemp } from '../../MapForm/K_Map/S';
 import { setPostData } from '../Chatting';
 import {SystemTime} from '../Utils/SytemTime';
 
 export const BtnSystemChat = ({keyword,answer}:any)=>{
     useEffect(()=>{
       setPostData(keyword);
+      setTemp(keyword);
     },[]);
     return (
         <>

@@ -20,8 +20,8 @@ import { POSTDATA, setPostData } from '../../chatbot-src/Chatting';
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
-export const _temp:any;
-export const setTemp:any;
+export let _temp:string;
+export let setTemp:any;
 
 const Item = ({item, onPress}: any) => (
   <TouchableOpacity onPress={onPress} style={styles.touchable}>
@@ -37,13 +37,12 @@ function S({webviewRef, _state}: any) {
   const [firstlist, setFirstlist] = useState<any[]>([]);
   const [selectedId, setSelectedId] = useState(null);
   [_temp, setTemp] = useState<string>('');
-  setTemp(POSTDATA);
   useEffect(() => {
     console.log('t');
-    if (_temp !== '') {
+    if (POSTDATA !== '') {
       for (let i of data) {
         console.log('gg');
-        if (i.tag.includes(_temp)) {
+        if (i.tag.includes(POSTDATA)) {
           sendlatlng(i);
         }
       }
