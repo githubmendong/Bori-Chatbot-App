@@ -15,7 +15,6 @@ import {
   TextInput,
   View,
 } from 'react-native';
-123
 export const SystemTime = () => {
   const [ampm, setAmPm] = useState<string>('오후');
   const date: Date = new Date();
