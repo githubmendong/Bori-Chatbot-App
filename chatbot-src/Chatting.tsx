@@ -23,12 +23,6 @@ import { containsKey, getData } from './Utils/localStrorage';
 import {SelectSystemChat} from './Utils/SelectSystemChat';
 import {SuggestedSearch} from './Utils/SuggestedSearch';
 
-export let POSTDATA:string = '';
-export const setPostData = (keyword: string)=>{
-  POSTDATA = keyword;
-  console.log(POSTDATA);
-  
-};
 
 const WIDTH = Dimensions.get('window').width;
 export const CHATURL = 'https://ca43-220-68-223-111.jp.ngrok.io';

@@ -16,12 +16,9 @@ import {
 import Modal from 'react-native-modal';
 import {URL} from '../Ws36';
 import {SearchBar} from '@rneui/themed';
-import { POSTDATA, setPostData } from '../../chatbot-src/Chatting';
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
-export let _temp:string;
-export let setTemp:any;
 
 const Item = ({item, onPress}: any) => (
   <TouchableOpacity onPress={onPress} style={styles.touchable}>
@@ -36,19 +33,6 @@ function S({webviewRef, _state}: any) {
   const [state, setState] = useState<boolean>(false);
   const [firstlist, setFirstlist] = useState<any[]>([]);
   const [selectedId, setSelectedId] = useState(null);
-  [_temp, setTemp] = useState<string>('');
-  useEffect(() => {
-    console.log('t');
-    if (POSTDATA !== '') {
-      for (let i of data) {
-        console.log('gg');
-        if (i.tag.includes(POSTDATA)) {
-          sendlatlng(i);
-        }
-      }
-    }
-    setPostData('');
-  }, [_temp]);
 
   useEffect(() => {
     setState(current => !current);
@@ -124,11 +108,10 @@ function S({webviewRef, _state}: any) {
     filter(text);
     setInputText(text);
   };
-  
+
   const sendlatlng = async (temp: any) => {
-      await onPress();
-      setTimeout(() => _sendlatlng(temp),118);
-      
+    await onPress();
+    setTimeout(() => _sendlatlng(temp), 118);
   };
 
   const _sendlatlng = async (temp: any) => {
@@ -149,7 +132,7 @@ function S({webviewRef, _state}: any) {
 
   return (
     <Modal
-      animationIn= "slideInLeft"
+      animationIn="slideInLeft"
       animationOut="slideOutLeft"
       onBackButtonPress={() => {
         onPress();

@@ -14,10 +14,16 @@ import {Screen} from './Screen';
 import {URL} from '../Ws36';
 import S from './S';
 
+export let _temp: string;
+export let setTemp: any;
+
 function KMap({webviewRef}: any) {
   const [state, setState] = useState<boolean>(true);
   const [name, setName] = useState<string>();
   const [open, setOpen] = useState<boolean>(false);
+  const [data, setData] = useState<any[]>([]);
+  [_temp, setTemp] = useState<string>('');
+
   const handleOnMessage = (e: any) => {
     if (e.nativeEvent.data === 'true' || e.nativeEvent.data === 'false') {
       const _state = e.nativeEvent.data;
@@ -41,6 +47,7 @@ function KMap({webviewRef}: any) {
         .then(response => response.json())
         .then(data => {
           getData = data;
+          setData(getData);
         });
 
       const list = new Array();
@@ -71,6 +78,29 @@ function KMap({webviewRef}: any) {
       ]);
       await webviewRef.current.postMessage(sendLoction);
     } catch (error) {}
+  };
+
+  useEffect(() => {
+    const d_title: string = _temp;
+    if (d_title !== '') {
+      send_screen(d_title);
+    }
+    setTemp('');
+  }, [_temp]);
+
+  const send_screen = async (d_title: any) => {
+    const latlng = new Array();
+    for (let i of data) {
+      if (i.tag.includes(d_title)) {
+        const _data = {
+          picket: 'location',
+        };
+        latlng.push(_data);
+        latlng.push(i);
+      }
+    }
+    const sendData = JSON.stringify(latlng);
+    await webviewRef.current.postMessage(sendData);
   };
 
   useEffect(() => {
@@ -105,9 +135,7 @@ function KMap({webviewRef}: any) {
         allowFileAccess={true}
         onLoadEnd={sendMessage}
       />
-      {/* <Search webviewRef={webviewRef} state={state}/> */}
       <S webviewRef={webviewRef} _state={state} />
-      {/* <Bori state={state}/> */}
       <Screen _state={open} _name={name} />
     </>
   );
