@@ -26,6 +26,8 @@ import {SuggestedSearch} from './Utils/SuggestedSearch';
 export let POSTDATA:string = '';
 export const setPostData = (keyword: string)=>{
   POSTDATA = keyword;
+  console.log(POSTDATA);
+  
 };
 
 const WIDTH = Dimensions.get('window').width;

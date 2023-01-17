@@ -9,7 +9,6 @@ import {Alert, Dimensions, SectionList, Text} from 'react-native';
 import WebView from 'react-native-webview';
 import {PermissionsAndroid} from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
-import Search from './Search';
 import Bori from './Bori';
 import {Screen} from './Screen';
 import {URL} from '../Ws36';

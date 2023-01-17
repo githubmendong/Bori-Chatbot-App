@@ -8,6 +8,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from './Home/Home';
 import { useEffect, useState } from 'react';
 import { Ws36 } from './MapForm/Ws36';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 let GLOBALSTR:boolean;
 let SETGBSTR:any;
 export const changeGlobalStr = ()=>{
@@ -24,7 +25,9 @@ function App() {
   },[GLOBALSTR]);
 
   const Tab = createBottomTabNavigator();
+  const Stack = createNativeStackNavigator();
   return (
+    <>
     <NavigationContainer>
     <Tab.Navigator screenOptions={{ headerShown: false }} >
       <Tab.Screen name="Home" component={Home} />
@@ -32,6 +35,7 @@ function App() {
       <Tab.Screen name="Chat" component={Chatting} options={{tabBarStyle:{display:data}}} />
     </Tab.Navigator>
     </NavigationContainer>
+    </>
   );
 }
 
