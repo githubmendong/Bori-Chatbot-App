@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable keyword-spacing */
 /* eslint-disable no-array-constructor */
@@ -22,7 +23,7 @@ function KMap({webviewRef}: any) {
   const [name, setName] = useState<string>();
   const [open, setOpen] = useState<boolean>(false);
   const [data, setData] = useState<any[]>([]);
-  [_temp, setTemp] = useState<string>('');
+  [_temp, setTemp] = useState<string>('W1');
 
   const handleOnMessage = (e: any) => {
     if (e.nativeEvent.data === 'true' || e.nativeEvent.data === 'false') {
@@ -45,8 +46,8 @@ function KMap({webviewRef}: any) {
 
       await fetch(`${URL}/borimap`)
         .then(response => response.json())
-        .then(data => {
-          getData = data;
+        .then(_data => {
+          getData = _data;
           setData(getData);
         });
 
@@ -81,6 +82,7 @@ function KMap({webviewRef}: any) {
   };
 
   useEffect(() => {
+    console.log('fdfd');
     const d_title: string = _temp;
     if (d_title !== '') {
       send_screen(d_title);

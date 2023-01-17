@@ -58,7 +58,6 @@ function App() {
 
   useEffect(()=>{
     setData(data === 'none' ? 'flex' : 'none');
-    console.log(data);
   },[GLOBALSTR]);
 
   const Tab = createBottomTabNavigator();
@@ -67,7 +66,7 @@ function App() {
     <Tab.Navigator screenOptions={{ headerShown: false }} >
       <Tab.Screen name="Home" component={HomeStack} />
       <Tab.Screen name="Map" component={MapStack} />
-      <Tab.Screen name="Chat" component={ChatStack}/>
+      <Tab.Screen name="Chat" component={ChatStack} options={{tabBarStyle:{display:data}}} />
     </Tab.Navigator>
     </NavigationContainer>
   );
@@ -75,4 +74,4 @@ function App() {
 
 export default App;
 
-// options={{tabBarStyle:{display:data}}}
+// 

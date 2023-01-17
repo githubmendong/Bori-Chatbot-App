@@ -34,11 +34,7 @@ export const SelectSystemChat = ({text, ukey, scrollView}: any) => {
   useEffect(()=>{
     getData();
   },[]);
-  // if (keyword !== 'None') {
-  //   <BtnSystemChat key={ukey} keyword={keyword} answer={answer} />;
-  // } else {
-  //   <DefaultSystemChat key={ukey} answer={answer} />;
-  // }
+
   return (
     <>
     {state ? 

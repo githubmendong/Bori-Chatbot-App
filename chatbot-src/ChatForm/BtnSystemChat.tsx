@@ -10,7 +10,6 @@ import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 
 import {
-  ActivityIndicator,
   Image,
   Text,
   TouchableOpacity,
@@ -19,11 +18,22 @@ import {
 import {setTemp} from '../../MapForm/K_Map/KMap';
 import { NAVIGATIONDATA } from '../Chatting';
 import {SystemTime} from '../Utils/SytemTime';
+let KEYWORD:string = '';
+export const setKeyword = (text: string): void=>{
+  KEYWORD = text;
+};
+
+export const getKeyword = (): string=>{
+  return KEYWORD;
+};
 
 export const BtnSystemChat = ({keyword, answer}: any) => {
-  useEffect(() => {
+  const moveActivity = async ()=>{
+    setKeyword(keyword);
+    await NAVIGATIONDATA.navigate('MoveMap1');
     setTemp(keyword);
-  }, []);
+  };
+
   return (
     <>
       <View
@@ -67,7 +77,9 @@ export const BtnSystemChat = ({keyword, answer}: any) => {
           {answer}
         </Text>
         <TouchableOpacity 
-        onPress={()=> NAVIGATIONDATA.navigate('MoveMap1')}
+        onPress={()=> {
+          moveActivity();
+        }}
         style={{
           backgroundColor: 'white',
           borderRadius: 20,
@@ -87,30 +99,9 @@ export const BtnSystemChat = ({keyword, answer}: any) => {
             지도로 가기
           </Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={{
-              backgroundColor: 'white',
-              borderRadius: 20,
-              borderColor: '#544fc1',
-              borderWidth: 2,
-              marginTop: 30,
-              paddingTop: 5,
-              paddingBottom: 5,
-            }}>
-            <Text
-              style={{
-                alignItems: 'center',
-                textAlign: 'center',
-                color: '#544fc1',
-              }}>
-              지도로 가기
-            </Text>
-          </TouchableOpacity>
         </View>
       </TouchableOpacity>
       <SystemTime />
     </>
-  )
-      
-  
+  );
 };
