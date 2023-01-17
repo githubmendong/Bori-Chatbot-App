@@ -16,9 +16,12 @@ import {
 import Modal from 'react-native-modal';
 import {URL} from '../Ws36';
 import {SearchBar} from '@rneui/themed';
+import { POSTDATA, setPostData } from '../../chatbot-src/Chatting';
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
+export const _temp:any;
+export const setTemp:any;
 
 const Item = ({item, onPress}: any) => (
   <TouchableOpacity onPress={onPress} style={styles.touchable}>
@@ -33,6 +36,20 @@ function S({webviewRef, _state}: any) {
   const [state, setState] = useState<boolean>(false);
   const [firstlist, setFirstlist] = useState<any[]>([]);
   const [selectedId, setSelectedId] = useState(null);
+  [_temp, setTemp] = useState<string>('');
+  setTemp(POSTDATA);
+  useEffect(() => {
+    console.log('t');
+    if (_temp !== '') {
+      for (let i of data) {
+        console.log('gg');
+        if (i.tag.includes(_temp)) {
+          sendlatlng(i);
+        }
+      }
+    }
+    setPostData('');
+  }, [_temp]);
 
   useEffect(() => {
     setState(current => !current);
