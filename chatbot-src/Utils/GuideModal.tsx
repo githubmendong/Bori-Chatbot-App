@@ -1,3 +1,7 @@
+/* eslint-disable no-lone-blocks */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable prettier/prettier */
+/* eslint-disable quotes */
 /* eslint-disable react/react-in-jsx-scope */
 
 import {useState} from 'react';
@@ -11,11 +15,14 @@ import {
   Text,
   View,
 } from 'react-native';
+import { storeData } from './localStrorage';
+//import { containsKey, getData, removeData, storeData } from "./localStrorage";
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 
 export const GuideModal = () => {
+  const date = new Date();
   const [modalVisible, setVisible] = useState(true);
 
   const setModalVisible = (visible: boolean) => {
@@ -40,9 +47,15 @@ export const GuideModal = () => {
               <View>
                 <Pressable
                   style={[modalstyles.button30day]}
-                  onPress={() => setModalVisible(!modalVisible)}>
+                  onPress={() => {
+                    storeData('day',  date.getDay() + 1);
+                    storeData('hours',  date.getHours());
+                    storeData('minutes',  date.getMinutes());
+                    storeData('seconds',  date.getSeconds());
+                    setModalVisible(!modalVisible);
+                    }}>
                   <Text style={modalstyles.textStyle}>
-                    30일간 다시 보지 않기
+                    하루동안 다시 보지 않기
                   </Text>
                 </Pressable>
               </View>
