@@ -52,9 +52,9 @@ export let GLOBALBOOL:boolean = false;
 export const GBBOOLCH = ()=>{
   GLOBALBOOL = !GLOBALBOOL;
 };
+export let NAVIGATIONDATA:any;
 
-
-export const Chatting = () => {
+export const Chatting = ({ navigation }:any) => {
   const date = new Date();
   // const [menuAddChatting, setMenuAddChatting] = useState<boolean>(false);
   const [state, setState] = useState<boolean>(true);
@@ -120,6 +120,7 @@ export const Chatting = () => {
 
   useEffect(()=>{
     myGetData();
+    NAVIGATIONDATA = navigation;
   },[]);
 
   useEffect(() => {

@@ -10,10 +10,11 @@ import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, Image, Text, TouchableOpacity, View} from 'react-native';
 import { setTemp } from '../../MapForm/K_Map/S';
-import { setPostData } from '../Chatting';
+import { NAVIGATIONDATA, setPostData } from '../Chatting';
 import {SystemTime} from '../Utils/SytemTime';
 
-export const BtnSystemChat = ({keyword,answer}:any)=>{
+export const BtnSystemChat = ({keyword, answer}:any)=>{
+  console.log(NAVIGATIONDATA);
     useEffect(()=>{
       setPostData(keyword);
       setTemp(keyword);
@@ -62,7 +63,9 @@ export const BtnSystemChat = ({keyword,answer}:any)=>{
         <Text style={{fontSize:15,lineHeight:24, color: 'black'}}>
           {answer}
         </Text>
-        <TouchableOpacity style={{
+        <TouchableOpacity 
+        onPress={()=> NAVIGATIONDATA.navigate('MoveMap1')}
+        style={{
           backgroundColor: 'white',
           borderRadius: 20,
           borderColor: '#544fc1',
