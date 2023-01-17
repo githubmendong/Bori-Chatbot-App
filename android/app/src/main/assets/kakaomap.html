@@ -15,7 +15,7 @@
   <!-- <meta charset="utf-8"> -->
   <link rel="stylesheet" href="test.scss" type="NaverMap/css/">
   <!-- css파일을 연결할 때 -->
-  <script script type="NaverMap/js" src="test.js"></script>
+  <script defer src="script.js"></script>
   <!-- js파일을 연결할 때 -->
   <title>지도 생성하기</title>
   <!-- 왼쪽 상단 메뉴바 -->
@@ -33,29 +33,30 @@
 
 <body>
   <div class="menu">
-    <label for="expand-menu">
+    <label for="expand-menu" class="menu-label">
       <div>메뉴</div>
     </label><input type="checkbox" id="expand-menu" name="expand-menu">
     <ul>
-      <li><a href="#" class="item">
+      <li class="menu-label"><a href="#" class="item">
           <div>도움말</div>
         </a></li>
-      <li><a href="javascript:void(0)" onclick="call_search_state();" class="item">
+      <li class="menu-label"><a href="javascript:void(0)" onclick="call_search_state();" class="item">
           <div>검색</div>
         </a></li>
-      <li><a href="javascript:void(0)" onclick="btn_building_number();" class="item">
+      <li class="menu-label"><a href="javascript:void(0)" onclick="btn_building_number();" class="item">
           <div>건물번호</div>
         </a></li>
-      <li><a href="javascript:void(0)" onclick="setCoffee(); coffeetoggleOnclick();">
+      <li class="menu-label_on_off_coffee"><a href="javascript:void(0)" onclick="setCoffee(); coffeetoggleOnclick();">
           <div>근처커피숍</div>
         </a></li>
-      <li><a href="javascript:void(0)" onclick="setprint(); printtoggleOnclick();">
+      <li class="menu-label_on_off_print"><a href="javascript:void(0)" onclick="setprint(); printtoggleOnclick();">
           <div>근처프린터</div>
         </a></li>
-      <li><a href="javascript:void(0)" onclick="setstudyroom(); studyroomtoggleOnclick();">
+      <li class="menu-label_on_off_study"><a href="javascript:void(0)"
+          onclick="setstudyroom(); studyroomtoggleOnclick();">
           <div>스터디실</div>
         </a></li>
-      <li><a href="javascript:void(0)" onclick="callFuntionWsucamp();" class="item">
+      <li class="menu-label"><a href="javascript:void(0)" onclick="callFuntionWsucamp();" class="item">
           <div>서캠퍼스</div>
         </a></li>
     </ul>
@@ -78,24 +79,20 @@
     <!-- 네이버 지도 폼 -->
     </div>
     </div>
-    <div class="custom_typecontrol radius_border">
-      <span id="btnRoadmap" class="selected_btn" onclick="setMapType('roadmap')">지도</span>
-      <span id="btnSkyview" class="btn" onclick="setMapType('skyview')">하늘뷰</span>
-    </div>
     </div>
   </h1>
 
   <div class="custom_zoomcontrol radius_border">
     <div id="roadviewControl"></div>
     <span onclick="toggleMap()">
-      <img src="https://cdn-icons-png.flaticon.com/512/8221/8221297.png">
+      <img src="https://i.ibb.co/RQS27DG/userlmn-969d08859531360177f9a03906302cb7.png">
     </span>
   </div>
 
   <div class="custom_location radius_border">
     <div id="roadviewControl"></div>
     <span onclick="setLocation()">
-      <img src="https://cdn-icons-png.flaticon.com/512/1673/1673311.png">
+      <img src="https://i.ibb.co/M50Dq4w/userlmn-0ea2ca4b3fbdd288a4011bce27deab1d.png">
     </span>
   </div>
 
@@ -105,6 +102,37 @@
     src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=5062efd19b7a53b5ded087c3ff4ba608&libraries=services"></script>
 
   <script>
+    /////////////////////////////////////////////////////////
+    // 버튼 누르면 0.5초후 꺼짐 (가능하면 최상단)
+    /////////////////////////////////////////////////////////
+    const menuLabels = document.querySelectorAll('.menu-label', '.menu a');
+
+    menuLabels.forEach(label => {
+      label.addEventListener('click', function () {
+        this.style.backgroundColor = '#fff';
+        this.style.color = '#000';
+        setTimeout(() => {
+          this.style.backgroundColor = '#142239';
+          this.style.color = '#fff';
+        }, 500);
+      });
+    });
+    const menuItems = document.querySelectorAll('.menu a');
+    menuItems.forEach(item => {
+      item.addEventListener('click', function () {
+        this.style.backgroundColor = '#fff';
+        this.style.color = '#000';
+
+        setTimeout(() => {
+          this.style.backgroundColor = '#142239';
+          this.style.color = '#fff';
+        }, 500);
+      });
+    });
+
+
+    /////////////////////////////////////////////////////////
+
 
     var overlayOn = false; // 지도 위에 로드뷰 오버레이가 추가된 상태를 가지고 있을 변수
     var rvContainer = document.getElementById('roadviewControl'); //로드뷰를 표시할 div 입니다
@@ -119,6 +147,8 @@
       position: markerPosition,
     });
 
+
+
     /////////////////////////////////////////////////////////
     // GPS
     /////////////////////////////////////////////////////////
@@ -127,10 +157,12 @@
       content: gpsContent,
       map: map
     });
-    
+
     let coffeisActive = true; //coffee on/off
     let printisActive = true; //print on/off
     let studyisActive = true; //study on/off
+
+
     var marker_arr = {}
     var marker_number_arr = {}
     var state = false;
@@ -152,6 +184,8 @@
       aroundControl: false,
 
     };
+
+
 
     var pano = new naver.maps.Panorama("pano", panoramaOptions);
 
@@ -293,35 +327,34 @@
     //#endregion
 
     document.addEventListener("message", async (e) => {
-      try{
+      try {
         var latlng = JSON.parse(e.data)
-      if (latlng[0].picket == "marker") {
-        for (var i = 1; i < latlng.length; i++) {
-          mark(latlng[i].latitude, latlng[i].longtitude, latlng[i].name, latlng[i].imgName, latlng[i].address)
+        if (latlng[0].picket == "marker") {
+          for (var i = 1; i < latlng.length; i++) {
+            mark(latlng[i].latitude, latlng[i].longtitude, latlng[i].name, latlng[i].imgName, latlng[i].address)
+          }
+          numbering();
         }
-        numbering();
-      }
-      else if (latlng[0].picket == "me") {
-        if (!state) {
-          gpsset(latlng[1].lat, latlng[1].lng)
-          state = true
+        else if (latlng[0].picket == "me") {
+          if (!state) {
+            gpsset(latlng[1].lat, latlng[1].lng)
+            state = true
+          }
+          else {
+            gpsset(latlng[1].lat, latlng[1].lng)
+          }
+        }
+        else if (latlng[0].picket == "location") {
+          panTo(latlng[1].latitude, latlng[1].longtitude)
+          window.ReactNativeWebView.postMessage(latlng[1].name);
+        }
+        else if (latlng[0].picket == "direction") {
+          direction(latlng[1]);
         }
         else {
-          gpsset(latlng[1].lat, latlng[1].lng)
         }
       }
-      else if (latlng[0].picket == "location") {
-        panTo(latlng[1].latitude, latlng[1].longtitude)
-        window.ReactNativeWebView.postMessage(latlng[1].name);
-      }
-      else if (latlng[0].picket == "direction") {
-        direction(latlng[1]);
-      }
-      else {
-      }
-      }
-      catch(err)
-      {}
+      catch (err) { }
     })
 
     function toggleRoadview(position) {
@@ -339,7 +372,7 @@
       });
     }
 
-    function setLocation(){
+    function setLocation() {
       map.panTo(gps.getPosition());
     }
 
@@ -362,13 +395,12 @@
     }
 
     function call_search_state() {
-      try{
-      set_search_state();
-      window.ReactNativeWebView.postMessage(search_state);
+      try {
+        set_search_state();
+        window.ReactNativeWebView.postMessage(search_state);
       }
-      catch(err)
-      {}
-    } 
+      catch (err) { }
+    }
 
     //#region 번호판
     function btn_building_number() {
@@ -439,13 +471,13 @@
       marker_arr[name] = marker
     }
 
-    function open_screen(_name){
-      try{
-        return function(){
-        window.ReactNativeWebView.postMessage(_name);
+    function open_screen(_name) {
+      try {
+        return function () {
+          window.ReactNativeWebView.postMessage(_name);
+        }
       }
-      }
-      catch(err){
+      catch (err) {
 
       }
     }
@@ -506,7 +538,6 @@
       new kakao.maps.LatLng(36.336066758197056, 127.44497451893155)
     ];
 
-
     var studyroomPositions = [
       new kakao.maps.LatLng(36.33628290227529, 127.4456162016259),
       new kakao.maps.LatLng(36.33810695022831, 127.44644249256521),
@@ -528,8 +559,10 @@
     createprintMarkers(); // 프린터 마커를 생성하고 프린터 마커 배열에 추가합니다
     createstudyroomMarkers(); // 스터디실 마커를 생성하고 스터디실 마커 배열에 추가합니다
 
-    changeMarker('coffee'); // 지도에 커피숍 마커가 보이도록 설정합니다
+    // changeMarker('coffee'); // 지도에 커피숍 마커가 보이도록 설정합니다
+    // changeMarker('print'); // 지도에 커피숍 마커가 보이도록 설정합니다
 
+    // changeMarker('study'); // 지도에 커피숍 마커가 보이도록 설정합니다
 
     // 마커이미지의 주소와, 크기, 옵션으로 마커 이미지를 생성하여 리턴하는 함수입니다
     function createMarkerImage(src, size, options) {
@@ -627,40 +660,60 @@
     }
 
     function coffeetoggleOnclick() {
-            coffeisActive = !coffeisActive;
-        }
+      coffeisActive = !coffeisActive;
 
-        function printtoggleOnclick() {
-            printisActive = !printisActive;
-        }
+    }
 
-        function studyroomtoggleOnclick() {
-            studyisActive = !studyisActive;
-        }
+    function printtoggleOnclick() {
+      printisActive = !printisActive;
+    }
 
-        function setCoffee() {
-            if (coffeisActive) {
-                setCoffeeMarkers(map);
-            } else {
-                setCoffeeMarkers(null);
-            }
-        }
+    function studyroomtoggleOnclick() {
+      studyisActive = !studyisActive;
+    }
 
-        function setprint() {
-            if (printisActive) {
-                setprintMarkers(map);
-            } else {
-                setprintMarkers(null);
-            }
-        }
+    function setCoffee() {
+      console.log("hi");
+      let coffeelement = document.querySelector('.menu-label_on_off_coffee');
+      if (coffeisActive) {
 
-        function setstudyroom() {
-            if (studyisActive) {
-                setstudyroomMarkers(map);
-            } else {
-                setstudyroomMarkers(null);
-            }
-        }
+        coffeelement.classList.add('active'); //버튼을 누르면 효과가 나옵니다.
+        setCoffeeMarkers(map);
+      } else {
+
+        coffeelement.classList.remove('active');
+        setCoffeeMarkers(null);
+      }
+    }
+
+    function setprint() {
+      console.log("hi2");
+      let printelement = document.querySelector('.menu-label_on_off_print');
+      if (printisActive) {
+        console.log("active");
+        printelement.classList.add('active');
+        setprintMarkers(map);
+      } else {
+        console.log("unactive");
+        printelement.classList.remove('active');
+        setprintMarkers(null);
+      }
+
+      // settime;
+    }
+
+    function setstudyroom() {
+      let studyelement = document.querySelector('.menu-label_on_off_study');
+      if (studyisActive) {
+        studyelement.classList.add('active');
+        setstudyroomMarkers(map);
+      } else {
+        studyelement.classList.remove('active');
+        setstudyroomMarkers(null);
+      }
+
+      // settime;
+    }
     //#endregion
 
   </script>

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable no-undef */
 $('.menu').click(function () {
   $(this).parent().toggleClass('close');
@@ -19,10 +20,9 @@ window.onresize = function (event) {
   innerWidthsize.textContent = innerWidth;
 };
 
-// var innerHeightsize = document.getElementById("size");
-// window.onresize = function(event){
-// 	var innerHeight = window.innerHeight;
-// 	innerHeightsize.textContent = innerHeight;
-// }
-// $(window).height(windowHeight); // returns height of browser viewport
-// $(document).height(); // returns height of HTML document
+
+$('menu-label_on_off').click(function() {
+  toggleClass('.active-color');
+});
+// background-color: #142239;
+// color: #fff;
