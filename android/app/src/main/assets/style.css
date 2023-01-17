@@ -194,7 +194,7 @@ h1 {
 .menu ul li:hover,
 .menu>label:hover {
   /* 반원컬러 */
-  background-color: #fff;
+  /* background-color: #fff; */
   color: #000;
   border-radius: 10px;
   transition: all 0.5s ease;
@@ -299,14 +299,15 @@ h1 {
   background-color: #fff;
   color:#000;
 }
+.menu b:active{
+  background-color: #FF5F4A;
+}
 
 @media(max-width: 600px) {
   .menu div {
     font-size: 0;
-    visibility: hidden;
-    
-  }
-  
+    visibility: hidden;    
+  }  
 }
 
 .menu #expand-menu:not(:checked)~ul {
@@ -315,7 +316,45 @@ h1 {
   transition: all 5s ease;
 }
 
+.menu-label_on_off_coffee {
+  background-color: #142239;
+  transition: all 0.5s ease;
+}
 
+.menu-label_on_off_print {
+  background-color: #142239; /* default background color */
+  transition: all 0.5s ease;
+}
+
+.menu-label_on_off_study {
+  background-color: #142239; /* default background color */
+  transition: all 0.5s ease;
+}
+
+.menu-label_on_off_coffee.active {
+  /* float: auto; */
+  /* background-color:  #ffffff;   */
+  scale: 1.2;
+  margin: 10px auto;
+  border-radius:40%;
+  box-shadow: rgba(255, 255, 255) 0px 4px 8px -2px, rgba(255, 255, 255, 0.08) 0px 0px 0px 3px;
+}
+.menu-label_on_off_print.active {
+  /* float: auto; */
+  /* background-color:  #ffffff;   */
+  scale: 1.2;
+  margin: 10px auto;
+  border-radius:40%;
+  box-shadow: rgba(255, 255, 255) 0px 4px 8px -2px, rgba(255, 255, 255, 0.08) 0px 0px 0px 3px;
+}
+.menu-label_on_off_study.active {
+  /* float: auto; */
+  /* background-color:  #ffffff;   */
+  scale: 1.2;
+  margin: 10px auto;
+  border-radius:40%;
+  box-shadow: rgba(255, 255, 255) 0px 4px 8px -2px, rgba(255, 255, 255, 0.08) 0px 0px 0px 3px;
+}
 
 
 #mapwrap {

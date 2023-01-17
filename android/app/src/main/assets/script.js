@@ -21,18 +21,8 @@ window.onresize = function (event) {
 };
 
 
-$('.menu a, .menu > label').click(function() {
-  $(this).css({
-      'background-color': '#fff',
-      'color': '#000'
-  });
-
-  setTimeout(function() {
-      $(this).css({
-          'background-color': '#142239',
-          'color': '#fff'
-      });
-  }.bind(this), 1000);
+$('menu-label_on_off').click(function() {
+  toggleClass('.active-color');
 });
 // background-color: #142239;
 // color: #fff;

@@ -15,7 +15,7 @@
   <!-- <meta charset="utf-8"> -->
   <link rel="stylesheet" href="test.scss" type="NaverMap/css/">
   <!-- css파일을 연결할 때 -->
-  <script script type="NaverMap/js" src="test.js"></script>
+  <script defer src="script.js"></script>
   <!-- js파일을 연결할 때 -->
   <title>지도 생성하기</title>
   <!-- 왼쪽 상단 메뉴바 -->
@@ -46,13 +46,14 @@
       <li class="menu-label"><a href="javascript:void(0)" onclick="btn_building_number();" class="item">
           <div>건물번호</div>
         </a></li>
-      <li class="menu-label"><a href="javascript:void(0)" onclick="setCoffee(); coffeetoggleOnclick();">
+      <li class="menu-label_on_off_coffee"><a href="javascript:void(0)" onclick="setCoffee(); coffeetoggleOnclick();">
           <div>근처커피숍</div>
         </a></li>
-      <li class="menu-label"><a href="javascript:void(0)" onclick="setprint(); printtoggleOnclick();">
+      <li class="menu-label_on_off_print"><a href="javascript:void(0)" onclick="setprint(); printtoggleOnclick();">
           <div>근처프린터</div>
         </a></li>
-      <li class="menu-label"><a href="javascript:void(0)" onclick="setstudyroom(); studyroomtoggleOnclick();">
+      <li class="menu-label_on_off_study"><a href="javascript:void(0)"
+          onclick="setstudyroom(); studyroomtoggleOnclick();">
           <div>스터디실</div>
         </a></li>
       <li class="menu-label"><a href="javascript:void(0)" onclick="callFuntionWsucamp();" class="item">
@@ -158,6 +159,8 @@
     let coffeisActive = true; //coffee on/off
     let printisActive = true; //print on/off
     let studyisActive = true; //study on/off
+
+
     var marker_arr = {}
     var marker_number_arr = {}
     var state = false;
@@ -533,7 +536,6 @@
       new kakao.maps.LatLng(36.336066758197056, 127.44497451893155)
     ];
 
-
     var studyroomPositions = [
       new kakao.maps.LatLng(36.33628290227529, 127.4456162016259),
       new kakao.maps.LatLng(36.33810695022831, 127.44644249256521),
@@ -555,8 +557,10 @@
     createprintMarkers(); // 프린터 마커를 생성하고 프린터 마커 배열에 추가합니다
     createstudyroomMarkers(); // 스터디실 마커를 생성하고 스터디실 마커 배열에 추가합니다
 
-    changeMarker('coffee'); // 지도에 커피숍 마커가 보이도록 설정합니다
+    // changeMarker('coffee'); // 지도에 커피숍 마커가 보이도록 설정합니다
+    // changeMarker('print'); // 지도에 커피숍 마커가 보이도록 설정합니다
 
+    // changeMarker('study'); // 지도에 커피숍 마커가 보이도록 설정합니다
 
     // 마커이미지의 주소와, 크기, 옵션으로 마커 이미지를 생성하여 리턴하는 함수입니다
     function createMarkerImage(src, size, options) {
@@ -655,6 +659,7 @@
 
     function coffeetoggleOnclick() {
       coffeisActive = !coffeisActive;
+
     }
 
     function printtoggleOnclick() {
@@ -666,31 +671,46 @@
     }
 
     function setCoffee() {
+      console.log("hi");
+      let coffeelement = document.querySelector('.menu-label_on_off_coffee');
       if (coffeisActive) {
+
+        coffeelement.classList.add('active'); //버튼을 누르면 효과가 나옵니다.
         setCoffeeMarkers(map);
       } else {
+
+        coffeelement.classList.remove('active');
         setCoffeeMarkers(null);
       }
     }
 
     function setprint() {
+      console.log("hi2");
+      let printelement = document.querySelector('.menu-label_on_off_print');
       if (printisActive) {
+        console.log("active");
+        printelement.classList.add('active');
         setprintMarkers(map);
       } else {
+        console.log("unactive");
+        printelement.classList.remove('active');
         setprintMarkers(null);
       }
 
-      settime;
+      // settime;
     }
 
     function setstudyroom() {
+      let studyelement = document.querySelector('.menu-label_on_off_study');
       if (studyisActive) {
+        studyelement.classList.add('active');
         setstudyroomMarkers(map);
       } else {
+        studyelement.classList.remove('active');
         setstudyroomMarkers(null);
       }
 
-      settime;
+      // settime;
     }
     //#endregion
 
