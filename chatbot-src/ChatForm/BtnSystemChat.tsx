@@ -9,10 +9,13 @@
 import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, Image, Text, TouchableOpacity, View} from 'react-native';
-import { CHATURL } from '../Chatting';
+import { setPostData } from '../Chatting';
 import {SystemTime} from '../Utils/SytemTime';
 
 export const BtnSystemChat = ({keyword,answer}:any)=>{
+    useEffect(()=>{
+      setPostData(keyword);
+    },[]);
     return (
         <>
       <View

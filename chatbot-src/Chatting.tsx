@@ -23,7 +23,11 @@ import { containsKey, getData } from './Utils/localStrorage';
 import {SelectSystemChat} from './Utils/SelectSystemChat';
 import {SuggestedSearch} from './Utils/SuggestedSearch';
 
-export const POSTDATA:string = '';
+export let POSTDATA:string = '';
+export const setPostData = (keyword: string)=>{
+  POSTDATA = keyword;
+};
+
 const WIDTH = Dimensions.get('window').width;
 export const CHATURL = 'https://ca43-220-68-223-111.jp.ngrok.io';
 
@@ -62,11 +66,6 @@ export const Chatting = () => {
   };
 
   const myGetData = async ()=>{
-    let temp:any = containsKey('day');
-    if (temp === false){
-      return;
-    }
-
     let day:number = 0;
     let hours:number = 0;
     let minutes:number = 0;
@@ -115,11 +114,7 @@ export const Chatting = () => {
         }
       }
     }
-    console.log(day);
-    console.log(hours);
-    console.log(minutes);
-    console.log(seconds);
-  }
+  };
 
   useEffect(()=>{
     myGetData();
