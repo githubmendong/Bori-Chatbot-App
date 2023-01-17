@@ -7,7 +7,6 @@ import {Button, View} from 'react-native';
 import React, {useRef} from 'react';
 import KMap from './K_Map/KMap';
 import Direction from './K_Map/Direction';
-import { POSTDATA } from '../chatbot-src/Chatting';
 
 export const URL = 'https://8da2-220-68-223-111.jp.ngrok.io';
 
