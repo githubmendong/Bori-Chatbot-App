@@ -8,7 +8,7 @@ import React, {useRef} from 'react';
 import KMap from './K_Map/KMap';
 import Direction from './K_Map/Direction';
 
-export const URL = 'https://8da2-220-68-223-111.jp.ngrok.io';
+export const MAPURL = 'https://3e8b-220-68-223-111.jp.ngrok.io';
 
 export const Ws36 = ()=>{
   const webviewRef:any = useRef();
