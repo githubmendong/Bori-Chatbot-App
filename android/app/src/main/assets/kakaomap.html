@@ -187,7 +187,7 @@
 
 
 
-    var pano = new naver.maps.Panorama("pano", panoramaOptions);
+    // var pano = new naver.maps.Panorama("pano", panoramaOptions);
 
     //#region 로드부
     /////////////////////////////////////////////////////////
@@ -252,7 +252,7 @@
 
       var panoramaOptions = {
         position: new naver.maps.LatLng(coord),
-        visible: false,x
+        visible: false, x
       }
 
       var pano = new naver.maps.Panorama("pano", panoramaOptions);
@@ -309,10 +309,11 @@
 
     function toggleMap(active) {
       var control = document.getElementById('roadviewControl');
-      console.log(control);
+      // console.log(control);
       if (control.className.indexOf('active') === -1) {
         control.className = 'active';
         toggleOverlay(true);
+        var pano = new naver.maps.Panorama("pano", panoramaOptions);
         pano.setVisible(false);
         console.log("로드뷰 active");
       } else {
