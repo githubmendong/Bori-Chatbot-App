@@ -43,7 +43,7 @@
       <li class="menu-label"><a href="javascript:void(0)" onclick="call_search_state();" class="item">
           <div>검색</div>
         </a></li>
-      <li class="menu-label"><a href="javascript:void(0)" onclick="btn_building_number();" class="item">
+      <li class="menu-label_on_off_number"><a href="javascript:void(0)" onclick="btn_building_number();" class="item">
           <div>건물번호</div>
         </a></li>
       <li class="menu-label_on_off_coffee"><a href="javascript:void(0)" onclick="setCoffee(); coffeetoggleOnclick();">
@@ -404,11 +404,15 @@
 
     //#region 번호판
     function btn_building_number() {
+      let numberelement = document.querySelector('.menu-label_on_off_number');
+
       if (number_state) {
+        numberelement.classList.add('active'); //버튼을 누르면 효과가 나옵니다.
         number_open();
         number_state = false;
       }
       else {
+        numberelement.classList.remove('active');
         number_close();
         number_state = true;
       }
@@ -673,7 +677,6 @@
     }
 
     function setCoffee() {
-      console.log("hi");
       let coffeelement = document.querySelector('.menu-label_on_off_coffee');
       if (coffeisActive) {
 
@@ -687,7 +690,6 @@
     }
 
     function setprint() {
-      console.log("hi2");
       let printelement = document.querySelector('.menu-label_on_off_print');
       if (printisActive) {
         console.log("active");

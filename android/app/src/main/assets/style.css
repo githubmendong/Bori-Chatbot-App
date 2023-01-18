@@ -315,7 +315,10 @@ h1 {
   display: none;
   transition: all 5s ease;
 }
-
+.menu-label_on_off_number {
+  background-color: #142239;
+  transition: all 0.5s ease;
+}
 .menu-label_on_off_coffee {
   background-color: #142239;
   transition: all 0.5s ease;
@@ -330,7 +333,17 @@ h1 {
   background-color: #142239; /* default background color */
   transition: all 0.5s ease;
 }
+.menu-label_on_off_number.active {
+  /* float: auto; */
+  /* background-color:  #ffffff;   */
+  scale: 1.2;
+  margin: 10px auto;
 
+  margin-top: 15px;
+  margin-bottom:20px;
+  border-radius:40%;
+  box-shadow: rgba(255, 255, 255) 0px 4px 8px -2px, rgba(255, 255, 255, 0.08) 0px 0px 0px 3px;
+}
 .menu-label_on_off_coffee.active {
   /* float: auto; */
   /* background-color:  #ffffff;   */
