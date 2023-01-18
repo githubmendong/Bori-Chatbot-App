@@ -2,6 +2,9 @@
 
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
+/* eslint-disable react/self-closing-comp */
+/* eslint-disable no-trailing-spaces */
+/* eslint-disable no-unreachable */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, {useEffect, useState} from 'react';
 import {
@@ -12,7 +15,6 @@ import {
   TextInput,
   View,
 } from 'react-native';
-
 export const SystemTime = () => {
   const [ampm, setAmPm] = useState<string>('오후');
   const date: Date = new Date();

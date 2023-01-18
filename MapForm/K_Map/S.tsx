@@ -108,11 +108,10 @@ function S({webviewRef, _state}: any) {
     filter(text);
     setInputText(text);
   };
-  
+
   const sendlatlng = async (temp: any) => {
-      await onPress();
-      setTimeout(() => _sendlatlng(temp),118);
-      
+    await onPress();
+    setTimeout(() => _sendlatlng(temp), 118);
   };
 
   const _sendlatlng = async (temp: any) => {
@@ -133,7 +132,7 @@ function S({webviewRef, _state}: any) {
 
   return (
     <Modal
-      animationIn= "slideInLeft"
+      animationIn="slideInLeft"
       animationOut="slideOutLeft"
       onBackButtonPress={() => {
         onPress();

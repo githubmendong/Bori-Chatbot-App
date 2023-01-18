@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
-
+/* eslint-disable no-trailing-spaces */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
 import axios from 'axios';
@@ -18,13 +19,13 @@ import {IntroSystemChat} from './ChatForm/IntroSystemChat';
 import {UserChat} from './ChatForm/UserChat';
 import {AutoComplete} from './Utils/AutoComplete';
 import {GuideModal} from './Utils/GuideModal';
+import { containsKey, getData } from './Utils/localStrorage';
 import {SelectSystemChat} from './Utils/SelectSystemChat';
 import {SuggestedSearch} from './Utils/SuggestedSearch';
 
 
 const WIDTH = Dimensions.get('window').width;
-export const CHATURL = 'https://f5d9-220-68-223-111.jp.ngrok.io';
-export let POSTDATA:any;
+export const CHATURL = 'https://ca43-220-68-223-111.jp.ngrok.io';
 const styles = StyleSheet.create({
   input: {
     backgroundColor: 'white',
@@ -44,9 +45,12 @@ export let GLOBALBOOL:boolean = false;
 export const GBBOOLCH = ()=>{
   GLOBALBOOL = !GLOBALBOOL;
 };
+export let NAVIGATIONDATA:any;
 
-export const Chatting = () => {
+export const Chatting = ({ navigation }:any) => {
+  const date = new Date();
   // const [menuAddChatting, setMenuAddChatting] = useState<boolean>(false);
+  const [state, setState] = useState<boolean>(true);
   const [text, setText] = useState<string>('');
   const [topSearch, setTopSearch] = useState<string[]>([]);
   const [components, setComponents] = useState<JSX.Element[]>([<IntroSystemChat key={UKEY} setText={setText}/>]);
@@ -56,6 +60,61 @@ export const Chatting = () => {
     return setTopSearch([result.data.First,result.data.Second,result.data.Third]);
   };
 
+  const myGetData = async ()=>{
+    let day:number = 0;
+    let hours:number = 0;
+    let minutes:number = 0;
+    let seconds:number = 0;
+
+     await getData('day').then((data)=> {day = data;});
+     await getData('hours').then((data)=> {hours = data;});
+     await getData('minutes').then((data)=> {minutes = data;});
+     await getData('seconds').then((data)=> {seconds = data;});
+
+
+
+    let currentTime = {
+      day: date.getDay(),
+      hours: date.getHours(),
+      minutes: date.getMinutes(),
+      seconds: date.getSeconds(),
+    };
+    if (day > currentTime.day){
+      setState(false);
+    }
+    else if (day < currentTime.day){
+      setState(true);
+    }
+    else if (day === currentTime.day){
+      if (hours < currentTime.hours){
+        setState(true);
+      }
+      else if (hours > currentTime.hours){
+        setState(false);
+      }
+      else if (hours === currentTime.hours){
+        if (minutes < currentTime.minutes){
+          setState(true);
+        }
+        else if (minutes > currentTime.minutes){
+          setState(false);
+        }
+        else if (minutes === currentTime.minutes){
+          if (seconds < currentTime.seconds){
+            setState(true);
+          }
+          else if ( seconds > currentTime.seconds){
+            setState(false);
+          }
+        }
+      }
+    }
+  };
+
+  useEffect(()=>{
+    myGetData();
+    NAVIGATIONDATA = navigation;
+  },[]);
 
   useEffect(() => {
     //#region 서버에서 검색어 상위3개 받아오는 코드
@@ -150,7 +209,7 @@ export const Chatting = () => {
         placeholder={'보리에게 궁금한 것을 물어보세요!'}
         style={styles.input}
       />
-      <GuideModal />
+      {state ? <GuideModal /> : null}
       <TouchableOpacity style={{
         justifyContent: 'center',
         width: 50,
@@ -169,4 +228,3 @@ export const Chatting = () => {
     </>
   );
 };
-

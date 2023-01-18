@@ -1,17 +1,41 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable react-hooks/exhaustive-deps */
 
 /* eslint-disable react-native/no-inline-styles */
+/* eslint-disable react/self-closing-comp */
 /* eslint-disable no-trailing-spaces */
+/* eslint-disable no-unreachable */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import axios from 'axios';
 import React, {useEffect, useState} from 'react';
-import {ActivityIndicator, Image, Text, TouchableOpacity, View} from 'react-native';
-import { CHATURL } from '../Chatting';
-import {SystemTime} from '../Utils/SytemTime';
 
-export const BtnSystemChat = ({keyword,answer}:any)=>{
-    return (
-        <>
+import {
+  Image,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import {setTemp} from '../../MapForm/K_Map/KMap';
+import { NAVIGATIONDATA } from '../Chatting';
+import {SystemTime} from '../Utils/SytemTime';
+let KEYWORD:string = '';
+export const setKeyword = (text: string): void=>{
+  KEYWORD = text;
+};
+
+export const getKeyword = (): string=>{
+  return KEYWORD;
+};
+
+export const BtnSystemChat = ({keyword, answer}: any) => {
+  const moveActivity = async ()=>{
+    setKeyword(keyword);
+    await NAVIGATIONDATA.navigate('MoveMap1');
+    setTemp(keyword);
+  };
+
+  return (
+    <>
       <View
         style={{
           paddingHorizontal: 10,
@@ -24,25 +48,23 @@ export const BtnSystemChat = ({keyword,answer}:any)=>{
         <Text style={{fontSize: 20, marginTop: 50}}>보리</Text>
       </View>
       <TouchableOpacity
-            activeOpacity = {1}
-            style={{
-              borderTopRightRadius: 30,
-              borderBottomLeftRadius: 30,
-              borderBottomRightRadius: 30,
-              backgroundColor: 'white',
-              margin: 5,
-              borderWidth: 1,
-              borderColor: '#c7c7c7',
-              shadowOpacity: 0.75,
-              shadowRadius: 3.84,
-              elevation: 5,
-              marginHorizontal: 40,
-              marginLeft: 30,
-            }
-          }
-      >
-        <View
+        activeOpacity={1}
         style={{
+          borderTopRightRadius: 30,
+          borderBottomLeftRadius: 30,
+          borderBottomRightRadius: 30,
+          backgroundColor: 'white',
+          margin: 5,
+          borderWidth: 1,
+          borderColor: '#c7c7c7',
+          shadowOpacity: 0.75,
+          shadowRadius: 3.84,
+          elevation: 5,
+          marginHorizontal: 40,
+          marginLeft: 30,
+        }}>
+        <View
+          style={{
             paddingVertical: 15,
             paddingHorizontal: 10,
             borderColor: 'black',
@@ -54,7 +76,11 @@ export const BtnSystemChat = ({keyword,answer}:any)=>{
         <Text style={{fontSize:15,lineHeight:24, color: 'black'}}>
           {answer}
         </Text>
-        <TouchableOpacity style={{
+        <TouchableOpacity 
+        onPress={()=> {
+          moveActivity();
+        }}
+        style={{
           backgroundColor: 'white',
           borderRadius: 20,
           borderColor: '#544fc1',
@@ -72,10 +98,10 @@ export const BtnSystemChat = ({keyword,answer}:any)=>{
           >
             지도로 가기
           </Text>
-        </TouchableOpacity>
-    </View>
+          </TouchableOpacity>
+        </View>
       </TouchableOpacity>
       <SystemTime />
-        </>
-      );
+    </>
+  );
 };
