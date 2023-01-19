@@ -26,7 +26,7 @@ const Item = ({item, onPress}: any) => (
   </TouchableOpacity>
 );
 
-function S({webviewRef, _state}: any) {
+function Search({webviewRef, _state}: any) {
   const [inputText, setInputText] = useState('');
   const [data, setData] = useState<any[]>([]);
   const [list, setList] = useState<any[]>([]);
@@ -205,4 +205,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default S;
+export default Search;

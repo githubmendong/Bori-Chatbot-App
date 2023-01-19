@@ -13,19 +13,18 @@ import Geolocation from 'react-native-geolocation-service';
 import Bori from './Bori';
 import {Screen} from './Screen';
 import {MAPURL} from '../Ws36';
-import S from './S';
-import { getKeyword, setKeyword } from '../../chatbot-src/ChatForm/BtnSystemChat';
+import Search from './Search';
+import {getKeyword, setKeyword} from '../../chatbot-src/ChatForm/BtnSystemChat';
 
 export let _temp: string;
 export let setTemp: any;
 
-function KMap({webviewRef}: any) {
+function KMap({webviewRef, map}: any) {
   const [state, setState] = useState<boolean>(true);
   const [name, setName] = useState<string>();
   const [open, setOpen] = useState<boolean>(false);
-  const [data, setData] = useState<any[]>([]);
+  const data: any = map.map;
   [_temp, setTemp] = useState<string>('');
-
   const handleOnMessage = (e: any) => {
     if (e.nativeEvent.data === 'true' || e.nativeEvent.data === 'false') {
       const _state = e.nativeEvent.data;
@@ -43,25 +42,13 @@ function KMap({webviewRef}: any) {
 
   const sendMessage = async () => {
     try {
-      let getData: any;
-      console.log('실행');
-      
-      await fetch(`${MAPURL}/borimap`)
-        .then(response => response.json())
-        .then(_data => {
-          console.log(_data);
-          
-          getData = _data;
-          setData(getData);
-        });
-
       const list = new Array();
 
       list.push({
         picket: 'marker',
       });
 
-      for (let temp of getData) {
+      for (let temp of data) {
         list.push(temp);
       }
 
@@ -85,22 +72,9 @@ function KMap({webviewRef}: any) {
     } catch (error) {}
   };
 
-  useEffect(() => {
-    console.log('fdfd');
-    const d_title: string = getKeyword();
-    console.log(d_title);
-    if (d_title !== '') {
-      send_screen(d_title);
-    }
-    // setTemp('');
-    setKeyword('');
-  }, [_temp]);
-
   const send_screen = async (d_title: any) => {
     const latlng = new Array();
-    console.log(data);
     for (let i of data) {
-      // console.log(i);
       if (i.tag.includes(d_title)) {
         const _data = {
           picket: 'location',
@@ -109,6 +83,8 @@ function KMap({webviewRef}: any) {
         latlng.push(i);
       }
     }
+    console.log(latlng);
+    
     const sendData = JSON.stringify(latlng);
     await webviewRef.current.postMessage(sendData);
   };
@@ -136,6 +112,15 @@ function KMap({webviewRef}: any) {
     };
   });
 
+  useEffect(() => {
+    const d_title: string = getKeyword();
+    console.log(d_title);
+    if (d_title !== '') {
+      setTimeout(() => send_screen(d_title), 1000) 
+    }
+    setKeyword('');
+  }, [_temp]);
+
   return (
     <>
       <WebView
@@ -145,7 +130,7 @@ function KMap({webviewRef}: any) {
         allowFileAccess={true}
         onLoadEnd={sendMessage}
       />
-      <S webviewRef={webviewRef} _state={state} />
+      <Search webviewRef={webviewRef} _state={state} />
       <Screen _state={open} _name={name} />
     </>
   );

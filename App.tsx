@@ -29,12 +29,27 @@ function App() {
   useEffect(()=>{
     setData(data === 'none' ? 'flex' : 'none');
   },[GLOBALSTR]);
+  const [map, setMap] = useState<any[]>([]);
+
+  useEffect(() => {
+    try {
+      let getData: any;
+      
+      fetch('https://cc20-2001-2d8-6335-c08f-283a-f7da-bdf-a16c.jp.ngrok.io/borimap')
+        .then(response => response.json())
+        .then(_data => {
+          getData = _data;
+          setMap(getData)
+        });
+    }
+    catch(error) {}
+  }, [])
 
 
   return (
     <View style={{flex:1}}>
     <View style={{flex:1}}>
-      {number === 1 ? <Home /> : number === 2 ? <Ws36 /> : <Chatting />}
+      {number === 1 ? <Home /> : number === 2 ? <Ws36 map={map}/> : <Chatting />}
     </View>
     <View >
       {data === 'none' ? null : <Tabs setData={setData} setNumber={setNumber} />}

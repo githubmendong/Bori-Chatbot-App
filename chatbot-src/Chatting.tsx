@@ -25,7 +25,7 @@ import {SuggestedSearch} from './Utils/SuggestedSearch';
 
 
 const WIDTH = Dimensions.get('window').width;
-export const CHATURL = 'https://2e2b-220-68-223-111.jp.ngrok.io';
+export const CHATURL = 'https://072a-220-68-223-111.jp.ngrok.io';
 const styles = StyleSheet.create({
   input: {
     backgroundColor: 'white',
