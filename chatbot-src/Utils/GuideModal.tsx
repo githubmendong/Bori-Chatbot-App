@@ -32,7 +32,7 @@ export const GuideModal = () => {
   return (
     <View style={modalstyles.centeredView}>
       <Modal
-        animationType="none"
+        animationType="fade"
         presentationStyle="overFullScreen"
         transparent={true}
         visible={modalVisible}
