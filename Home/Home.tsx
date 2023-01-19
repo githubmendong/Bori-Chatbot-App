@@ -17,11 +17,9 @@ import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { Scroll } from './components/Scroll';
 import { BackHandler, PermissionsAndroid, ToastAndroid } from 'react-native';
-const Stack = createNativeStackNavigator();
+// export let MAPDATA = axios.get(`${MAPURL}/boriapp/get/`);
 
 const Home = () => {
-  const navigation:any = useNavigation();
-
   const toastWithDurationHandler = () => {
     ToastAndroid.show("'뒤로' 버튼을  한번 더 누르시면 종료됩니다.", ToastAndroid.SHORT);
   };

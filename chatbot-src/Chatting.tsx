@@ -25,7 +25,7 @@ import {SuggestedSearch} from './Utils/SuggestedSearch';
 
 
 const WIDTH = Dimensions.get('window').width;
-export const CHATURL = 'https://02d3-220-68-223-111.jp.ngrok.io';
+export const CHATURL = 'https://ca43-220-68-223-111.jp.ngrok.io';
 const styles = StyleSheet.create({
   input: {
     backgroundColor: 'white',
@@ -45,9 +45,9 @@ export let GLOBALBOOL:boolean = false;
 export const GBBOOLCH = ()=>{
   GLOBALBOOL = !GLOBALBOOL;
 };
-export let NAVIGATIONDATA:any;
+// export let NAVIGATIONDATA:any;
 
-export const Chatting = ({ navigation }:any) => {
+export const Chatting = ({  }:any) => {
   const date = new Date();
   // const [menuAddChatting, setMenuAddChatting] = useState<boolean>(false);
   const [state, setState] = useState<boolean>(true);
@@ -113,7 +113,7 @@ export const Chatting = ({ navigation }:any) => {
 
   useEffect(()=>{
     myGetData();
-    NAVIGATIONDATA = navigation;
+    // NAVIGATIONDATA = navigation;
   },[]);
 
   useEffect(() => {

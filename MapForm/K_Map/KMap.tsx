@@ -12,8 +12,9 @@ import {PermissionsAndroid} from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
 import Bori from './Bori';
 import {Screen} from './Screen';
-import {URL} from '../Ws36';
+import {MAPURL} from '../Ws36';
 import S from './S';
+import { getKeyword, setKeyword } from '../../chatbot-src/ChatForm/BtnSystemChat';
 
 export let _temp: string;
 export let setTemp: any;
@@ -23,7 +24,7 @@ function KMap({webviewRef}: any) {
   const [name, setName] = useState<string>();
   const [open, setOpen] = useState<boolean>(false);
   const [data, setData] = useState<any[]>([]);
-  [_temp, setTemp] = useState<string>('W1');
+  [_temp, setTemp] = useState<string>('');
 
   const handleOnMessage = (e: any) => {
     if (e.nativeEvent.data === 'true' || e.nativeEvent.data === 'false') {
@@ -43,10 +44,13 @@ function KMap({webviewRef}: any) {
   const sendMessage = async () => {
     try {
       let getData: any;
-
-      await fetch(`${URL}/borimap`)
+      console.log('실행');
+      
+      await fetch(`${MAPURL}/borimap`)
         .then(response => response.json())
         .then(_data => {
+          console.log(_data);
+          
           getData = _data;
           setData(getData);
         });
@@ -83,16 +87,20 @@ function KMap({webviewRef}: any) {
 
   useEffect(() => {
     console.log('fdfd');
-    const d_title: string = _temp;
+    const d_title: string = getKeyword();
+    console.log(d_title);
     if (d_title !== '') {
       send_screen(d_title);
     }
-    setTemp('');
+    // setTemp('');
+    setKeyword('');
   }, [_temp]);
 
   const send_screen = async (d_title: any) => {
     const latlng = new Array();
+    console.log(data);
     for (let i of data) {
+      // console.log(i);
       if (i.tag.includes(d_title)) {
         const _data = {
           picket: 'location',

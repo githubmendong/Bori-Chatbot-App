@@ -15,9 +15,11 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { setData, setNumber } from '../../App';
 import {setTemp} from '../../MapForm/K_Map/KMap';
-import { NAVIGATIONDATA } from '../Chatting';
+// import { NAVIGATIONDATA } from '../Chatting';
 import {SystemTime} from '../Utils/SytemTime';
+
 let KEYWORD:string = '';
 export const setKeyword = (text: string): void=>{
   KEYWORD = text;
@@ -29,9 +31,9 @@ export const getKeyword = (): string=>{
 
 export const BtnSystemChat = ({keyword, answer}: any) => {
   const moveActivity = async ()=>{
-    setKeyword(keyword);
-    await NAVIGATIONDATA.navigate('MoveMap1');
-    setTemp(keyword);
+    await setKeyword(keyword);
+    setNumber(2);
+    setData('flex');
   };
 
   return (

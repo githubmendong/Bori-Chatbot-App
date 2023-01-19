@@ -14,7 +14,7 @@ import {
   View,
 } from 'react-native';
 import Modal from 'react-native-modal';
-import {URL} from '../Ws36';
+import {MAPURL} from '../Ws36';
 import {SearchBar} from '@rneui/themed';
 
 const WIDTH = Dimensions.get('window').width;
@@ -74,7 +74,7 @@ function S({webviewRef, _state}: any) {
   };
 
   const searchMessage = () => {
-    fetch(`${URL}/borimap`)
+    fetch(`${MAPURL}/borimap`)
       .then(response => response.json())
       .then(_data => {
         const getData = _data;
