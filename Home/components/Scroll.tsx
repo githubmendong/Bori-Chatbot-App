@@ -19,13 +19,13 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { MAPURL } from '../../MapForm/Ws36';
+import { MAPURLS } from '../../MapForm/Ws36';
 import styles from '../styles/styles';
 import {MainImg} from './MainImg';
 import {Sns} from './Sns';
 import {VideoPlayer} from './VideoPlayer';
 
-const TEMPURLS1 = `${MAPURL}/admin/getsubform`;
+const TEMPURLS1 = `${MAPURLS}/admin/getsubform`;
 
 const moveTop = (SCROLLREF: ScrollView) => {
   SCROLLREF.scrollTo({x: 0, y: 0, animated: true});

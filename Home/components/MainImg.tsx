@@ -12,9 +12,9 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { MAPURL } from '../../MapForm/Ws36';
+import { MAPURLS } from '../../MapForm/Ws36';
 import styles from '../styles/styles';
-const TEMPURLS = `${MAPURL}/admin/getmainform`;
+const TEMPURLS = `${MAPURLS}/admin/getmainform`;
 
 const IMAGES: string[] = [
   // 'https://i.ibb.co/Q8b0SxG/1.png',
