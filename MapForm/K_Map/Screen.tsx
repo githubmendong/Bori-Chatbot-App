@@ -9,6 +9,7 @@ import {
   View,
   ImageBackground,
   Linking,
+  ScrollView,
 } from 'react-native';
 import {modalstyles} from './styles/modalstyles';
 
@@ -46,10 +47,10 @@ export const Screen = ({_state, _name, map}: any) => {
   const Screen_View = (a: number) => {
     const desc_arr = description[a].split('#');
     return (
-      <View key={a} style={{flexDirection: 'row'}}>
-        <Text style={modalstyles.subunitText}>- {desc_arr[0]}</Text>
-        <View>{description_view(desc_arr)}</View>
-      </View>
+        <View key={a} style={{flexDirection: 'row'}}>
+          <Text style={modalstyles.subunitText}>- {desc_arr[0]}</Text>
+          <View>{description_view(desc_arr)}</View>
+        </View>
     );
   };
 
@@ -129,7 +130,9 @@ export const Screen = ({_state, _name, map}: any) => {
                 </Text>
                 <Text style={modalstyles.subunitText2}>층별 시설 및 학과</Text>
                 {/* ------------------------------------------------------------------------------------------- */}
-                {_Screen()}
+                <ScrollView>
+                  {_Screen()}
+                </ScrollView>
                 {/* ------------------------------------------------------------------------------------------- */}
               </View>
             </View>
