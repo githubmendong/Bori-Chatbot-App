@@ -36,7 +36,7 @@ function App() {
     try {
       let getData: any;
       
-      getData = (await axios.get(`${MAPURLS}/borimap`)).data
+      getData = (await axios.get('https://c691-2001-2d8-6334-1d77-5033-bfa2-eed8-a202.jp.ngrok.io/borimap')).data
       setMap(getData);
     }
     catch(error) {}

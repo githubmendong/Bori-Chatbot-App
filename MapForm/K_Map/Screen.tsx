@@ -10,13 +10,13 @@ import {
   ImageBackground,
   Linking,
 } from 'react-native';
-import { MAPURLS } from '../Ws36';
+import {MAPURLS} from '../Ws36';
 import {modalstyles} from './styles/modalstyles';
 
-export const Screen = ({_state, _name}: any) => {
+export const Screen = ({_state, _name, map}: any) => {
   const [state, setState] = useState<boolean>(true);
   const [data, setData] = useState<any>([]);
-  const [list, setList] = useState<any[]>([]);
+  const list: any = map;
   const [text, setText] = useState<any[]>([]);
   const [description, setDescription] = useState<any[]>([]);
   const name: string = _name;
@@ -31,19 +31,6 @@ export const Screen = ({_state, _name}: any) => {
 
   const onPress = () => {
     setState(current => !current);
-  };
-
-  useEffect(() => {
-    loadList();
-  }, []);
-
-  const loadList = () => {
-    fetch(`${MAPURLS}/borimap`)
-      .then(response => response.json())
-      .then(_data => {
-        const getData = _data;
-        setList(getData);
-      });
   };
 
   const showdata = () => {
@@ -72,14 +59,14 @@ export const Screen = ({_state, _name}: any) => {
     for (let i = 1; i < desc_arr.length; i++) {
       const tel_arr = desc_arr[i].split('$');
       d_arr.push(
-        <View key={i} style={{flexDirection:'row'}}>
+        <View key={i} style={{flexDirection: 'row'}}>
           <Text style={modalstyles.description_text}>{tel_arr[0]}</Text>
           <Pressable
             style={modalstyles.phonbtn}
             onPress={() => Linking.openURL(`tel:042${tel_arr[1]}`)}>
             <Text style={{color: 'blue'}}>{tel_arr[1]}</Text>
           </Pressable>
-        </View>
+        </View>,
       );
     }
     return d_arr;
@@ -108,9 +95,7 @@ export const Screen = ({_state, _name}: any) => {
                 <View style={modalstyles.modalTopView}>
                   <View style={modalstyles.buttonOutView}>
                     <View style={{alignItems: 'flex-start', flex: 1}}>
-                      <Text style={modalstyles.largeUnitText}>
-                        {text[0]}
-                      </Text>
+                      <Text style={modalstyles.largeUnitText}>{text[0]}</Text>
                     </View>
                     <View style={{alignItems: 'flex-end', flex: 1}}>
                       <Pressable
@@ -128,9 +113,7 @@ export const Screen = ({_state, _name}: any) => {
                     style={modalstyles.image}
                   />
                   <View>
-                    <Text style={modalstyles.largeUnitTextnum}>
-                      {text[1]}
-                    </Text>
+                    <Text style={modalstyles.largeUnitTextnum}>{text[1]}</Text>
                     <Text style={modalstyles.largeUnitText2}>
                       {data.address}
                     </Text>
@@ -141,14 +124,14 @@ export const Screen = ({_state, _name}: any) => {
                     textAlign: 'center',
                     color: 'white',
                   }}>
-                  <Text style={{color:'black'}}>______________________________________________</Text>
-                </Text>
-                  <Text style={modalstyles.subunitText2}>
-                    층별 시설 및 학과
+                  <Text style={{color: 'black'}}>
+                    ______________________________________________
                   </Text>
-                  {/* ------------------------------------------------------------------------------------------- */}
-                  {_Screen()}
-                  {/* ------------------------------------------------------------------------------------------- */}
+                </Text>
+                <Text style={modalstyles.subunitText2}>층별 시설 및 학과</Text>
+                {/* ------------------------------------------------------------------------------------------- */}
+                {_Screen()}
+                {/* ------------------------------------------------------------------------------------------- */}
               </View>
             </View>
           </Modal>
