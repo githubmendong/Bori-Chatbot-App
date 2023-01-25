@@ -10,7 +10,6 @@ import {
   ImageBackground,
   Linking,
 } from 'react-native';
-import {MAPURLS} from '../Ws36';
 import {modalstyles} from './styles/modalstyles';
 
 export const Screen = ({_state, _name, map}: any) => {

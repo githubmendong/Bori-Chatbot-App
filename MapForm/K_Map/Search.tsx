@@ -15,7 +15,6 @@ import {
 } from 'react-native';
 import Modal from 'react-native-modal';
 import {SearchBar} from '@rneui/themed';
-import {MAPURLS} from '../Ws36';
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;

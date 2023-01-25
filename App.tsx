@@ -8,11 +8,11 @@
 import { Chatting } from './chatbot-src/Chatting';
 import Home from './Home/Home';
 import { useEffect, useState } from 'react';
-import { MAPURLS, Ws36 } from './MapForm/Ws36';
+import { Ws36 } from './MapForm/Ws36';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { Tabs } from './Tabs';
 import axios from 'axios';
-// import { ChatStack, HomeStack, MapStack } from './Stacks';
+
 let GLOBALSTR:boolean;
 let SETGBSTR:any;
 export const changeGlobalStr = ()=>{
@@ -22,6 +22,7 @@ export let setNumber:React.Dispatch<React.SetStateAction<number>>;
 export let number: number;
 export let data: string;
 export let setData: React.Dispatch<React.SetStateAction<string>>;
+export const MAPURLS = 'https://c691-2001-2d8-6334-1d77-5033-bfa2-eed8-a202.jp.ngrok.io';
 
 function App() {
   [GLOBALSTR,SETGBSTR] = useState<boolean>(false);
@@ -36,7 +37,7 @@ function App() {
     try {
       let getData: any;
       
-      getData = (await axios.get('https://c691-2001-2d8-6334-1d77-5033-bfa2-eed8-a202.jp.ngrok.io/borimap')).data
+      getData = (await axios.get(`${MAPURLS}/borimap`)).data
       setMap(getData);
     }
     catch(error) {}

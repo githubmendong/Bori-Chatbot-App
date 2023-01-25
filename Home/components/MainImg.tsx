@@ -12,7 +12,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { MAPURLS } from '../../MapForm/Ws36';
+import { MAPURLS } from '../../App';
 import styles from '../styles/styles';
 const TEMPURLS = `${MAPURLS}/admin/getmainform`;
 
