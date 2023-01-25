@@ -13,11 +13,8 @@
  */
 
 import React, { useEffect } from 'react';
-import {NavigationContainer, useNavigation} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { Scroll } from './components/Scroll';
 import { BackHandler, PermissionsAndroid, ToastAndroid } from 'react-native';
-// export let MAPDATA = axios.get(`${MAPURL}/boriapp/get/`);
 
 const Home = () => {
   const toastWithDurationHandler = () => {
