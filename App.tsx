@@ -22,7 +22,7 @@ export let setNumber:React.Dispatch<React.SetStateAction<number>>;
 export let number: number;
 export let data: string;
 export let setData: React.Dispatch<React.SetStateAction<string>>;
-
+// 12
 function App() {
   [GLOBALSTR,SETGBSTR] = useState<boolean>(false);
   [data,setData] = useState<string>('none');
