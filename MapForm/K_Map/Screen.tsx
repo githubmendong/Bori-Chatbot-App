@@ -10,7 +10,7 @@ import {
   ImageBackground,
   Linking,
 } from 'react-native';
-import {MAPURL} from '../Ws36';
+import { MAPURLS } from '../Ws36';
 import {modalstyles} from './styles/modalstyles';
 
 export const Screen = ({_state, _name}: any) => {
@@ -38,7 +38,7 @@ export const Screen = ({_state, _name}: any) => {
   }, []);
 
   const loadList = () => {
-    fetch(`${MAPURL}/borimap`)
+    fetch(`${MAPURLS}/borimap`)
       .then(response => response.json())
       .then(_data => {
         const getData = _data;
