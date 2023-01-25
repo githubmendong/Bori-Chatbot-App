@@ -8,9 +8,10 @@
 import { Chatting } from './chatbot-src/Chatting';
 import Home from './Home/Home';
 import { useEffect, useState } from 'react';
-import { Ws36 } from './MapForm/Ws36';
+import { MAPURLS, Ws36 } from './MapForm/Ws36';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { Tabs } from './Tabs';
+import axios from 'axios';
 // import { ChatStack, HomeStack, MapStack } from './Stacks';
 let GLOBALSTR:boolean;
 let SETGBSTR:any;
@@ -31,18 +32,18 @@ function App() {
   },[GLOBALSTR]);
   const [map, setMap] = useState<any[]>([]);
 
-  useEffect(() => {
+  const getMapData = async ()=>{
     try {
       let getData: any;
       
-      fetch('https://cc20-2001-2d8-6335-c08f-283a-f7da-bdf-a16c.jp.ngrok.io/borimap')
-        .then(response => response.json())
-        .then(_data => {
-          getData = _data;
-          setMap(getData)
-        });
+      getData = (await axios.get(`${MAPURLS}/borimap`)).data
+      setMap(getData);
     }
     catch(error) {}
+  }
+
+  useEffect(() => {
+    getMapData()
   }, [])
 
 
