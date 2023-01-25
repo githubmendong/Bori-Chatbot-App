@@ -1,5 +1,7 @@
 /* eslint-disable prettier/prettier */
-import React, {useState} from 'react';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import axios from 'axios';
+import React, {useEffect, useState} from 'react';
 import {
   Image,
   Linking,
@@ -10,30 +12,52 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { MAPURL } from '../../MapForm/Ws36';
 import styles from '../styles/styles';
+const TEMPURLS = `${MAPURL}/admin/getmainform`;
 
-const IMAGES = [
-  'https://i.ibb.co/2MKp9xY/popup220722-1.jpg',
-  'https://i.ibb.co/XFcc2CM/1-02.jpg',
-  'https://i.ibb.co/ncNJWZb/1-03.jpg',
-  'https://i.ibb.co/SrssNS5/1-04.jpg',
-  'https://i.ibb.co/pfD2ryR/1-05.jpg',
-  'https://i.ibb.co/VSB3GPb/1-06.jpg',
-  'https://i.ibb.co/JQF5mth/1-08.jpg',
+const IMAGES: string[] = [
+  // 'https://i.ibb.co/Q8b0SxG/1.png',
+  // 'https://i.ibb.co/QcMHWtR/7.png',
+  // 'https://i.ibb.co/4Jkshrd/2.png',
+  // 'https://i.ibb.co/kqfbPcJ/3.png',
+  // 'https://i.ibb.co/DVcySXf/4.png',
+  // 'https://i.ibb.co/NCJKfP2/5.png',
+  // 'https://i.ibb.co/GvmZCXx/6.png',
 ];
 
-const IMAGEURLS = [
-  'https://sanhak.wsu.ac.kr/',
-  'https://www.aacsb.edu/about-us/advocacy/member-spotlight/innovations-that-inspire/2022/solbridge-international-school-of-business',
-  'https://startup.wsu.ac.kr:444/board/read.jsp?id=233379&code=startupwsu0701',
-  'https://startup.wsu.ac.kr:444/board/read.jsp?id=233379&code=startupwsu0701',
-  'https://itedu.wsu.ac.kr:444/page/index.jsp?code=itedu0406',
-  'https://www.wsu.ac.kr/board/read.jsp?id=233617&code=community0101',
-  'https://business.wsu.ac.kr:444/board/read.jsp?id=233665&code=business0401',
+const IMAGEURLS: string[] = [
+  // 'https://sanhak.wsu.ac.kr/',
+  // 'https://www.aacsb.edu/about-us/advocacy/member-spotlight/innovations-that-inspire/2022/solbridge-international-school-of-business',
+  // 'https://startup.wsu.ac.kr:444/board/read.jsp?id=233379&code=startupwsu0701',
+  // 'https://startup.wsu.ac.kr:444/board/read.jsp?id=233379&code=startupwsu0701',
+  // 'https://itedu.wsu.ac.kr:444/page/index.jsp?code=itedu0406',
+  // 'https://www.wsu.ac.kr/board/read.jsp?id=233617&code=community0101',
+  // 'https://business.wsu.ac.kr:444/board/read.jsp?id=233665&code=business0401',
 ];
 
 export const MainImg = () => {
   const [imgActive, setImgActive] = useState(0);
+  const [temp, setTemp] = useState<boolean>(false);
+
+  // #region 서버에서 데이터 받아오는 코드 (참고)
+
+  const getData = async () => {
+    const result = await (await axios.get(TEMPURLS)).data;
+
+    for (let i in result) {
+      IMAGES.push(result[i].img);
+      IMAGEURLS.push(result[i].imgurl);
+    }
+
+    setTemp(current => !current);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  // #endregion
 
   const onChange = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
     const nextCurrent: number = Math.floor(
@@ -57,21 +81,23 @@ export const MainImg = () => {
           showsHorizontalScrollIndicator={false}
           pagingEnabled
           horizontal>
-          {IMAGES.map(e => (
-            <TouchableOpacity
-              activeOpacity={1}
-              key={e + 'Touchable'}
-              onPress={() => {
-                Linking.openURL(IMAGEURLS[IMAGES.indexOf(e)]);
-              }}>
-              <Image
-                key={e}
-                resizeMode="stretch"
-                style={styles.mainimg}
-                source={{uri: e}}
-              />
-            </TouchableOpacity>
-          ))}
+          {IMAGES.map(e => {
+            return (
+              <TouchableOpacity
+                activeOpacity={1}
+                key={e + 'Touchable'}
+                onPress={() => {
+                  Linking.openURL(IMAGEURLS[IMAGES.indexOf(e)]);
+                }}>
+                <Image
+                  key={e}
+                  resizeMode="stretch"
+                  style={styles.mainimg}
+                  source={{uri: e}}
+                />
+              </TouchableOpacity>
+            );
+          })}
         </ScrollView>
 
         <View style={styles.wrapDot}>

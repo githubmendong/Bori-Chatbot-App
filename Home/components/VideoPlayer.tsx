@@ -18,12 +18,12 @@ export const VideoPlayer = () => {
     <View>
       <Video
         source={{
-          uri: 'https://www.snu.ac.kr/webdata/uploads/kor/media/2022/11/movie_20221109_kor.mp4',
+          uri: 'https://wsggbucket.s3.ap-northeast-2.amazonaws.com/KakaoTalk_20230112_151355885.mp4',
         }}
         style={styles.wrap}
         paused={false} // 재생/중지 여부
         fullscreen={false}
-        resizeMode={'contain'}
+        resizeMode={'cover'}
         repeat={true} //반복 재성 여부
         controls={false}
       />

@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     paddingTop: 7,
     fontWeight: '600',
+    fontFamily: 'PyeongChangPeace-Bold',
   },
 
   logocenter: {
@@ -35,19 +36,19 @@ const styles = StyleSheet.create({
   },
 
   blue: {
-    width: 10,
-    height: 10,
+    width: 20,
+    height: 20,
     backgroundColor: '#0e4e96',
     left: 105,
     top: 75,
   },
 
   red: {
-    width: 10,
-    height: 10,
+    width: 20,
+    height: 20,
     backgroundColor: '#b82841',
     right: 215,
-    top: 70,
+    top: 130,
   },
 
   rightline: {
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
     height: 1.5,
     backgroundColor: 'black',
     bottom: 20,
-    right: 7,
+    right: 10,
   },
 
   leftline: {
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
     height: 1.5,
     backgroundColor: 'black',
     bottom: 20,
-    left: 7,
+    left: 15,
   },
 
   centerline: {
@@ -88,12 +89,14 @@ const styles = StyleSheet.create({
 
   dotActive: {
     margin: 3,
-    color: 'black',
+    color: theme.darkblue,
+    fontSize: 20,
   },
 
   dot: {
     margin: 3,
     color: 'white',
+    fontSize: 20,
   },
 
   mainimg: {
@@ -118,6 +121,16 @@ const styles = StyleSheet.create({
     fontSize: 30,
     // fontWeight: '600',
     paddingTop: 70,
+    paddingLeft: 15,
+    marginBottom: 20,
+    paddingRight: 10,
+  },
+
+  header2: {
+    color: 'black',
+    fontSize: 30,
+    // fontWeight: '600',
+    paddingTop: 130,
     paddingLeft: 15,
     marginBottom: 20,
     paddingRight: 10,
@@ -157,32 +170,32 @@ const styles = StyleSheet.create({
     color: '#ebeced',
     marginTop: 20,
     paddingLeft: 5,
-    width: 370,
+    width: WIDTH * 0.95,
     height: HEIGHT * 0.6,
-    left: '3%',
+    left: '2.5%',
     borderRadius: 10,
     marginBottom: -50,
   },
 
   look: {
-    width: 150,
+    width: 170,
     height: 35,
     backgroundColor: theme.darkblue,
     color: 'white',
     borderRadius: 50,
     marginTop: 10,
     paddingTop: 7,
-    paddingLeft: 40,
+    paddingLeft: 50,
   },
 
   noticelook: {
-    width: 150,
+    width: 170,
     height: 35,
     backgroundColor: 'white',
     color: 'black',
     borderRadius: 50,
     paddingTop: 7,
-    paddingLeft: 40,
+    paddingLeft: 50,
   },
 
   snsimg: {
@@ -192,9 +205,8 @@ const styles = StyleSheet.create({
   },
 
   up: {
-    height: 60,
-    fontSize: 50,
-    marginTop: -25,
+    height: HEIGHT * 0.1,
+    marginTop: 7,
     color: 'black',
     fontWeight: '600',
     bottom: 3,
@@ -202,16 +214,18 @@ const styles = StyleSheet.create({
 
   bottom: {
     height: HEIGHT * 0.25,
+    //height: 180,
     width: WIDTH,
     backgroundColor: theme.darkblue,
     marginTop: 20,
     paddingLeft: 10,
+    flexDirection: 'row',
     // justifyContent: 'center',
     // alignItems: 'center',
   },
 
   bottomtext: {
-    marginTop: 5,
+    marginTop: 10,
     color: '#ebeced',
   },
 });
