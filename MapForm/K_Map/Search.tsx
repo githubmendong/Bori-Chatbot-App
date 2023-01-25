@@ -14,8 +14,8 @@ import {
   View,
 } from 'react-native';
 import Modal from 'react-native-modal';
-import {MAPURL} from '../Ws36';
 import {SearchBar} from '@rneui/themed';
+import { MAPURLS } from '../Ws36';
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
@@ -26,7 +26,7 @@ const Item = ({item, onPress}: any) => (
   </TouchableOpacity>
 );
 
-function S({webviewRef, _state}: any) {
+function Search({webviewRef, _state}: any) {
   const [inputText, setInputText] = useState('');
   const [data, setData] = useState<any[]>([]);
   const [list, setList] = useState<any[]>([]);
@@ -74,7 +74,7 @@ function S({webviewRef, _state}: any) {
   };
 
   const searchMessage = () => {
-    fetch(`${MAPURL}/borimap`)
+    fetch(`${MAPURLS}/borimap`)
       .then(response => response.json())
       .then(_data => {
         const getData = _data;
@@ -205,4 +205,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default S;
+export default Search;

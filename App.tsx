@@ -8,9 +8,10 @@
 import { Chatting } from './chatbot-src/Chatting';
 import Home from './Home/Home';
 import { useEffect, useState } from 'react';
-import { Ws36 } from './MapForm/Ws36';
+import { MAPURLS, Ws36 } from './MapForm/Ws36';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { Tabs } from './Tabs';
+import axios from 'axios';
 // import { ChatStack, HomeStack, MapStack } from './Stacks';
 let GLOBALSTR:boolean;
 let SETGBSTR:any;
@@ -29,12 +30,27 @@ function App() {
   useEffect(()=>{
     setData(data === 'none' ? 'flex' : 'none');
   },[GLOBALSTR]);
+  const [map, setMap] = useState<any[]>([]);
+
+  const getMapData = async ()=>{
+    try {
+      let getData: any;
+      
+      getData = (await axios.get(`${MAPURLS}/borimap`)).data
+      setMap(getData);
+    }
+    catch(error) {}
+  }
+
+  useEffect(() => {
+    getMapData()
+  }, [])
 
 
   return (
     <View style={{flex:1}}>
     <View style={{flex:1}}>
-      {number === 1 ? <Home /> : number === 2 ? <Ws36 /> : <Chatting />}
+      {number === 1 ? <Home /> : number === 2 ? <Ws36 map={map}/> : <Chatting />}
     </View>
     <View >
       {data === 'none' ? null : <Tabs setData={setData} setNumber={setNumber} />}
