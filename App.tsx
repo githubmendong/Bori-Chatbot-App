@@ -1,7 +1,6 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable react-native/no-inline-styles */
-/* eslint-disable react/self-closing-comp */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -22,7 +21,7 @@ export let setNumber:React.Dispatch<React.SetStateAction<number>>;
 export let number: number;
 export let data: string;
 export let setData: React.Dispatch<React.SetStateAction<string>>;
-export const MAPURLS = 'https://c691-2001-2d8-6334-1d77-5033-bfa2-eed8-a202.jp.ngrok.io';
+export const MAPURLS = 'http://ec2-43-200-123-255.ap-northeast-2.compute.amazonaws.com:3000';
 
 function App() {
   [GLOBALSTR,SETGBSTR] = useState<boolean>(false);
@@ -37,15 +36,15 @@ function App() {
     try {
       let getData: any;
       
-      getData = (await axios.get(`${MAPURLS}/borimap`)).data
+      getData = (await axios.get(`${MAPURLS}/borimap`)).data;
       setMap(getData);
     }
-    catch(error) {}
-  }
+    catch (error) {}
+  };
 
   useEffect(() => {
-    getMapData()
-  }, [])
+    getMapData();
+  }, []);
 
 
   return (
@@ -61,13 +60,3 @@ function App() {
 }
 
 export default App;
-
-
-// const Tab = createBottomTabNavigator();
-{/* <NavigationContainer>
-<Tab.Navigator screenOptions={{ headerShown: false }} >
-  <Tab.Screen name="Home" component={HomeStack} />
-  <Tab.Screen name="Map" component={MapStack} />
-  <Tab.Screen name="Chat" component={ChatStack} options={{tabBarStyle:{display:data}}} />
-</Tab.Navigator>
-</NavigationContainer> */}
