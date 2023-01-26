@@ -15,7 +15,6 @@ import {
 } from 'react-native';
 import Modal from 'react-native-modal';
 import {SearchBar} from '@rneui/themed';
-import { MAPURLS } from '../Ws36';
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
@@ -26,10 +25,11 @@ const Item = ({item, onPress}: any) => (
   </TouchableOpacity>
 );
 
-function Search({webviewRef, _state}: any) {
+function Search({webviewRef, _state, map}: any) {
   const [inputText, setInputText] = useState('');
   const [data, setData] = useState<any[]>([]);
   const [list, setList] = useState<any[]>([]);
+  const getData: any = map;
   const [state, setState] = useState<boolean>(false);
   const [firstlist, setFirstlist] = useState<any[]>([]);
   const [selectedId, setSelectedId] = useState(null);
@@ -74,20 +74,15 @@ function Search({webviewRef, _state}: any) {
   };
 
   const searchMessage = () => {
-    fetch(`${MAPURLS}/borimap`)
-      .then(response => response.json())
-      .then(_data => {
-        const getData = _data;
-        for (let i of getData) {
-          const __data = {
-            id: i.id,
-            title: i.name,
-          };
-          firstlist.push(__data);
-        }
-        setList(firstlist);
-        setData(getData);
-      });
+    for (let i of getData) {
+      const __data = {
+        id: i.id,
+        title: i.name,
+      };
+      firstlist.push(__data);
+    }
+    setList(firstlist);
+    setData(getData);
   };
 
   const filter = (_text: any) => {

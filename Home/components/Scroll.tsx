@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /**
  * Sample React Native App
@@ -19,13 +20,11 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { MAPURLS } from '../../MapForm/Ws36';
+import { MAPURLS } from '../../App';
 import styles from '../styles/styles';
 import {MainImg} from './MainImg';
 import {Sns} from './Sns';
 import {VideoPlayer} from './VideoPlayer';
-
-const TEMPURLS1 = `${MAPURLS}/admin/getsubform`;
 
 const moveTop = (SCROLLREF: ScrollView) => {
   SCROLLREF.scrollTo({x: 0, y: 0, animated: true});
@@ -61,7 +60,7 @@ export const Scroll = () => {
   const [temp, setTemp] = useState<boolean>(false);
 
   const getData = async () => {
-    const result = await (await axios.get(TEMPURLS1)).data;
+    const result = await (await axios.get(`${MAPURLS}/admin/getsubform`)).data;
 
     for (let i in result) {
       stringArray.push(result[i].title);
@@ -107,7 +106,7 @@ export const Scroll = () => {
             style={styles.img}
             source={{uri: 'https://i.ibb.co/QCyjWNt/image.png'}}
           /> */}
-          <Image style={styles.img} source={{uri: IMG[0]}}></Image>
+          <Image style={styles.img} source={{uri: IMG[0]}} />
         </View>
         <TouchableOpacity onPress={() => Linking.openURL(IMGURL[0])}>
           <View style={styles.center}>
@@ -122,7 +121,7 @@ export const Scroll = () => {
           <Text style={styles.content}>{stringArray[3]}</Text>
         </View>
         <View>
-          <Image style={styles.img} source={{uri: IMG[1]}}></Image>
+          <Image style={styles.img} source={{uri: IMG[1]}} />
         </View>
         <TouchableOpacity onPress={() => Linking.openURL(IMGURL[1])}>
           <View style={styles.center}>
@@ -154,7 +153,7 @@ export const Scroll = () => {
           <Text style={styles.content}>{stringArray[7]}</Text>
         </View>
         <View>
-          <Image style={styles.img} source={{uri: IMG[3]}}></Image>
+          <Image style={styles.img} source={{uri: IMG[3]}} />
         </View>
         <TouchableOpacity onPress={() => Linking.openURL(IMGURL[3])}>
           <View style={styles.center}>

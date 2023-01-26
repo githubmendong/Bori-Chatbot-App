@@ -12,9 +12,8 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { MAPURLS } from '../../MapForm/Ws36';
+import { MAPURLS } from '../../App';
 import styles from '../styles/styles';
-const TEMPURLS = `${MAPURLS}/admin/getmainform`;
 
 const IMAGES: string[] = [
   // 'https://i.ibb.co/Q8b0SxG/1.png',
@@ -43,7 +42,7 @@ export const MainImg = () => {
   // #region 서버에서 데이터 받아오는 코드 (참고)
 
   const getData = async () => {
-    const result = await (await axios.get(TEMPURLS)).data;
+    const result = await (await axios.get(`${MAPURLS}/admin/getmainform`)).data;
 
     for (let i in result) {
       IMAGES.push(result[i].img);
