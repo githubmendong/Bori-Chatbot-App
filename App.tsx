@@ -22,7 +22,6 @@ export let number: number;
 export let data: string;
 export let setData: React.Dispatch<React.SetStateAction<string>>;
 export const MAPURLS = 'http://ec2-43-200-123-255.ap-northeast-2.compute.amazonaws.com:3000';
-
 function App() {
   [GLOBALSTR,SETGBSTR] = useState<boolean>(false);
   [data,setData] = useState<string>('none');
