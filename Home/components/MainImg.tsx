@@ -70,10 +70,15 @@ export const MainImg = () => {
 
   return (
     <View>
-      <View style={styles.right}>
-        <Text style={styles.header}>Woosong University</Text>
-        <Text style={styles.rightline} />
+      <View style={styles.center0_1}>
+      <Text style={styles.header0_3}>"우송대학교에 오신 여러분 환영합니다."</Text>
+        <Text style={styles.header0_1}>디지털 시대!</Text>
+        <Text style={styles.header0_2}>학생의 미래를 생각하는 대학</Text>
+        <Text style={styles.header0_4}/>
+        
       </View>
+
+
       <View>
         <ScrollView
           onScroll={(event: any) => onChange(event)}

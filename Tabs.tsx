@@ -13,7 +13,7 @@ export const Tabs = ({setData, setNumber}: any) => {
   return (
     <View
       style={{
-        backgroundColor: '#f7f6f7',
+        backgroundColor: '#ebeced',
         alignItems: 'center',
         alignContent: 'center',
         justifyContent: 'center',
