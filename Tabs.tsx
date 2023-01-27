@@ -3,84 +3,122 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react/react-in-jsx-scope */
 
-import { Text, TouchableOpacity, View } from 'react-native';
+import {Image} from '@rneui/base';
+import {useState} from 'react';
+import {Text, TouchableOpacity, View} from 'react-native';
 
+export const Tabs = ({setData, setNumber}: any) => {
+  const [selectedTab, setSelectedTab] = useState(2);
 
-export const Tabs = ({ setData, setNumber }:any)=>{
   return (
-    <View style={{alignItems: 'center', alignContent: 'center' ,flexDirection: 'row'}}>
-      <TouchableOpacity
-      onPress={()=>{setNumber(1); setData('flex');}}
+    <View
       style={{
-        padding: 2,
-        paddingHorizontal: 40,
-        marginTop: 5,
-        marginBottom: 5,
-        marginRight: 5,
-        borderRadius: 8,
-        backgroundColor: '#4b518a',
-        borderWidth: 1,
-        borderColor: '#c7c7c7',
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        shadowOffset: {
-          width: 10,
-          height: 10,
-        },
-        elevation: 5,
+        backgroundColor: '#f7f6f7',
         alignItems: 'center',
-      }}
-      >
-        <Text>Home</Text>
+        alignContent: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+      }}>
+      <TouchableOpacity
+        onPress={() => {
+          setNumber(2);
+          setData('flex');
+          setSelectedTab(1);
+        }}
+        style={{
+          paddingHorizontal: selectedTab === 1 ? 70 : 15,
+          marginTop: 3,
+          borderRadius: 50,
+          marginBottom: 3,
+          borderWidth: 1,
+          backgroundColor: selectedTab === 1 ? '#17263E' : 'white',
+          // backgroundColor:"#005826",
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
+          shadowOffset: {
+            width: 10,
+            height: 10,
+          },
+
+          alignItems: 'center',
+        }}>
+        <Image
+          style={{
+            width: 30,
+            height: 30,
+          }}
+          source={{
+            uri: 'https://cdn-icons-png.flaticon.com/512/5304/5304955.png',
+          }}
+        />
       </TouchableOpacity>
       <TouchableOpacity
-      onPress={()=>{setNumber(2); setData('flex');}}
-      style={{
-        padding: 2,
-        paddingHorizontal: 40,
-        marginTop: 5,
-        marginBottom: 5,
-        marginRight: 5,
-        borderRadius: 8,
-        backgroundColor: '#4b518a',
-        borderWidth: 1,
-        borderColor: '#c7c7c7',
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        shadowOffset: {
-          width: 10,
-          height: 10,
-        },
-        elevation: 5,
-        alignItems: 'center',
-      }}
-      >
-        <Text>Map</Text>
+        onPress={() => {
+          setNumber(1);
+          setData('flex');
+          setSelectedTab(2);
+        }}
+        style={{
+          paddingHorizontal: selectedTab === 2 ? 70 : 15,
+          marginTop: 3,
+          borderRadius: 50,
+          marginBottom: 3,
+          borderWidth: 1,
+          marginRight: 20,
+          marginLeft: 20,
+          backgroundColor: selectedTab === 2 ? '#17263E' : 'white',
+          // backgroundColor:'#0e4e96',
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
+          shadowOffset: {
+            width: 10,
+            height: 10,
+          },
+
+          alignItems: 'center',
+        }}>
+        <Image
+          style={{
+            width: 30,
+            height: 30,
+          }}
+          source={{
+            uri: 'https://cdn-icons-png.flaticon.com/512/4481/4481380.png',
+          }}
+        />
       </TouchableOpacity>
       <TouchableOpacity
-      onPress={()=>{setNumber(3);}}
-      style={{
-        padding: 2,
-        paddingHorizontal: 40,
-        marginTop: 5,
-        marginBottom: 5,
-        marginRight: 5,
-        borderRadius: 8,
-        backgroundColor: '#4b518a',
-        borderWidth: 1,
-        borderColor: '#c7c7c7',
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        shadowOffset: {
-          width: 10,
-          height: 10,
-        },
-        elevation: 5,
-        alignItems: 'center',
-      }}
-      >
-        <Text>Chat</Text>
+        onPress={() => {
+          setNumber(3);
+          setSelectedTab(3);
+        }}
+        style={{
+          paddingHorizontal: selectedTab === 3 ? 70 : 15,
+          marginTop: 3,
+          borderRadius: 50,
+          marginBottom: 3,
+          borderWidth: 1,
+          backgroundColor: selectedTab === 3 ? '#17263E' : 'white',
+          // backgroundColor:'#B73E3E',
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
+          shadowOffset: {
+            width: 10,
+            height: 10,
+          },
+
+          alignItems: 'center',
+        }}>
+        <Image
+          style={{
+            width: 30,
+            height: 30,
+          }}
+          source={{
+            uri: 'https://cdn-icons-png.flaticon.com/512/9292/9292632.png',
+          }}
+        />
       </TouchableOpacity>
     </View>
-  )
+  );
 };
