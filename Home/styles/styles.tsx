@@ -8,7 +8,7 @@ const HEIGHT = Dimensions.get('window').height;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: theme.bg,
+    backgroundColor: '#ebeced',
   },
 
   logo: {
@@ -28,32 +28,31 @@ const styles = StyleSheet.create({
   },
 
   green: {
-    width: 10,
-    height: 10,
+    width: 20,
+    height: 20,
     backgroundColor: '#005826',
-    left: 95,
-    top: 80,
+
+
   },
 
   blue: {
     width: 20,
     height: 20,
     backgroundColor: '#0e4e96',
-    left: 105,
-    top: 75,
+
+    top: 30,
   },
 
   red: {
     width: 20,
     height: 20,
     backgroundColor: '#b82841',
-    right: 215,
-    top: 130,
+
   },
 
   rightline: {
     width: 180,
-    height: 1.5,
+    height: 0.9,
     backgroundColor: 'black',
     bottom: 20,
     right: 10,
@@ -61,7 +60,7 @@ const styles = StyleSheet.create({
 
   leftline: {
     width: 180,
-    height: 1.5,
+    height: 0.9,
     backgroundColor: 'black',
     bottom: 20,
     left: 15,
@@ -69,7 +68,7 @@ const styles = StyleSheet.create({
 
   centerline: {
     width: 180,
-    height: 1.5,
+    height: 0.9,
     backgroundColor: 'black',
     bottom: 20,
     left: 3,
@@ -102,7 +101,8 @@ const styles = StyleSheet.create({
   mainimg: {
     flexDirection: 'row',
     width: WIDTH,
-    height: HEIGHT * 0.7,
+    height: HEIGHT * 0.8,
+    borderRadius:30,
   },
 
   img: {
@@ -115,6 +115,48 @@ const styles = StyleSheet.create({
     left: '2.5%',
     borderRadius: 10,
   },
+  header0_5: {
+    backgroundColor: 'black',
+    width:1,
+    height:230,
+    marginTop:50,
+    marginBottom:20,
+  },
+  header0_4: {
+    backgroundColor: 'black',
+    width:1,
+    height:300,
+    marginBottom:100,
+  },
+  header0_3: {
+    color: '#243763',
+    fontSize:20,
+    fontWeight: '600',
+    backgroundColor : '#C1C6D6',
+    marginBottom: 30,
+    paddingLeft:20,
+    paddingRight:20,
+  },
+
+  header0_2: {
+    color: '#243763',
+    fontSize:24,
+    fontWeight: '600',
+    
+    paddingLeft:20,
+    paddingRight:20,
+    marginBottom:60,
+  },
+
+  header0_1: {
+    color: '#243763',
+    fontSize: 30,
+    fontWeight: '900',
+    marginTop:20,  
+    marginBottom: 0,
+    paddingLeft:20,
+    paddingRight:20,
+  },
 
   header: {
     color: 'black',
@@ -122,7 +164,7 @@ const styles = StyleSheet.create({
     // fontWeight: '600',
     paddingTop: 70,
     paddingLeft: 15,
-    marginBottom: 20,
+    marginBottom: 30,
     paddingRight: 10,
   },
 
@@ -142,10 +184,19 @@ const styles = StyleSheet.create({
   },
 
   right: {justifyContent: 'flex-end', alignItems: 'flex-end'},
+  center0_1: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor:'#ebeced',
+    marginTop:30,
+
+  },
 
   center: {
     justifyContent: 'center',
     alignItems: 'center',
+
+
   },
 
   title: {
@@ -186,6 +237,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     paddingTop: 7,
     paddingLeft: 50,
+    marginBottom:20,
   },
 
   noticelook: {
@@ -228,6 +280,20 @@ const styles = StyleSheet.create({
     marginTop: 10,
     color: '#ebeced',
   },
+
+
+
+  //폼 컬러
+
+  formcolor:{
+
+    backgroundColor:'#ECECEC',
+    // height:30
+  },
+
+
+
+  
 });
 
 export default styles;

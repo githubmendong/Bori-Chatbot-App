@@ -77,8 +77,9 @@ export const Scroll = () => {
   }, []);
 
   return (
-    <View>
+    <View style={styles.container}>
       <View style={styles.logocenter}>
+        
         <Text style={styles.logo}>WOOSONG UNIVERSITY</Text>
       </View>
 
@@ -93,9 +94,13 @@ export const Scroll = () => {
         <View>
           <MainImg />
         </View>
+        <View style={styles.center}> 
+        <Text style={styles.header0_5}/>
+        <Text style={styles.green} />
+        </View>
 
+        <View style={styles.formcolor}>
         <View style={styles.left}>
-          <Text style={styles.green} />
           <Text style={styles.header}>News</Text>
           <Text style={styles.leftline} />
           <Text style={styles.title}>{stringArray[0]}</Text>
@@ -113,6 +118,7 @@ export const Scroll = () => {
             <Text style={styles.look}>자세히 보기</Text>
           </View>
         </TouchableOpacity>
+        </View>
 
         <View style={styles.right}>
           <Text style={styles.header}>News</Text>
@@ -128,11 +134,14 @@ export const Scroll = () => {
             <Text style={styles.look}>자세히 보기</Text>
           </View>
         </TouchableOpacity>
+        <View style={styles.center}> 
+        <Text style={styles.header0_5}/>
+        <Text style={styles.blue} />
+        </View>
 
-        <View style={styles.left}>
-          <Text style={styles.blue} />
-          <Text style={styles.header}>Notice</Text>
-          <Text style={styles.leftline} />
+        <View style={styles.left}>      
+        <Text style={styles.header}>Notice</Text>
+        <Text style={styles.leftline} />
           <Text style={styles.title}>{stringArray[4]}</Text>
           <Text style={styles.notice}>{stringArray[5]}</Text>
         </View>
@@ -145,8 +154,13 @@ export const Scroll = () => {
           </TouchableOpacity>
         </View>
 
+        <View style={styles.center}> 
+        <Text style={styles.header0_5}/>
+        <Text style={styles.red} />
+        </View>
+
         <View style={styles.right}>
-          <Text style={styles.red} />
+
           <Text style={styles.header2}>자랑스러운 우송</Text>
           <Text style={styles.rightline} />
           <Text style={styles.title}>{stringArray[6]}</Text>
