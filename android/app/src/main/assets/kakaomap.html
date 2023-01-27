@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta http-equiv="Expires" content="Mon, 06 Jan 1990 00:00:01 GMT">
-<meta http-equiv="Expires" content="-1">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Cache-Control" content="no-cache">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+
 <style type="text/css">
   html,
   body {
@@ -216,7 +212,7 @@
         // 스프라이트 이미지를 사용합니다. 스프라이트 이미지 전체의 크기를 지정하고
         spriteSize: new kakao.maps.Size(1666, 168),
         // 사용하고 싶은 영역의 좌상단 좌표를 입력합니다. background-position으로 지정하는 값이며 부호는 반대입니다.
-        spriteOrigin: new kakao.maps.Point(705, 114), 
+        spriteOrigin: new kakao.maps.Point(705, 114),
         offset: new kakao.maps.Point(13, 46)
       }
     );
@@ -265,7 +261,7 @@
 
       panoramaOptions.position = new naver.maps.LatLng(coord);
       pano = new naver.maps.Panorama("pano", panoramaOptions);
-      pano.setVisible(true);
+      pano.setVisible(false);
       roadmarker.setVisible(false); //로드뷰 활성화시 동동이 삭제
 
       document.getElementById('map').style.display = "none"; //지도를 숨깁니다.
@@ -278,11 +274,11 @@
       if (active) {
         // 지도를 감싸고 있는 div의 너비가 100%가 되도록 class를 변경합니다 
         // Show the roadview
-        roadrv.setVisible(true);
+        //roadrv.setVisible(true);
         map.setVisible(false);
         // Hide the pano
         if (pano) {
-          pano.setVisible(false);
+          //pano.setVisible(false);
           console.log("no");
         }
         container.className = '';
@@ -294,14 +290,14 @@
         map.setCenter(position);
       } else {
         // Show the map
-        map.setVisible(true);
-        roadrv.setVisible(false);
+        //map.setVisible(true);
+        //roadrv.setVisible(false);
         // Hide the pano
         if (pano) {
           pano.setVisible(false);
           console.log("no");
         }
-        pano = undefined;
+
         console.log("pano = undefined");
         // 지도만 보여지고 있는 상태이면 지도의 너비가 50%가 되도록 class를 변경하여
         // 로드뷰가 함께 표시되게 합니다
@@ -335,13 +331,21 @@
 
     function toggleMap(active) {
       var control = document.getElementById('roadviewControl');
-      pano = undefined;
+      //pano = undefined;
       // console.log(control);
       if (control.className.indexOf('active') === -1) {
         control.className = 'active';
         toggleOverlay(true);
         pano = new naver.maps.Panorama("pano", panoramaOptions);
-        pano.setVisible(false);
+        /*
+          *다음에 내가 할일*
+          pano 가 호출 되고 다른 곳에서 또 호출되는데.. 그 부분을 찾아서 잡아야겠다. 그래야 두번 로딩되는 버그를 잡을 수 있을듯!
+          pano를 전역 변수로 만들고 호출하는 방식으로 선언해야할듯
+          여기서 호출하면 안될듯.
+
+        
+        */
+        //pano.setVisible(false);
         console.log("로드뷰 active");
       } else {
         control.className = '';
