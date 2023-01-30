@@ -176,21 +176,32 @@
     var marker_direction = null;
     var search_state = true;
     var number_state = true;
-    var panoramaOptions = {
+
+    // var pano = new naver.maps.Panorama("pano", panoramaOptions);
+    // var panoramaOptions = {
+    //   position: new naver.maps.LatLng(36.33705543447485, 127.44507203436675),
+    //   size: new naver.maps.Size(innerWidth, innerHeight),
+    //   // pov: {
+    //   //   pan: -76.14824561403513,
+    //   //   tilt: -1.9649122807017545,
+    //   //   fov: 100
+    //   // },
+    //   logoControl: false,
+    //   visible: false,
+    //   zoomControl: false,
+    //   aroundControl: false,
+
+    // };
+
+    let panoramaOptions = {
       position: new naver.maps.LatLng(36.33705543447485, 127.44507203436675),
       size: new naver.maps.Size(innerWidth, innerHeight),
-      // pov: {
-      //   pan: -76.14824561403513,
-      //   tilt: -1.9649122807017545,
-      //   fov: 100
-      // },
       logoControl: false,
       visible: false,
       zoomControl: false,
       aroundControl: false,
-
     };
-    var pano;
+
 
 
     // var pano = new naver.maps.Panorama("pano", panoramaOptions);
@@ -242,30 +253,6 @@
     //   toggleRoadview(position);
     // });
 
-    kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
-      if (!overlayOn) {
-        return;
-      }
-      // 현재 클릭한 부분의 좌표를 리턴 
-
-      pano = undefined;
-      var position = mouseEvent.latLng;
-      roadmarker.setPosition(position);
-      console.log(position);
-
-      var x = position.La,
-        y = position.Ma;
-
-      var coord = { x: x, y: y };
-      console.log(coord);
-
-      panoramaOptions.position = new naver.maps.LatLng(coord);
-      pano = new naver.maps.Panorama("pano", panoramaOptions);
-      pano.setVisible(false);
-      roadmarker.setVisible(false); //로드뷰 활성화시 동동이 삭제
-
-      document.getElementById('map').style.display = "none"; //지도를 숨깁니다.
-    });
 
     /////////////////////////////////////////////////////////
     // 로드뷰 표시하기 (카카오)
@@ -330,35 +317,53 @@
     }
 
     function toggleMap(active) {
-      var control = document.getElementById('roadviewControl');
+      let control = document.getElementById('roadviewControl');
       //pano = undefined;
       // console.log(control);
       if (control.className.indexOf('active') === -1) {
         control.className = 'active';
         toggleOverlay(true);
         pano = new naver.maps.Panorama("pano", panoramaOptions);
-        /*
-          *다음에 내가 할일*
-          pano 가 호출 되고 다른 곳에서 또 호출되는데.. 그 부분을 찾아서 잡아야겠다. 그래야 두번 로딩되는 버그를 잡을 수 있을듯!
-          pano를 전역 변수로 만들고 호출하는 방식으로 선언해야할듯
-          여기서 호출하면 안될듯.
-
-        
-        */
-        //pano.setVisible(false);
         console.log("로드뷰 active");
       } else {
         control.className = '';
         toggleOverlay(false);
-        pano = new naver.maps.Panorama("pano", panoramaOptions);
-        // pano.setVisible(false);
-        // pano.setVisible(null);
-        // pano = undefined;
-        // pano = null;
+        pano.setVisible(false);
         document.getElementById('map').style.display = "block";
         console.log("로드뷰 unactive");
       }
     }
+
+    kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
+      if (!overlayOn) return;
+      // 현재 클릭한 부분의 좌표를 리턴 
+      let position = mouseEvent.latLng;
+      roadmarker.setPosition(position);
+      console.log(position);
+
+      let x = position.La,
+        y = position.Ma;
+
+      let coord = { x: x, y: y };
+      console.log(coord);
+
+      // 새로운 panoramaOptions 데이터 빌드
+      panoramaOptions = {
+        position: new naver.maps.LatLng(coord),
+        size: new naver.maps.Size(innerWidth, innerHeight),
+        logoControl: false,
+        visible: true,
+        zoomControl: false,
+        aroundControl: false,
+      };
+
+      // panoramaOptions.position = new naver.maps.LatLng(coord);
+      pano = new naver.maps.Panorama("pano", panoramaOptions);
+      pano.setVisible(true);
+      roadmarker.setVisible(false); //로드뷰 활성화시 동동이 삭제
+      document.getElementById('map').style.display = "none"; //지도
+    });
+
     //#endregion
 
     document.addEventListener("message", async (e) => {
