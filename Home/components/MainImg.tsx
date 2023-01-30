@@ -34,7 +34,6 @@ const IMAGEURLS: string[] = [
   // 'https://www.wsu.ac.kr/board/read.jsp?id=233617&code=community0101',
   // 'https://business.wsu.ac.kr:444/board/read.jsp?id=233665&code=business0401',
 ];
-
 export const MainImg = () => {
   const [imgActive, setImgActive] = useState(0);
   const [temp, setTemp] = useState<boolean>(false);
@@ -43,7 +42,8 @@ export const MainImg = () => {
 
   const getData = async () => {
     const result = await (await axios.get(`${MAPURLS}/admin/getmainform`)).data;
-
+    IMAGES.length = 0;
+    IMAGEURLS.length = 0;
     for (let i in result) {
       IMAGES.push(result[i].img);
       IMAGEURLS.push(result[i].imgurl);
@@ -75,7 +75,7 @@ export const MainImg = () => {
         <Text style={styles.header0_1}>디지털 시대!</Text>
         <Text style={styles.header0_2}>학생의 미래를 생각하는 대학</Text>
         <Text style={styles.header0_4}/>
-        
+
       </View>
 
 
@@ -85,19 +85,19 @@ export const MainImg = () => {
           showsHorizontalScrollIndicator={false}
           pagingEnabled
           horizontal>
-          {IMAGES.map(e => {
+          {IMAGES.map((value,index) => {
             return (
               <TouchableOpacity
                 activeOpacity={1}
-                key={e + 'Touchable'}
+                key={value + 'Touchable' + index}
                 onPress={() => {
-                  Linking.openURL(IMAGEURLS[IMAGES.indexOf(e)]);
+                  Linking.openURL(IMAGEURLS[IMAGES.indexOf(value)]);
                 }}>
                 <Image
-                  key={e}
+                  key={index + 'fdaklfdm' + value}
                   resizeMode="stretch"
                   style={styles.mainimg}
-                  source={{uri: e}}
+                  source={{uri: value}}
                 />
               </TouchableOpacity>
             );
