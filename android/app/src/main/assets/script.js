@@ -3,6 +3,10 @@
 $('.menu').click(function () {
   $(this).parent().toggleClass('close');
 });
+$('.menu-label_help').click(function () {
+  $('img.JPG').show();
+});
+
 
 // $("#switch").click(function(){
 //    $(this).toggleClass("on off");
@@ -24,8 +28,5 @@ window.onresize = function (event) {
 $('menu-label_on_off').click(function() {
   toggleClass('.active-color');
 });
-// background-color: #142239;
-// color: #fff;
-
 
 
