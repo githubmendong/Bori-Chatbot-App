@@ -45,7 +45,7 @@
       <div>메뉴</div>
     </label><input type="checkbox" id="expand-menu" name="expand-menu">
     <ul>
-      <li class="menu-label_help"><a href="#" onclick="call_help(); " class="item">
+      <li class="menu-label_help"><a href="javascript:void(0)" onclick="call_help(); " class="item">
           <div>도움말</div>
         </a>
       <li class="menu-label"><a href="javascript:void(0)" onclick="call_search_state();" class="item">
@@ -69,7 +69,7 @@
         </a></li>
     </ul>
   </div>
-
+  <div id="help"></div>
   <h1 id=" size" style="margin-top: 0px;  ">
     <div id="pano"></div>
     <!-- 네이버 지도 폼  -->
@@ -205,7 +205,6 @@
     };
 
 
-
     // var pano = new naver.maps.Panorama("pano", panoramaOptions);
 
 
@@ -252,16 +251,6 @@
       }
     });
 
-
-    function call_help() {
-      if (help_flag == false) {
-        document.body.insertAdjacentHTML('afterbegin', '<img src="img.JPG" alt="help_img" style="  background: cornflowerblue;width:100%; position: relative; z-index: 2;  opacity: 0.3;">');
-        help_flag = true;
-      } else {
-        document.body.removeChild(document.body.firstChild);
-        help_flag = false;
-      }
-    }
 
 
     function toggleOverlay(active) {
@@ -486,6 +475,32 @@
 
       }
     }
+
+
+    ////////////////////////////////////////////////////////
+    // 메뉴바 헬프 버튼
+    ///////////////////////////////////////////////////////
+
+    function call_help() {
+
+      if (help_flag == false) {
+        document.getElementById('help').insertAdjacentHTML('afterbegin', '<img src="회색배경.png" alt="help_img" style=" width:100%; height:100%; top: 0px; bottom: 0px; position:absolute; z-index: 3;" onclick="removeHelpInfo()">');
+        document.getElementById('help').insertAdjacentHTML('afterbegin', '<img src="helpinfo.png" alt="help_img" style=" width:100%;  top: 0px; bottom: 0px; position:absolute; z-index: 4;"onclick="removeHelpInfo()">');
+        //document.getElementById('pano').insertAdjacentHTML('afterbegin', '<img src="Cancel.png" alt="help_img" style="width:-30%;height:-30%;left: 50%;transform: translate(370%, 21px);top: 0px;bottom: 0px;position:absolute;z-index: 5;height: 30px;" onclick="removeHelpInfo()">');
+        help_flag = true;
+      } else {
+
+      }
+    }
+
+    function removeHelpInfo() {
+      let helpImgs = document.querySelectorAll('img[alt="help_img"]');
+      helpImgs.forEach(img => img.remove());
+      help_flag = false;
+    }
+
+
+    /////////////////////////////////////////////////////////
 
     //#region 버튼 5,6,7
     ////////////////////////////////////////////////////////
