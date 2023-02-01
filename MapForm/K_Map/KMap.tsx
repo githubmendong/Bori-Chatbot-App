@@ -129,8 +129,8 @@ function KMap({webviewRef, map}: any) {
         allowFileAccess={true}
         onLoadEnd={sendMessage}
       />
-      <Search webviewRef={webviewRef} _state={state} map={data} />
       <Screen _state={open} _name={name} map={data} />
+      <Search webviewRef={webviewRef} _state={state} map={data} />
     </>
   );
 }

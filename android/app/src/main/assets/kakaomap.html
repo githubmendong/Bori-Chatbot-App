@@ -165,6 +165,7 @@
     var gpsContent = '<div id="controlCustomOverlay"><img id ="left" src="KakaoTalk_20230112_101244104.png" style="height: 70px; width: 70;)"></div>';
     var gps = new kakao.maps.CustomOverlay({
       content: gpsContent,
+      zindex:1,
       map: map
     });
 
@@ -505,6 +506,7 @@
       var markerPosition = new kakao.maps.LatLng(lat, lng);
       var marker = new kakao.maps.Marker({ position: markerPosition });
       marker.setMap(map);
+      marker.setZIndex(2);
       kakao.maps.event.addListener(marker, 'click', open_screen(name));
       marker_arr[name] = marker
     }

@@ -14,8 +14,6 @@ const modalstyles = StyleSheet.create({
     centeredView: {
       justifyContent: 'center',
       alignItems: 'center',
-      marginTop: 11,
-      marginBottom: 11,
     },
     modalView: {
       marginTop: 15,
@@ -40,40 +38,34 @@ const modalstyles = StyleSheet.create({
       width: width - 50,
       height: height - 400,
     },
-    buttonout: {
-      borderRadius: 100,
-      borderWidth: 2.5,
-      justifyContent: 'flex-end',
-      borderColor: 'lightgray',
-      backgroundColor: 'lightgray',
-      padding: 10,
-      elevation: 2,
-    },
-    textStyle: {
+    CloseStyle: {
       color: '#02183c',
+      marginTop:5,
+      marginRight:5,
       fontSize: 15,
       fontWeight: 'bold',
     },
-    largeUnitText: {
+    BulidingNumText: {
       fontSize: 40,
       color: 'black',
       fontWeight: 'bold',
       width:200,
     },
-    largeUnitText2: {
+    AddressText: {
       fontSize: 20,
       color: 'black',
       fontWeight: 'bold',
-      width: 200,
+      width: width-250,
     },
-    largeUnitTextnum: {
+    BulidingNameText: {
       fontWeight: 'bold',
       width:180,
       fontSize: 25,
       color: 'black',
     },
-    subunitText: {
+    FloorText: {
       marginBottom: 5,
+      width:60,
       fontSize: 15,
       color: 'black',
       textAlign: 'left',
@@ -84,21 +76,22 @@ const modalstyles = StyleSheet.create({
       fontSize: 15,
       color: 'black',
       textAlign: 'left',
-      marginLeft: 11,
-      marginRight: 20,
+      marginRight:20,
     },
     image: {
       width: width - 240,
       height: height - 580,
       marginLeft: 10,
       marginRight: 10,
+      borderRadius: 15,
+      borderWidth:2,
     },
     phonbtn: {
-      textAlign: 'left',
+      textAlign: 'right',
       alignItems: 'flex-end',
     },
-    subunitText2: {
-      marginBottom: 20,
+    FloorAndDepartmentText: {
+      marginBottom: 5,
       fontSize: 23,
       color: 'black',
       textAlign: 'left',

@@ -7,8 +7,11 @@ import {Image} from '@rneui/base';
 import {useState} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 
+export let selectedTab: number
+export let setSelectedTab: (arg0: number) => void
+
 export const Tabs = ({setData, setNumber}: any) => {
-  const [selectedTab, setSelectedTab] = useState(2);
+  [selectedTab, setSelectedTab] = useState(2);
 
   return (
     <View

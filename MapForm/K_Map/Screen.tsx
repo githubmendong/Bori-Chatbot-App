@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
+import { Image } from '@rneui/base';
 import React, {useEffect, useState} from 'react';
 import {
   Modal,
@@ -10,6 +11,7 @@ import {
   ImageBackground,
   Linking,
   ScrollView,
+  BackHandler,
 } from 'react-native';
 import {modalstyles} from './styles/modalstyles';
 
@@ -47,8 +49,8 @@ export const Screen = ({_state, _name, map}: any) => {
   const Screen_View = (a: number) => {
     const desc_arr = description[a].split('#');
     return (
-        <View key={a} style={{flexDirection: 'row'}}>
-          <Text style={modalstyles.subunitText}>- {desc_arr[0]}</Text>
+        <View key={a} style={{flexDirection: 'row', marginBottom:10}}>
+          <Text style={modalstyles.FloorText}>- {desc_arr[0]}</Text>
           <View>{description_view(desc_arr)}</View>
         </View>
     );
@@ -95,26 +97,24 @@ export const Screen = ({_state, _name, map}: any) => {
                 <View style={modalstyles.modalTopView}>
                   <View style={modalstyles.buttonOutView}>
                     <View style={{alignItems: 'flex-start', flex: 1}}>
-                      <Text style={modalstyles.largeUnitText}>{text[0]}</Text>
+                      <Text style={modalstyles.BulidingNumText}>{text[0]}</Text>
                     </View>
                     <View style={{alignItems: 'flex-end', flex: 1}}>
                       <Pressable
-                        style={[modalstyles.buttonout]}
                         onPress={() => onPress()}>
-                        <Text style={modalstyles.textStyle}>✖️</Text>
+                        <Text style={modalstyles.CloseStyle}>✖️</Text>
                       </Pressable>
                     </View>
                   </View>
                 </View>
                 <View style={{flexDirection: 'row'}}>
-                  <ImageBackground
-                    source={{uri: data.imgName}}
-                    resizeMode="stretch"
-                    style={modalstyles.image}
-                  />
+                    <Image 
+                      source={{uri: data.imgname}}
+                      style={modalstyles.image}
+                    />
                   <View>
-                    <Text style={modalstyles.largeUnitTextnum}>{text[1]}</Text>
-                    <Text style={modalstyles.largeUnitText2}>
+                    <Text style={modalstyles.BulidingNameText}>{text[1]}</Text>
+                    <Text style={modalstyles.AddressText}>
                       {data.address}
                     </Text>
                   </View>
@@ -124,13 +124,10 @@ export const Screen = ({_state, _name, map}: any) => {
                     textAlign: 'center',
                     color: 'white',
                   }}>
-                  <Text style={{color: 'black'}}>
-                    ______________________________________________
-                  </Text>
                 </Text>
-                <Text style={modalstyles.subunitText2}>층별 시설 및 학과</Text>
+                <Text style={modalstyles.FloorAndDepartmentText}>층별 시설 및 학과</Text>
                 {/* ------------------------------------------------------------------------------------------- */}
-                <ScrollView>
+                <ScrollView style={{borderWidth:1, borderRadius:20}}>
                   {_Screen()}
                 </ScrollView>
                 {/* ------------------------------------------------------------------------------------------- */}

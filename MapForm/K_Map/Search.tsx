@@ -8,6 +8,8 @@ import React, {useEffect, useState} from 'react';
 import {
   Dimensions,
   FlatList,
+  KeyboardAvoidingView,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -36,6 +38,7 @@ function Search({webviewRef, _state, map}: any) {
 
   useEffect(() => {
     setState(current => !current);
+    setList(firstlist)
   }, [_state]);
 
   useEffect(() => {
@@ -59,17 +62,18 @@ function Search({webviewRef, _state, map}: any) {
       );
     };
     return (
-      <FlatList
-        data={_list}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-        extraData={selectedId}
-        ListEmptyComponent={
-          <Text style={[styles.touchable, {fontSize: 18, textAlign: 'center'}]}>
-            검색결과가 없습니다
-          </Text>
+        <FlatList
+          data={_list}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+          extraData={selectedId}
+          style={{marginBottom:50}}
+          ListEmptyComponent={
+            <Text style={[styles.touchable, {fontSize: 18, textAlign: 'center'}]}>
+              검색결과가 없습니다
+            </Text>
         }
-      />
+        />
     );
   };
 
@@ -81,9 +85,29 @@ function Search({webviewRef, _state, map}: any) {
       };
       firstlist.push(__data);
     }
+    bubbleSort(firstlist)
     setList(firstlist);
     setData(getData);
   };
+
+  function bubbleSort (input:any) {
+    const len = input.length;
+    let tmp = null;
+
+    for(let a = 0; a < len; a ++)
+    {
+      for(let b = 0; b < len-1; b++)
+      {
+        if(input[b].title > input[b+1].title)
+        { 
+          tmp = input[b];
+          input[b] = input[b+1];
+          input[b+1] = tmp
+          tmp = null
+        }
+      }
+    }
+  }
 
   const filter = (_text: any) => {
     const arr: any[] = [];
@@ -126,27 +150,30 @@ function Search({webviewRef, _state, map}: any) {
   };
 
   return (
+    
     <Modal
       animationIn="slideInLeft"
       animationOut="slideOutLeft"
       onBackButtonPress={() => {
         onPress();
       }}
-      deviceWidth={WIDTH}
-      deviceHeight={HEIGHT}
       isVisible={state}>
-      <View>
+        {/* <KeyboardAvoidingView behavior="padding" enabled> */}
+      {/* <View> */}
         <View>
+        
           <SearchBar
             platform="android"
             containerStyle={{
-              width: WIDTH - 120,
+              marginTop:50,
+              width: WIDTH - 50,
               height: 50,
               marginRight: 'auto',
               marginLeft: 'auto',
               borderRadius: 10,
               borderWidth: 2,
               borderColor: 'black',
+              // position: 'absolute'
             }}
             inputStyle={{fontSize: 15}}
             inputContainerStyle={{marginTop: 'auto', marginBottom: 'auto'}}
@@ -163,7 +190,8 @@ function Search({webviewRef, _state, map}: any) {
         <View>
           <List _list={list} />
         </View>
-      </View>
+      {/* </View> */}
+      {/* </KeyboardAvoidingView> */}
     </Modal>
   );
 }
@@ -190,13 +218,14 @@ const styles = StyleSheet.create({
   touchable: {
     backgroundColor: 'white',
     // opacity: 0.9,
-    width: WIDTH - 120,
+    width: WIDTH - 100,
     height: 40,
     marginLeft: 'auto',
     marginRight: 'auto',
     borderColor: 'black',
     borderRadius: 15,
     borderWidth: 2,
+    // position:'absolute',
   },
 });
 
