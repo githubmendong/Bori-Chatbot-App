@@ -16,7 +16,8 @@
 
   <!-- <meta charset="utf-8"> -->
   <!-- css파일을 연결할 때 -->
-  <link href="./common/mbl/header.css" rel="stylesheet" type="text/css" />
+  <!-- <link href="./common/mbl/header.css" rel="stylesheet" type="text/css" /> -->
+  <!-- header.CSS 파일이 없어서 주석처리 했습니다. -SDH- -->
   <script type="text/javascript" defer src="script.js">
     let scriptURL = "/scripts/common.js.js?v=" + Math.random();
     let scriptElement = document.createElement("script");
@@ -179,7 +180,7 @@
     var search_state = true;
     var number_state = true;
 
-    // var pano = new naver.maps.Panorama("pano", panoramaOptions);
+
     // var panoramaOptions = {
     //   position: new naver.maps.LatLng(36.33705543447485, 127.44507203436675),
     //   size: new naver.maps.Size(innerWidth, innerHeight),
@@ -195,6 +196,20 @@
 
     // };
 
+    // var pano = new naver.maps.Panorama("pano", panoramaOptions); //로드맵 한번 실행
+    // let panoramaOptions = {
+    //   // position: new naver.maps.LatLng(36.33705543447485, 127.44507203436675),
+    //   size: new naver.maps.Size(innerWidth, innerHeight),
+    //   logoControl: false,
+    //   visible: false,
+    //   zoomControl: false,
+    //   aroundControl: false,
+    // };
+
+    // var pano = new naver.maps.Panorama("pano", panoramaOptions);
+    // 새로운 panoramaOptions 데이터 빌드
+
+
     let panoramaOptions = {
       position: new naver.maps.LatLng(36.33705543447485, 127.44507203436675),
       size: new naver.maps.Size(innerWidth, innerHeight),
@@ -204,11 +219,7 @@
       aroundControl: false,
     };
 
-
-    // var pano = new naver.maps.Panorama("pano", panoramaOptions);
-
-
-
+    let pano = new naver.maps.Panorama("pano", panoramaOptions);
     let help_flag = false;
 
 
@@ -217,7 +228,7 @@
     // 로브듀 생성하기 (카캌오)
     /////////////////////////////////////////////////////////
     var container = document.getElementById('mapcontainer'); // 지도와 로드뷰를 감싸고 있는 div 입니다
-    var roadrv = new kakao.maps.Roadview(rvContainer);
+    var roadrv = new kakao.maps.Roadview(rvContainer); //로드뷰 길 소환합니다.
     var rvClient = new kakao.maps.RoadviewClient();
     var mapWrapper = document.getElementById('mapWrapper'); // 지도를 감싸고 있는 div 입니다
     var btnRoadview = document.getElementById('btnRoadview'); // 지도 위의 로드뷰 버튼, 클릭하면 지도는 감춰지고 로드뷰가 보입니다 
@@ -238,34 +249,33 @@
       draggable: true,
       map: map
     });
-    kakao.maps.event.addListener(roadrv, 'position_changed', function () {
-      // 현재 로드뷰의 위치 좌표를 얻어옵니다 
-      var rvPosition = roadrv.getPosition();
-      // cosnole.log(rvPosition);
-      // 지도의 중심을 현재 로드뷰의 위치로 설정합니다
-      map.setCenter(rvPosition);
-      // 지도 위에 로드뷰 도로 오버레이가 추가된 상태이면
-      if (overlayOn) {
-        // 마커의 위치를 현재 로드뷰의 위치로 설정합니다
-        marker.setPosition(rvPosition);
-      }
-    });
+    // kakao.maps.event.addListener(roadrv, 'position_changed', function () {
+    //   // 현재 로드뷰의 위치 좌표를 얻어옵니다 
+    //   var rvPosition = roadrv.getPosition();
+    //   // cosnole.log(rvPosition);
+    //   // 지도의 중심을 현재 로드뷰의 위치로 설정합니다
+    //   map.setCenter(rvPosition);
+    //   // 지도 위에 로드뷰 도로 오버레이가 추가된 상태이면
+    //   if (overlayOn) {
+    //     // 마커의 위치를 현재 로드뷰의 위치로 설정합니다
+    //     marker.setPosition(rvPosition);
+    //   }
+    // });
 
 
-
+    //로드뷰 도로 오버레이 생성합니다.
     function toggleOverlay(active) {
       if (active) {
         overlayOn = true;
-        // 지도 위에 로드뷰 도로 오버레이를 추가합니다
         map.addOverlayMapTypeId(kakao.maps.MapTypeId.ROADVIEW);
       } else {
         overlayOn = false;
-        // 지도 위의 로드뷰 도로 오버레이를 제거합니다
         map.removeOverlayMapTypeId(kakao.maps.MapTypeId.ROADVIEW);
         marker.setMap(null);
       }
     }
 
+    //버튼 클릭하면 toggleOverlay 호출하여 로드뷰 도로 오버레이를 생성합니다.
     function toggleMap(active) {
       let control = document.getElementById('roadviewControl');
       //pano = undefined;
@@ -273,7 +283,8 @@
       if (control.className.indexOf('active') === -1) {
         control.className = 'active';
         toggleOverlay(true);
-        pano = new naver.maps.Panorama("pano", panoramaOptions);
+        //pano.setVisible(true);
+        //pano = new naver.maps.Panorama("pano", panoramaOptions);
         console.log("로드뷰 active");
       } else {
         control.className = '';
@@ -284,21 +295,29 @@
       }
     }
 
+
+    // 카카오맵 클릭 이벤트입니다.
     kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
       if (!overlayOn) return;
       // 현재 클릭한 부분의 좌표를 리턴 
       let position = mouseEvent.latLng;
       roadmarker.setPosition(position);
-      console.log(position);
 
       let x = position.La,
         y = position.Ma;
 
       let coord = { x: x, y: y };
-      console.log(coord);
 
+      // 기존의 pano를 지우고
+      pano.setVisible(false);
+      pano.setPosition(null);
       // 새로운 panoramaOptions 데이터 빌드
       panoramaOptions = {
+        pov: {
+          pan: -76.14824561403513,
+          tilt: -1.9649122807017545,
+          fov: 100
+        },
         position: new naver.maps.LatLng(coord),
         size: new naver.maps.Size(innerWidth, innerHeight),
         logoControl: false,
@@ -307,12 +326,37 @@
         aroundControl: false,
       };
 
-      // panoramaOptions.position = new naver.maps.LatLng(coord);
       pano = new naver.maps.Panorama("pano", panoramaOptions);
       pano.setVisible(true);
       roadmarker.setVisible(false); //로드뷰 활성화시 동동이 삭제
       document.getElementById('map').style.display = "none"; //지도
+      // 기존의 pano를 지우고
+
+      pano.setPosition(null);
     });
+
+
+
+
+    naver.maps.Event.addListener(pano, "pov_changed", function () {
+      console.log("PanoramaPov", pano.getPov()); // pan, tilt, fov
+
+    });
+
+    // 지도를 클릭했을 때 발생하는 이벤트를 받아 파노라마 위치를 갱신합니다. 이때 거리뷰 레이어가 있을 때만 갱신하도록 합니다.
+    naver.maps.Event.addListener(map, 'click', function (e) {
+      console.log("hi");
+      // 기존의 pano를 지우고
+      pano.setVisible(false);
+      pano.setPosition(null);
+      if (streetLayer.getMap()) {
+        var latlng = e.coord;
+
+        // 파노라마의 setPosition()은 해당 위치에서 가장 가까운 파노라마(검색 반경 300미터)를 자동으로 설정합니다.
+        pano.setPosition(latlng);
+      }
+    });
+
 
     //#endregion
 
@@ -347,20 +391,20 @@
       catch (err) { }
     })
 
-    function toggleRoadview(position) {
-      rvClient.getNearestPanoId(position, 50, function (panoId) {
-        console.log(panoId);
-        // 파노라마 ID가 null 이면 로드뷰를 숨깁니다
-        if (panoId === null) {
-          toggleMapWrapper(true, position);
-        } else {
-          toggleMapWrapper(false, position);
+    // function toggleRoadview(position) {
+    //   rvClient.getNearestPanoId(position, 50, function (panoId) {
+    //     console.log(panoId);
+    //     // 파노라마 ID가 null 이면 로드뷰를 숨깁니다
+    //     if (panoId === null) {
+    //       toggleMapWrapper(true, position);
+    //     } else {
+    //       toggleMapWrapper(false, position);
 
-          // panoId로 로드뷰를 설정합니다
-          rv.setPanoId(panoId, position);
-        }
-      });
-    }
+    //       // panoId로 로드뷰를 설정합니다
+    //       rv.setPanoId(panoId, position);
+    //     }
+    //   });
+    // }
 
     function setLocation() {
       map.panTo(gps.getPosition());
@@ -368,7 +412,7 @@
 
     ////////////////////////////////////////////////////////
     // 네이티브로 보내는 메시지
-    // 버튼 서캠퍼스이동. callFuntionWsucamp   : W7 건물로 이동
+    // 버튼 서캠퍼스이동. callFuntionWsucampㅋ   : W7 건물로 이동
     ////////////////////////////////////////////////////////
     function callFuntionWsucamp() {
       var moveLatLon = new kakao.maps.LatLng(36.33708690233312, 127.44509170564967);

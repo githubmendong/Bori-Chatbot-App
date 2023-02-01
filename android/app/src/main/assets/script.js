@@ -1,21 +1,18 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-undef */
-$('.menu').click(function () {
-  $(this).parent().toggleClass('close');
-});
-$('.menu-label_help').click(function () {
-  $('img.JPG').show();
-});
+// $('.menu').click(function () {
+//   $(this).parent().toggleClass('close');
+// });
 
 
 // $("#switch").click(function(){
 //    $(this).toggleClass("on off");
 // });
 
-$('#switch').click(function () {
-  $(this).toggleClass('active');
-  $(this).hasClass('active') ? onFunc() : offFunc();
-});
+// $('#switch').click(function () {
+//   $(this).toggleClass('active');
+//   $(this).hasClass('active') ? onFunc() : offFunc();
+// });
 
 var innerWidthsize = document.getElementById('size');
 
@@ -25,8 +22,8 @@ window.onresize = function (event) {
 };
 
 
-$('menu-label_on_off').click(function() {
-  toggleClass('.active-color');
-});
+// $('menu-label_on_off').click(function() {
+//   toggleClass('.active-color');
+// });
 
 
