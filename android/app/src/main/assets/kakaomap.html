@@ -72,9 +72,8 @@
   </div>
   <div id="help"></div>
   <h1 id=" size" style="margin-top: 0px;  ">
-    <div id="pano"></div>
+    <div id="pano" style="width:100%; height: 100%; top: 0px; bottom: 0px;position:absolute;  z-index: 0;"></div>
     <!-- 네이버 지도 폼  -->
-
     <div id="map" style="width:100%; height: 100%; top: 0px; bottom: 0px;position:absolute;  z-index: 1;"></div>
     </div>
     <div id="wrap" class="section">
@@ -121,6 +120,7 @@
     src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=5062efd19b7a53b5ded087c3ff4ba608&libraries=services"></script>
 
   <script>
+
 
     /////////////////////////////////////////////////////////
     // 버튼 누르면 0.5초후 꺼짐 (가능하면 최상단)
@@ -233,6 +233,8 @@
     let help_flag = false;
 
 
+
+
     //#region 로드부
     /////////////////////////////////////////////////////////
     // 로브듀 생성하기 (카캌오)
@@ -288,14 +290,17 @@
     //버튼 클릭하면 toggleOverlay 호출하여 로드뷰 도로 오버레이를 생성합니다.
     function toggleMap(active) {
       let control = document.getElementById('roadviewControl');
-      //pano = undefined;
-      // console.log(control);
       if (control.className.indexOf('active') === -1) {
         control.className = 'active';
         toggleOverlay(true);
+        pano.setVisible(false);
+        localStorage.removeItem('pano_cache');
+        localStorage.clear('pano_cache');
         //pano.setVisible(true);
         //pano = new naver.maps.Panorama("pano", panoramaOptions);
         console.log("로드뷰 active");
+        localStorage.removeItem('pano_cache');
+        localStorage.clear('pano_cache');
       } else {
         control.className = '';
         toggleOverlay(false);
@@ -321,6 +326,8 @@
       // 기존의 pano를 지우고
       pano.setVisible(false);
       pano.setPosition(null);
+      localStorage.removeItem('pano_cache');
+      localStorage.clear('pano_cache');
       // 새로운 panoramaOptions 데이터 빌드
       panoramaOptions = {
         pov: {
@@ -347,25 +354,23 @@
 
 
 
-
     naver.maps.Event.addListener(pano, "pov_changed", function () {
-      console.log("PanoramaPov", pano.getPov()); // pan, tilt, fov
 
     });
 
-    // 지도를 클릭했을 때 발생하는 이벤트를 받아 파노라마 위치를 갱신합니다. 이때 거리뷰 레이어가 있을 때만 갱신하도록 합니다.
-    naver.maps.Event.addListener(map, 'click', function (e) {
-      console.log("hi");
-      // 기존의 pano를 지우고
-      pano.setVisible(false);
-      pano.setPosition(null);
-      if (streetLayer.getMap()) {
-        var latlng = e.coord;
+    // // 지도를 클릭했을 때 발생하는 이벤트를 받아 파노라마 위치를 갱신합니다. 이때 거리뷰 레이어가 있을 때만 갱신하도록 합니다.
+    // naver.maps.Event.addListener(map, 'click', function (e) {
+    //   console.log("hi");
+    //   // 기존의 pano를 지우고
+    //   pano.setVisible(false);
+    //   pano.setPosition(null);
+    //   if (streetLayer.getMap()) {
+    //     var latlng = e.coord;
 
-        // 파노라마의 setPosition()은 해당 위치에서 가장 가까운 파노라마(검색 반경 300미터)를 자동으로 설정합니다.
-        pano.setPosition(latlng);
-      }
-    });
+    //     // 파노라마의 setPosition()은 해당 위치에서 가장 가까운 파노라마(검색 반경 300미터)를 자동으로 설정합니다.
+    //     pano.setPosition(latlng);
+    //   }
+    // });
 
 
     //#endregion
