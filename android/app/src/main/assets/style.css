@@ -449,6 +449,18 @@ h1 {
 }
 
 
+.custom_ARcontrol {
+  position: absolute;
+  top: 10px;
+  right: 60px;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  z-index: 1;
+  border-radius: 12px;
+  background-color: #142239;
+}
+
 .custom_zoomcontrol {
   position: absolute;
   top: 10px;
@@ -510,6 +522,32 @@ h1 {
 }
 
 .custom_zoomcontrol span:first-child {
+  border-bottom: 1px solid #bfbfbf;
+}
+
+
+.custom_ARcontrol span {
+  display: block;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  cursor: pointer;
+
+}
+
+.custom_ARcontrol span img {
+  height: 25px;
+  padding: 8px 0;
+  border: none;
+}
+
+
+.custom_ARcontrol:active {
+  background-color: #425470;
+  color: #fff;
+}
+
+.custom_ARcontrol span:first-child {
   border-bottom: 1px solid #bfbfbf;
 }
 

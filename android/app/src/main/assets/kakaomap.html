@@ -92,6 +92,14 @@
     </div>
   </h1>
 
+
+  <div class="custom_ARcontrol radius_border">
+    <div id="roadviewControl"></div>
+    <span onclick="AR()">
+      <img src="https://i.ibb.co/RQS27DG/userlmn-969d08859531360177f9a03906302cb7.png">
+    </span>
+  </div>
+
   <div class="custom_zoomcontrol radius_border">
     <div id="roadviewControl"></div>
     <span onclick="toggleMap()">
@@ -105,6 +113,7 @@
       <img src="https://i.ibb.co/M50Dq4w/userlmn-0ea2ca4b3fbdd288a4011bce27deab1d.png">
     </span>
   </div>
+
 
   <script type="text/javascript"
     src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=seugcz3s37&amp;submodules=panorama"></script>
@@ -165,7 +174,7 @@
     var gpsContent = '<div id="controlCustomOverlay"><img id ="left" src="KakaoTalk_20230112_101244104.png" style="height: 70px; width: 70;)"></div>';
     var gps = new kakao.maps.CustomOverlay({
       content: gpsContent,
-      zindex:1,
+      zindex: 1,
       map: map
     });
 
