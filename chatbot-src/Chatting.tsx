@@ -24,12 +24,8 @@ import {SelectSystemChat} from './Utils/SelectSystemChat';
 import {SuggestedSearch} from './Utils/SuggestedSearch';
 
 const WIDTH = Dimensions.get('window').width;
-<<<<<<< HEAD
 export const CHATURL = 'https://ebf6-2001-2d8-6a82-dfc-3418-6b9d-8e45-940d.jp.ngrok.io';
-=======
-export const CHATURL =
-  'https://ebf6-2001-2d8-6a82-dfc-3418-6b9d-8e45-940d.jp.ngrok.io';
->>>>>>> 9ca2d200b14c07055fc56725106d461afcbe6482
+
 const styles = StyleSheet.create({
   input: {
     backgroundColor: 'white',
