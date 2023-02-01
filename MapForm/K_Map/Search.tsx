@@ -8,6 +8,7 @@ import React, {useEffect, useState} from 'react';
 import {
   Dimensions,
   FlatList,
+  KeyboardAvoidingView,
   ScrollView,
   StyleSheet,
   Text,
@@ -66,7 +67,7 @@ function Search({webviewRef, _state, map}: any) {
           renderItem={renderItem}
           keyExtractor={item => item.id}
           extraData={selectedId}
-          style={{height:HEIGHT-100, marginBottom:50}}
+          style={{marginBottom:50}}
           ListEmptyComponent={
             <Text style={[styles.touchable, {fontSize: 18, textAlign: 'center'}]}>
               검색결과가 없습니다
@@ -149,17 +150,18 @@ function Search({webviewRef, _state, map}: any) {
   };
 
   return (
+    
     <Modal
       animationIn="slideInLeft"
       animationOut="slideOutLeft"
       onBackButtonPress={() => {
         onPress();
       }}
-      deviceWidth={WIDTH}
-      deviceHeight={HEIGHT}
       isVisible={state}>
-      <View>
+        {/* <KeyboardAvoidingView behavior="padding" enabled> */}
+      {/* <View> */}
         <View>
+        
           <SearchBar
             platform="android"
             containerStyle={{
@@ -171,6 +173,7 @@ function Search({webviewRef, _state, map}: any) {
               borderRadius: 10,
               borderWidth: 2,
               borderColor: 'black',
+              // position: 'absolute'
             }}
             inputStyle={{fontSize: 15}}
             inputContainerStyle={{marginTop: 'auto', marginBottom: 'auto'}}
@@ -187,7 +190,8 @@ function Search({webviewRef, _state, map}: any) {
         <View>
           <List _list={list} />
         </View>
-      </View>
+      {/* </View> */}
+      {/* </KeyboardAvoidingView> */}
     </Modal>
   );
 }
@@ -221,6 +225,7 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     borderRadius: 15,
     borderWidth: 2,
+    // position:'absolute',
   },
 });
 

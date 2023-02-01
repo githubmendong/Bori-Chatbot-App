@@ -17,6 +17,7 @@ import {
 } from 'react-native';
 import { setData, setNumber } from '../../App';
 import {setTemp} from '../../MapForm/K_Map/KMap';
+import { setSelectedTab } from '../../Tabs';
 // import { NAVIGATIONDATA } from '../Chatting';
 import {SystemTime} from '../Utils/SytemTime';
 
@@ -33,6 +34,7 @@ export const BtnSystemChat = ({keyword, answer}: any) => {
   const moveActivity = async ()=>{
     await setKeyword(keyword);
     setNumber(2);
+    setSelectedTab(1);
     setData('flex');
   };
 
