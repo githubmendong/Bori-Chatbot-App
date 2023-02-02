@@ -72,7 +72,9 @@ export const Chatting = ({}: any) => {
     let minutes: number = 0;
     let seconds: number = 0;
 
-    await getData('day').then((data)=> {day = data;});
+    await getData('day').then((data)=> {
+      day = data;
+    });
     await getData('hours').then(data => {
       hours = data;
     });
