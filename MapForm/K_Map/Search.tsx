@@ -13,7 +13,6 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  TouchableWithoutFeedback,
   View,
 } from 'react-native';
 import Modal from 'react-native-modal';
@@ -32,7 +31,7 @@ const Item = ({item, onPress}: any) => (
 );
 
 
-function Search({children, onPresss, webviewRef, _state, map}: any) {
+function Search({webviewRef, _state, map}: any) {
   const [inputText, setInputText] = useState('');
   const [data, setData] = useState<any[]>([]);
   const [list, setList] = useState<any[]>([]);
@@ -81,11 +80,6 @@ function Search({children, onPresss, webviewRef, _state, map}: any) {
       />
     );
   };
-
-  <TouchableWithoutFeedback onPress={onPresss}>
-  <View>{children}</View>
-  </TouchableWithoutFeedback>
-
 
   const searchMessage = () => {
     for (let i of getData) {
@@ -205,7 +199,35 @@ function Search({children, onPresss, webviewRef, _state, map}: any) {
         </View>
       {/* </View> */}
       {/* </KeyboardAvoidingView> */}
+      
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <TouchableOpacity
+          onPress={() => {
+            onPress();
+          }}
+          style={{
+            // position: 'absolute',
+            width: 200,
+            height: 50,
+            backgroundColor: '#142239',
+            borderRadius: 10,
+            borderWidth: 0.6,
+            // borderColor: 'white',
+            marginBottom: 'auto',
+            alignItems: 'center',
+            justifyContent: 'center',
+            shadowColor: '#000',
+            shadowOffset: {width: 0, height: 2},
+            shadowOpacity: 0.8,
+            shadowRadius: 2,
+            elevation: 1
+          }}>
+          <Text style={{color: 'white'}}>뒤로가기</Text>
+        </TouchableOpacity>
+
+      </View>
     </Modal>
+    
   );
 }
 
