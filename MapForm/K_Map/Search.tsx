@@ -13,6 +13,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   View,
 } from 'react-native';
 import Modal from 'react-native-modal';
@@ -21,13 +22,17 @@ import {SearchBar} from '@rneui/themed';
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 
+// onPress={() => onPress()}
+// style={{flex: 1, backgroundColor: 'white'}}
+
 const Item = ({item, onPress}: any) => (
   <TouchableOpacity onPress={onPress} style={styles.touchable}>
     <Text style={styles.title}>{item.title}</Text>
   </TouchableOpacity>
 );
 
-function Search({webviewRef, _state, map}: any) {
+
+function Search({children, onPresss, webviewRef, _state, map}: any) {
   const [inputText, setInputText] = useState('');
   const [data, setData] = useState<any[]>([]);
   const [list, setList] = useState<any[]>([]);
@@ -62,20 +67,25 @@ function Search({webviewRef, _state, map}: any) {
       );
     };
     return (
-        <FlatList
-          data={_list}
-          renderItem={renderItem}
-          keyExtractor={item => item.id}
-          extraData={selectedId}
-          style={{marginBottom:50}}
-          ListEmptyComponent={
+      <FlatList
+        data={_list}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+        extraData={selectedId}
+        style={{marginBottom:60, height: HEIGHT/3,}}
+        ListEmptyComponent={
             <Text style={[styles.touchable, {fontSize: 18, textAlign: 'center'}]}>
               검색결과가 없습니다
             </Text>
         }
-        />
+      />
     );
   };
+
+  <TouchableWithoutFeedback onPress={onPresss}>
+  <View>{children}</View>
+  </TouchableWithoutFeedback>
+
 
   const searchMessage = () => {
     for (let i of getData) {
@@ -164,18 +174,20 @@ function Search({webviewRef, _state, map}: any) {
         
           <SearchBar
             platform="android"
+
             containerStyle={{
-              marginTop:50,
-              width: WIDTH - 50,
-              height: 50,
+              shadowColor:'black',
+              marginTop:10,
+              width: (WIDTH - 250) * 1.1,
+              height: 50 * 1.5,
               marginRight: 'auto',
               marginLeft: 'auto',
               borderRadius: 10,
-              borderWidth: 2,
+              borderWidth: 1,
               borderColor: 'black',
               // position: 'absolute'
             }}
-            inputStyle={{fontSize: 15}}
+            inputStyle={{fontSize: 20,}}
             inputContainerStyle={{marginTop: 'auto', marginBottom: 'auto'}}
             leftIconContainerStyle={{}}
             rightIconContainerStyle={{}}
@@ -187,6 +199,7 @@ function Search({webviewRef, _state, map}: any) {
             placeholderTextColor="#888"
           />
         </View>
+
         <View>
           <List _list={list} />
         </View>
@@ -198,12 +211,14 @@ function Search({webviewRef, _state, map}: any) {
 
 const styles = StyleSheet.create({
   title: {
+    
     fontSize: 18,
     textAlign: 'center',
     marginBottom: 'auto',
     marginTop: 'auto',
   },
   textInput: {
+    
     height: 50,
     width: WIDTH - 20,
     borderRadius: 10,
@@ -218,13 +233,15 @@ const styles = StyleSheet.create({
   touchable: {
     backgroundColor: 'white',
     // opacity: 0.9,
-    width: WIDTH - 100,
-    height: 40,
+    top:10,
+    width: WIDTH - 250,
+    height: 60,
     marginLeft: 'auto',
     marginRight: 'auto',
     borderColor: 'black',
-    borderRadius: 15,
-    borderWidth: 2,
+    // borderRadius: 15,
+    borderWidth: 0.6,
+    borderBottomColor:'#888',
     // position:'absolute',
   },
 });

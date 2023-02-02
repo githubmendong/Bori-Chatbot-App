@@ -8,10 +8,8 @@ import {
   Text,
   Pressable,
   View,
-  ImageBackground,
   Linking,
   ScrollView,
-  BackHandler,
 } from 'react-native';
 import {modalstyles} from './styles/modalstyles';
 
