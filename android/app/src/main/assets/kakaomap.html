@@ -88,12 +88,8 @@
     </div>
   </h1>
 
-  <div class="custom_ARcontrol radius_border">
-    <div id="roadviewControl"></div>
-    <span onclick="AR()">
-      <img src="https://cdn-icons-png.flaticon.com/512/3211/3211307.png">
-    </span>
-  </div>
+
+
 
   <div class="custom_zoomcontrol radius_border">
     <div id="roadviewControl"></div>
@@ -106,6 +102,20 @@
     <div id="roadviewControl"></div>
     <span onclick="setLocation()">
       <img src="https://i.ibb.co/M50Dq4w/userlmn-0ea2ca4b3fbdd288a4011bce27deab1d.png">
+    </span>
+  </div>
+
+  <div class="custom_ARcontrol radius_border">
+    <div id="roadviewControl"></div>
+    <span onclick="AR()">
+      <img src="https://cdn-icons-png.flaticon.com/512/3211/3211307.png">
+    </span>
+  </div>
+
+  <div class="custom_QRcontrol radius_border">
+    <div id="roadviewControl"></div>
+    <span onclick="QR()">
+      <img src="https://cdn-icons-png.flaticon.com/512/8848/8848876.png">
     </span>
   </div>
 
@@ -292,6 +302,11 @@
     }
     function AR() {
       window.ReactNativeWebView.postMessage('ar');
+    }
+
+    //여기다 QR만드시면 됩니다.
+    function QR() {
+      window.ReactNativeWebView.postMessage('qr');
     }
     // 카카오맵 클릭 이벤트입니다.
     kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
