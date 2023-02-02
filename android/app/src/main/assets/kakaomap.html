@@ -11,9 +11,7 @@
   }
 </style>
 <html>
-
 <head>
-
   <!-- <meta charset="utf-8"> -->
   <!-- css파일을 연결할 때 -->
   <!-- <link href="./common/mbl/header.css" rel="stylesheet" type="text/css" /> -->
@@ -41,7 +39,6 @@
 
 <body>
   <div class="menu">
-
     <label for="expand-menu" class="menu-label">
       <div>메뉴</div>
     </label><input type="checkbox" id="expand-menu" name="expand-menu">
@@ -127,10 +124,7 @@
     src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=seugcz3s37&amp;submodules=panorama"></script>
   <script type="text/javascript"
     src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=5062efd19b7a53b5ded087c3ff4ba608&libraries=services"></script>
-
   <script>
-
-
     /////////////////////////////////////////////////////////
     // 버튼 누르면 0.5초후 꺼짐 (가능하면 최상단)
     /////////////////////////////////////////////////////////
@@ -158,10 +152,7 @@
         }, 500);
       });
     });
-
     /////////////////////////////////////////////////////////
-
-
     var overlayOn = false; // 지도 위에 로드뷰 오버레이가 추가된 상태를 가지고 있을 변수
     var rvContainer = document.getElementById('roadviewControl'); //로드뷰를 표시할 div 입니다
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -174,9 +165,6 @@
     var marker = new kakao.maps.Marker({
       position: markerPosition,
     });
-
-
-
     /////////////////////////////////////////////////////////
     // GPS
     /////////////////////////////////////////////////////////
@@ -191,14 +179,12 @@
     let printisActive = true; //print on/off
     let studyisActive = true; //study on/off
 
-
     var marker_arr = {}
     var marker_number_arr = {}
     var state = false;
     var marker_direction = null;
     var search_state = true;
     var number_state = true;
-
 
     // var panoramaOptions = {
     //   position: new naver.maps.LatLng(36.33705543447485, 127.44507203436675),
@@ -228,7 +214,6 @@
     // var pano = new naver.maps.Panorama("pano", panoramaOptions);
     // 새로운 panoramaOptions 데이터 빌드
 
-
     let panoramaOptions = {
       position: new naver.maps.LatLng(36.33705543447485, 127.44507203436675),
       size: new naver.maps.Size(innerWidth, innerHeight),
@@ -240,9 +225,6 @@
 
     let pano = new naver.maps.Panorama("pano", panoramaOptions);
     let help_flag = false;
-
-
-
 
     //#region 로드부
     /////////////////////////////////////////////////////////
@@ -318,8 +300,9 @@
         console.log("로드뷰 unactive");
       }
     }
-
-
+    function AR() {
+      window.ReactNativeWebView.postMessage('ar');
+    }
     // 카카오맵 클릭 이벤트입니다.
     kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
       if (!overlayOn) return;
@@ -360,13 +343,8 @@
 
       pano.setPosition(null);
     });
-
-
-
     naver.maps.Event.addListener(pano, "pov_changed", function () {
-
     });
-
     // // 지도를 클릭했을 때 발생하는 이벤트를 받아 파노라마 위치를 갱신합니다. 이때 거리뷰 레이어가 있을 때만 갱신하도록 합니다.
     // naver.maps.Event.addListener(map, 'click', function (e) {
     //   console.log("hi");
@@ -380,10 +358,7 @@
     //     pano.setPosition(latlng);
     //   }
     // });
-
-
     //#endregion
-
     document.addEventListener("message", async (e) => {
       try {
         var latlng = JSON.parse(e.data)
@@ -544,14 +519,11 @@
 
       }
     }
-
-
     ////////////////////////////////////////////////////////
     // 메뉴바 헬프 버튼
     ///////////////////////////////////////////////////////
 
     function call_help() {
-
       if (help_flag == false) {
         document.getElementById('help').insertAdjacentHTML('afterbegin', '<img src="회색배경.png" alt="help_img" style=" width:100%; height:100%; top: 0px; bottom: 0px; position:absolute; z-index: 3;" onclick="removeHelpInfo()">');
         document.getElementById('help').insertAdjacentHTML('afterbegin', '<img src="helpinfo.png" alt="help_img" style=" width:100%;  top: 0px; bottom: 0px; position:absolute; z-index: 4;"onclick="removeHelpInfo()">');
@@ -567,8 +539,6 @@
       helpImgs.forEach(img => img.remove());
       help_flag = false;
     }
-
-
     /////////////////////////////////////////////////////////
 
     //#region 버튼 5,6,7
@@ -665,7 +635,6 @@
         position: position,
         image: image
       });
-
       return marker;
     }
 
@@ -673,7 +642,6 @@
     function createCoffeeMarkers() {
 
       for (var i = 0; i < coffeePositions.length; i++) {
-
         var imageSize = new kakao.maps.Size(22, 26),
           imageOptions = {
             spriteOrigin: new kakao.maps.Point(10, 0),
@@ -725,7 +693,6 @@
     // 스터디실 마커를 생성하고 스터디실 마커 배열에 추가하는 함수입니다
     function createstudyroomMarkers() {
       for (var i = 0; i < studyroomPositions.length; i++) {
-
         var imageSize = new kakao.maps.Size(22, 26),
           imageOptions = {
             spriteOrigin: new kakao.maps.Point(10, 72),
@@ -735,7 +702,6 @@
         // 마커이미지와 마커를 생성합니다
         var markerImage = createMarkerImage(markerImageSrc, imageSize, imageOptions),
           marker = createMarker(studyroomPositions[i], markerImage);
-
         // 생성된 마커를 스터디실 마커 배열에 추가합니다
         studyroomMarkers.push(marker);
       }
@@ -750,7 +716,6 @@
 
     function coffeetoggleOnclick() {
       coffeisActive = !coffeisActive;
-
     }
 
     function printtoggleOnclick() {
@@ -764,11 +729,9 @@
     function setCoffee() {
       let coffeelement = document.querySelector('.menu-label_on_off_coffee');
       if (coffeisActive) {
-
         coffeelement.classList.add('active'); //버튼을 누르면 효과가 나옵니다.
         setCoffeeMarkers(map);
       } else {
-
         coffeelement.classList.remove('active');
         setCoffeeMarkers(null);
       }
@@ -785,7 +748,6 @@
         printelement.classList.remove('active');
         setprintMarkers(null);
       }
-
       // settime;
     }
 
@@ -798,11 +760,9 @@
         studyelement.classList.remove('active');
         setstudyroomMarkers(null);
       }
-
       // settime;
     }
     //#endregion
-
   </script>
 </body>
 

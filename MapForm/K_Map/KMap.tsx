@@ -5,8 +5,8 @@
 /* eslint-disable no-array-constructor */
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import {useEffect, useState} from 'react';
-import {Alert, Dimensions, SectionList, Text} from 'react-native';
+import {useCallback, useEffect, useState} from 'react';
+import {Alert, Dimensions, Linking, SectionList, Text} from 'react-native';
 import WebView from 'react-native-webview';
 import {PermissionsAndroid} from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
@@ -19,6 +19,8 @@ export let _temp: string;
 export let setTemp: any;
 
 function KMap({webviewRef, map}: any) {
+  const AR_LINK = 'gg://ar';
+  const AR_WEB_LINK = 'https://www.instagram.com/weon.yeom';
   const [state, setState] = useState<boolean>(true);
   const [name, setName] = useState<string>();
   const [open, setOpen] = useState<boolean>(false);
@@ -28,6 +30,8 @@ function KMap({webviewRef, map}: any) {
     if (e.nativeEvent.data === 'true' || e.nativeEvent.data === 'false') {
       const _state = e.nativeEvent.data;
       setState(_state);
+    } else if (e.nativeEvent.data === 'ar') {
+      AR();
     } else {
       const _str = e.nativeEvent.data;
       setOpen(current => !current);
@@ -71,6 +75,19 @@ function KMap({webviewRef, map}: any) {
     } catch (error) {}
   };
 
+  const AR = useCallback(async () => {
+    // 만약 어플이 설치되어 있으면 true, 없으면 false
+    const supported = await Linking.canOpenURL(AR_LINK);
+
+    if (supported) {
+      // 설치되어 있으면
+      await Linking.openURL(AR_LINK);
+    } else {
+      // 앱이 없으면
+      await Linking.openURL(AR_WEB_LINK);
+    }
+  }, []);
+
   const send_screen = async (d_title: any) => {
     const latlng = new Array();
     for (let i of data) {
@@ -83,7 +100,7 @@ function KMap({webviewRef, map}: any) {
       }
     }
     console.log(latlng);
-    
+
     const sendData = JSON.stringify(latlng);
     await webviewRef.current.postMessage(sendData);
   };
@@ -115,7 +132,7 @@ function KMap({webviewRef, map}: any) {
     const d_title: string = getKeyword();
     console.log(d_title);
     if (d_title !== '') {
-      setTimeout(() => send_screen(d_title), 1000) 
+      setTimeout(() => send_screen(d_title), 1000);
     }
     setKeyword('');
   }, [_temp]);
