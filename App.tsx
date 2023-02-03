@@ -12,24 +12,14 @@ import { Text, TouchableOpacity, View } from 'react-native';
 import { Tabs } from './Tabs';
 import axios from 'axios';
 
-let GLOBALSTR:boolean;
-let SETGBSTR:any;
-export const changeGlobalStr = ()=>{
-  SETGBSTR(GLOBALSTR = !GLOBALSTR);
-};
+
 export let setNumber:React.Dispatch<React.SetStateAction<number>>;
 export let number: number;
-export let data: string;
-export let setData: React.Dispatch<React.SetStateAction<string>>;
 
 export const MAPURLS = 'http://ec2-43-200-123-255.ap-northeast-2.compute.amazonaws.com:3000';
 function App() {
-  [GLOBALSTR,SETGBSTR] = useState<boolean>(false);
-  [data,setData] = useState<string>('none');
   [number, setNumber] = useState<number>(1);
-  useEffect(()=>{
-    setData(data === 'none' ? 'flex' : 'none');
-  },[GLOBALSTR]);
+
   const [map, setMap] = useState<any[]>([]);
 
   const getMapData = async ()=>{
@@ -52,8 +42,7 @@ function App() {
     <View style={{flex:1}}>
       {number === 1 ? <Home /> : number === 2 ? <Ws36 map={map}/> : <Chatting />}
     </View>
-    <View >
-      {data === 'none' ? null : <Tabs setData={setData} setNumber={setNumber} />}
+    <View ><Tabs  setNumber={setNumber} />
     </View>
     </View>
   );
