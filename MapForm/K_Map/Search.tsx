@@ -71,7 +71,7 @@ function Search({webviewRef, _state, map}: any) {
         renderItem={renderItem}
         keyExtractor={item => item.id}
         extraData={selectedId}
-        style={{marginBottom:60, height: HEIGHT/3,}}
+        style={{marginBottom:60, height: HEIGHT/2,}}
         ListEmptyComponent={
             <Text style={[styles.touchable, {fontSize: 18, textAlign: 'center'}]}>
               검색결과가 없습니다
@@ -172,14 +172,15 @@ function Search({webviewRef, _state, map}: any) {
             containerStyle={{
               shadowColor:'black',
               marginTop:10,
-              width:  350,
+              // width:  350,
               // height: 50 * 1.5,
-              marginRight: 'auto',
-              marginLeft: 'auto',
+              marginLeft: 20,
+              marginRight: 20,
               borderRadius: 10,
               borderWidth: 1,
               borderColor: 'black',
               // position: 'absolute'
+
             }}
             inputStyle={{fontSize: 17,}}
             inputContainerStyle={{marginTop: 'auto', marginBottom: 'auto'}}
@@ -242,13 +243,14 @@ const styles = StyleSheet.create({
   textInput: {
     
     height: 50,
-    width: WIDTH - 20,
+    width: 30,
     borderRadius: 10,
     fontSize: 15,
     marginBottom: 5,
     opacity: 0.9,
-    marginLeft: 'auto',
-    marginRight: 'auto',
+    marginLeft: 20,
+    marginRight: 20,
+    marginTop: 10,
     borderWidth: 2,
     backgroundColor: 'yellow',
   },
@@ -256,7 +258,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     // opacity: 0.9,
     top:10,
-    width:  350,
+    width:  300,
     height: 60,
     marginLeft: 'auto',
     marginRight: 'auto',
