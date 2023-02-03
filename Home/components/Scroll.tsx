@@ -13,12 +13,14 @@
 import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import {
+  Animated,
   Image,
   Linking,
   ScrollView,
   Text,
   TouchableOpacity,
   View,
+  StyleSheet,
 } from 'react-native';
 import { MAPURLS } from '../../App';
 import styles from '../styles/styles';
@@ -56,6 +58,8 @@ const IMGURL: string[] = [
   // 'https://www.wsu.ac.kr/board/read.jsp?id=215580&code=community0104',
 ];
 
+
+
 export const Scroll = () => {
   const [temp, setTemp] = useState<boolean>(false);
 
@@ -72,15 +76,36 @@ export const Scroll = () => {
     setTemp(current => !current);
   };
 
+
+  
+  // Animation value
+  const [animatedValue] = useState(new Animated.Value(1))
+  // ScrollY value
+  const [scrollY] = useState(new Animated.Value(0));
+
+  // Update animation value when scrollY value updates
   useEffect(() => {
     getData();
-  }, []);
+    Animated.timing(animatedValue, {
+      toValue: scrollY.interpolate({
+        inputRange: [0,10],
+        outputRange: [1,0]
+      }),
+      duration: 200,
+      useNativeDriver: true
+    }).start();
+  }, [animatedValue, scrollY]);
+
+  // useEffect(() => {
+  //   getData();
+  // }, []);
 
   return (
     <View style={styles.container}>
       <View style={styles.logocenter}>
-        
-        <Text style={styles.logo}>WOOSONG UNIVERSITY</Text>
+        <Animated.View style={[styles.logo, { opacity: animatedValue }]}>
+      <Text style={styles.logo}>WOOSONG UNIVERSITY</Text>
+    </Animated.View>
       </View>
 
       <ScrollView
