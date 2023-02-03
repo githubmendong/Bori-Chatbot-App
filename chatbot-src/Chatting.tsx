@@ -14,7 +14,6 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
-import {changeGlobalStr} from '../App';
 import {IntroSystemChat} from './ChatForm/IntroSystemChat';
 import {UserChat} from './ChatForm/UserChat';
 import {AutoComplete} from './Utils/AutoComplete';
@@ -181,7 +180,7 @@ export const Chatting = ({}: any) => {
         })}
       </ScrollView>
       <View style={{flexDirection: 'row'}}>
-        <TouchableOpacity
+        <View
           style={{
             marginRight: 5,
             marginLeft: 5,
@@ -195,16 +194,14 @@ export const Chatting = ({}: any) => {
             width: 50,
             height: 35,
           }}
-          onPress={() => {
-            changeGlobalStr();
-          }}>
+>
           <Image
             style={{height: 40, width: 40, alignItems: 'center', marginLeft: 5}}
             source={{
               uri: 'https://i.ibb.co/rcxSjQC/Kakao-Talk-20230112-135025159.png',
             }}
           />
-        </TouchableOpacity>
+        </View>
         {text.length === 0 ? (
           <SuggestedSearch
             topSearch={topSearch}

@@ -10,7 +10,7 @@ import {Text, TouchableOpacity, View} from 'react-native';
 export let selectedTab: number
 export let setSelectedTab: (arg0: number) => void
 
-export const Tabs = ({setData, setNumber}: any) => {
+export const Tabs = ({setNumber}: any) => {
   [selectedTab, setSelectedTab] = useState(2);
 
   return (
@@ -25,7 +25,6 @@ export const Tabs = ({setData, setNumber}: any) => {
       <TouchableOpacity
         onPress={() => {
           setNumber(2);
-          setData('flex');
           setSelectedTab(1);
         }}
         style={{
@@ -58,7 +57,6 @@ export const Tabs = ({setData, setNumber}: any) => {
       <TouchableOpacity
         onPress={() => {
           setNumber(1);
-          setData('flex');
           setSelectedTab(2);
         }}
         style={{
