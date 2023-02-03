@@ -172,8 +172,8 @@ function Search({webviewRef, _state, map}: any) {
             containerStyle={{
               shadowColor:'black',
               marginTop:10,
-              width: (WIDTH - 250) * 1.1,
-              height: 50 * 1.5,
+              width:  350,
+              // height: 50 * 1.5,
               marginRight: 'auto',
               marginLeft: 'auto',
               borderRadius: 10,
@@ -181,7 +181,7 @@ function Search({webviewRef, _state, map}: any) {
               borderColor: 'black',
               // position: 'absolute'
             }}
-            inputStyle={{fontSize: 20,}}
+            inputStyle={{fontSize: 17,}}
             inputContainerStyle={{marginTop: 'auto', marginBottom: 'auto'}}
             leftIconContainerStyle={{}}
             rightIconContainerStyle={{}}
@@ -256,7 +256,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     // opacity: 0.9,
     top:10,
-    width: WIDTH - 250,
+    width:  350,
     height: 60,
     marginLeft: 'auto',
     marginRight: 'auto',
