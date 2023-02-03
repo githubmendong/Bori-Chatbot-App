@@ -260,6 +260,24 @@ h1 {
 .menu li:nth-child(7) a::before {
   content: '\e84f';
 }
+.menu li:nth-child(8) a::before {
+  content: '';
+  background-image: url('https://cdn-icons-png.flaticon.com/512/3211/3211307.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: inline-block;
+  width: 23px;
+  height: 23px;
+}
+.menu li:nth-child(9) a::before {
+  content: '';
+  background-image: url('https://cdn-icons-png.flaticon.com/512/8848/8848876.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: inline-block;
+  width: 23px;
+  height: 23px;
+}
 
 .menu li {
   cursor: pointer;
