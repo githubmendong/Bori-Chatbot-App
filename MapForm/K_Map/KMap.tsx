@@ -82,7 +82,7 @@ function KMap({webviewRef, map}: any) {
 
   const QR = useCallback(async () => {
     const supported = await Linking.canOpenURL(AR_LINK_QR);
-
+    
     if (supported) {
       // 설치되어 있으면
       await Linking.openURL(AR_LINK_QR);
