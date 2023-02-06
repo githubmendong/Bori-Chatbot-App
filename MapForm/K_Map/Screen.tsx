@@ -61,6 +61,7 @@ export const Screen = ({_state, _name, map}: any) => {
       d_arr.push(
         <View key={i} style={{flexDirection: 'row'}}>
           <Text style={modalstyles.description_text}>{tel_arr[0]}</Text>
+          
           <Pressable
             style={modalstyles.phonbtn}
             onPress={() => Linking.openURL(`tel:042${tel_arr[1]}`)}>
@@ -96,6 +97,7 @@ export const Screen = ({_state, _name, map}: any) => {
                 <View style={modalstyles.modalTopView}>
                   <View style={modalstyles.buttonOutView}>
                     <View style={modalstyles.BulidingNum}>
+                    {/* <Text style={modalstyles.header0_5} /> */}
                       <Text style={modalstyles.BulidingNumText}>{text[0]}</Text>
                     </View>
                     <View style={{alignItems: 'flex-end', flex: 1}}>
@@ -106,13 +108,13 @@ export const Screen = ({_state, _name, map}: any) => {
                     </View>
                   </View>
                 </View>
-                <View style={{flexDirection: 'row'}}>
+                <Text style={modalstyles.BulidingNameText}>{text[1]}</Text>
+                <View style={{flexDirection: 'row', marginTop:-10}}>
                     <Image 
                       source={{uri: data.imgname}}
                       style={modalstyles.image}
                     />
                   <View>
-                    <Text style={modalstyles.BulidingNameText}>{text[1]}</Text>
                     <Text style={modalstyles.AddressText}>
                       {data.address}
                     </Text>
@@ -122,11 +124,11 @@ export const Screen = ({_state, _name, map}: any) => {
                   style={{
                     textAlign: 'center',
                     color: 'white',
-                  }}>
-                </Text>
+                  }} />
+                  <Text style={modalstyles.FloorAndDepartmentLine}></Text>
                 <Text style={modalstyles.FloorAndDepartmentText}>층별 시설 및 학과</Text>
                 {/* ------------------------------------------------------------------------------------------- */}
-                <ScrollView style={{borderWidth:1, borderRadius:10}}>
+                <ScrollView style={{borderRadius:10}}>
                   {_Screen()}
                 </ScrollView>
                 {/* ------------------------------------------------------------------------------------------- */}
