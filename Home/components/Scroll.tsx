@@ -11,7 +11,7 @@
  * @format
  */
 import axios from 'axios';
-import React, {useEffect,useRef,  useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Animated,
   Image,
@@ -21,7 +21,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { MAPURLS } from '../../App';
+import {MAPURLS} from '../../App';
 import styles from '../styles/styles';
 import {MainImg} from './MainImg';
 import {Sns} from './Sns';
@@ -59,7 +59,16 @@ const IMGURL: string[] = [
 
 export const Scroll = () => {
   const [temp, setTemp] = useState<boolean>(false);
-  const fadeAnim = useRef(new Animated.Value(1)).current;
+
+  const [offset, setOffset] = useState(0);
+  const [scrollUp, setScrollUp] = useState(true);
+
+  const onScroll = (event: any) => {
+    const currentOffset = event.nativeEvent.contentOffset.y;
+    setScrollUp(offset >= currentOffset);
+    setOffset(currentOffset);
+  };
+
   const getData = async () => {
     const result = await (await axios.get(`${MAPURLS}/admin/getsubform`)).data;
 
@@ -77,173 +86,147 @@ export const Scroll = () => {
     getData();
   }, []);
 
-  const fadeOut = () => {
-    Animated.timing(fadeAnim, {
-      toValue: 0,
-      duration:0,
-      useNativeDriver: true,
-    }).start();
-  };
-
-  const fadeIn = () => {
-    Animated.timing(fadeAnim, {
-      toValue: 1,
-      duration: 20000,
-      useNativeDriver: true,
-    }).start();
-  };
-
   return (
     <View style={styles.container}>
-      <Animated.View
-        style={[
-          styles.logocenter,
-          {
-            opacity: fadeAnim,
-          },
-        ]}>
-      {/* <View style={styles.logocenter}> */}
-        
-        <Text style={styles.logo}>WOOSONG UNIVERSITY</Text>
-        </Animated.View>
-      {/* </View> */}
-
-      <ScrollView
-      onScrollBeginDrag={fadeOut}
-      onScrollEndDrag={fadeIn}
-        ref={(ref: any) => {
-          SCROLLREF = ref;
-        }}>
-        <View>
-          <VideoPlayer />
+      <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16}>
+        <View style={styles.logocenter}>
+          <Text style={styles.logo}>WOOSONG UNIVERSITY</Text>
         </View>
 
-        <View>
-          <MainImg />
-        </View>
-        <View style={styles.center}> 
-        <Text style={styles.header0_5}/>
-        <Text style={styles.green} />
-        </View>
+        <ScrollView
+          ref={(ref: any) => {
+            SCROLLREF = ref;
+          }}>
+          <View>
+            <VideoPlayer />
+          </View>
 
-        <View style={styles.formcolor}>
-        <View style={styles.left}>
-          <Text style={styles.header}>News</Text>
-          <Text style={styles.leftline} />
-          <Text style={styles.title}>{stringArray[0]}</Text>
-          <Text style={styles.content}>{stringArray[1]}</Text>
-        </View>
-        <View>
-          {/* <Image
+          <View>
+            <MainImg />
+          </View>
+          <View style={styles.center}>
+            <Text style={styles.header0_5} />
+            <Text style={styles.green} />
+          </View>
+
+          <View style={styles.formcolor}>
+            <View style={styles.left}>
+              <Text style={styles.header}>News</Text>
+              <Text style={styles.leftline} />
+              <Text style={styles.title}>{stringArray[0]}</Text>
+              <Text style={styles.content}>{stringArray[1]}</Text>
+            </View>
+            <View>
+              {/* <Image
             style={styles.img}
             source={{uri: 'https://i.ibb.co/QCyjWNt/image.png'}}
           /> */}
-          <Image style={styles.img} source={{uri: IMG[0]}} />
-        </View>
-        <TouchableOpacity onPress={() => Linking.openURL(IMGURL[0])}>
-          <View style={styles.center}>
-            <Text style={styles.look}>자세히 보기</Text>
+              <Image style={styles.img} source={{uri: IMG[0]}} />
+            </View>
+            <TouchableOpacity onPress={() => Linking.openURL(IMGURL[0])}>
+              <View style={styles.center}>
+                <Text style={styles.look}>자세히 보기</Text>
+              </View>
+            </TouchableOpacity>
           </View>
-        </TouchableOpacity>
-        </View>
 
-        <View style={styles.right}>
-          <Text style={styles.header}>News</Text>
-          <Text style={styles.rightline} />
-          <Text style={styles.title}>{stringArray[2]}</Text>
-          <Text style={styles.content}>{stringArray[3]}</Text>
-        </View>
-        <View>
-          <Image style={styles.img} source={{uri: IMG[1]}} />
-        </View>
-        <TouchableOpacity onPress={() => Linking.openURL(IMGURL[1])}>
-          <View style={styles.center}>
-            <Text style={styles.look}>자세히 보기</Text>
+          <View style={styles.right}>
+            <Text style={styles.header}>News</Text>
+            <Text style={styles.rightline} />
+            <Text style={styles.title}>{stringArray[2]}</Text>
+            <Text style={styles.content}>{stringArray[3]}</Text>
           </View>
-        </TouchableOpacity>
-        <View style={styles.center}> 
-        <Text style={styles.header0_5}/>
-        <Text style={styles.blue} />
-        </View>
-
-        <View style={styles.left}>      
-        <Text style={styles.header}>Notice</Text>
-        <Text style={styles.leftline} />
-          <Text style={styles.title}>{stringArray[4]}</Text>
-          <Text style={styles.notice}>{stringArray[5]}</Text>
-        </View>
-
-        <View>
-          <TouchableOpacity onPress={() => Linking.openURL(IMGURL[2])}>
+          <View>
+            <Image style={styles.img} source={{uri: IMG[1]}} />
+          </View>
+          <TouchableOpacity onPress={() => Linking.openURL(IMGURL[1])}>
             <View style={styles.center}>
-              <Text style={styles.noticelook}>자세히 보기</Text>
+              <Text style={styles.look}>자세히 보기</Text>
             </View>
           </TouchableOpacity>
-        </View>
-
-        <View style={styles.center}> 
-        <Text style={styles.header0_5}/>
-        <Text style={styles.red} />
-        </View>
-
-        <View style={styles.right}>
-
-          <Text style={styles.header2}>자랑스러운 우송</Text>
-          <Text style={styles.rightline} />
-          <Text style={styles.title}>{stringArray[6]}</Text>
-          <Text style={styles.content}>{stringArray[7]}</Text>
-        </View>
-        <View>
-          <Image style={styles.img} source={{uri: IMG[3]}} />
-        </View>
-        <TouchableOpacity onPress={() => Linking.openURL(IMGURL[3])}>
           <View style={styles.center}>
-            <Text style={styles.look}>자세히 보기</Text>
+            <Text style={styles.header0_5} />
+            <Text style={styles.blue} />
           </View>
-        </TouchableOpacity>
 
-        <View>
-          <Sns />
-        </View>
+          <View style={styles.left}>
+            <Text style={styles.header}>Notice</Text>
+            <Text style={styles.leftline} />
+            <Text style={styles.title}>{stringArray[4]}</Text>
+            <Text style={styles.notice}>{stringArray[5]}</Text>
+          </View>
 
-        <View style={styles.bottom}>
-          <Text style={styles.bottomtext}>
-            (34606) {'\n'}
-            대전광역시 동구 동대전로 171 우송대학교{'\n'}
-            Tel. 042.630.9600 {'\t\t'}Fax. 042.631.2346{'\n'}
-            {'\n'}Copyright (C) 2023 Woosong BT36 GG{'\n'}All free rights
-            reserved.
-          </Text>
-          <TouchableOpacity
-            style={{
-              marginLeft: 40,
-              backgroundColor: '#b82841',
-              padding: 1,
-              width: 70,
-              height: 100,
-            }}
-            onPress={() => {
-              moveTop(SCROLLREF);
-            }}>
+          <View>
+            <TouchableOpacity onPress={() => Linking.openURL(IMGURL[2])}>
+              <View style={styles.center}>
+                <Text style={styles.noticelook}>자세히 보기</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.center}>
+            <Text style={styles.header0_5} />
+            <Text style={styles.red} />
+          </View>
+
+          <View style={styles.right}>
+            <Text style={styles.header2}>자랑스러운 우송</Text>
+            <Text style={styles.rightline} />
+            <Text style={styles.title}>{stringArray[6]}</Text>
+            <Text style={styles.content}>{stringArray[7]}</Text>
+          </View>
+          <View>
+            <Image style={styles.img} source={{uri: IMG[3]}} />
+          </View>
+          <TouchableOpacity onPress={() => Linking.openURL(IMGURL[3])}>
             <View style={styles.center}>
-              <Text
-                style={{
-                  color: 'white',
-                  fontSize: 12,
-                  fontWeight: '500',
-                }}>
-                위로가기
-              </Text>
+              <Text style={styles.look}>자세히 보기</Text>
             </View>
-            <Image
-              source={{
-                uri: 'https://i.ibb.co/rcxSjQC/Kakao-Talk-20230112-135025159.png',
+          </TouchableOpacity>
+
+          <View>
+            <Sns />
+          </View>
+
+          <View style={styles.bottom}>
+            <Text style={styles.bottomtext}>
+              (34606) {'\n'}
+              대전광역시 동구 동대전로 171 우송대학교{'\n'}
+              Tel. 042.630.9600 {'\t\t'}Fax. 042.631.2346{'\n'}
+              {'\n'}Copyright (C) 2023 Woosong BT36 GG{'\n'}All free rights
+              reserved.
+            </Text>
+            <TouchableOpacity
+              style={{
+                marginLeft: 40,
+                backgroundColor: '#b82841',
+                padding: 1,
+                width: 70,
+                height: 100,
               }}
-              style={styles.up}
-            />
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
+              onPress={() => {
+                moveTop(SCROLLREF);
+              }}>
+              <View style={styles.center}>
+                <Text
+                  style={{
+                    color: 'white',
+                    fontSize: 12,
+                    fontWeight: '500',
+                  }}>
+                  위로가기
+                </Text>
+              </View>
+              <Image
+                source={{
+                  uri: 'https://i.ibb.co/rcxSjQC/Kakao-Talk-20230112-135025159.png',
+                }}
+                style={styles.up}
+              />
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+      </Animated.ScrollView>
     </View>
   );
 };
