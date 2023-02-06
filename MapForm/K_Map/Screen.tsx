@@ -83,6 +83,7 @@ export const Screen = ({_state, _name, map}: any) => {
   return (
     <>
       {state ? (
+        
         <View style={modalstyles.centeredView}>
           <Modal
             animationType="none"
@@ -94,13 +95,13 @@ export const Screen = ({_state, _name, map}: any) => {
               <View style={modalstyles.modalView}>
                 <View style={modalstyles.modalTopView}>
                   <View style={modalstyles.buttonOutView}>
-                    <View style={{alignItems: 'flex-start', flex: 1}}>
+                    <View style={modalstyles.BulidingNum}>
                       <Text style={modalstyles.BulidingNumText}>{text[0]}</Text>
                     </View>
                     <View style={{alignItems: 'flex-end', flex: 1}}>
                       <Pressable
                         onPress={() => onPress()}>
-                        <Text style={modalstyles.CloseStyle}>✖️</Text>
+                        <Text style={modalstyles.CloseStyle}>닫기</Text>
                       </Pressable>
                     </View>
                   </View>
@@ -125,7 +126,7 @@ export const Screen = ({_state, _name, map}: any) => {
                 </Text>
                 <Text style={modalstyles.FloorAndDepartmentText}>층별 시설 및 학과</Text>
                 {/* ------------------------------------------------------------------------------------------- */}
-                <ScrollView style={{borderWidth:1, borderRadius:20}}>
+                <ScrollView style={{borderWidth:1, borderRadius:10}}>
                   {_Screen()}
                 </ScrollView>
                 {/* ------------------------------------------------------------------------------------------- */}
