@@ -67,7 +67,7 @@ const modalstyles = StyleSheet.create({
     //   marginBottom:20,
     // },
     BulidingNumText: {
-      fontSize: 80,
+      fontSize: 70,
       // height:200,
       marginTop:-20,
       color: '#202D43',
