@@ -77,10 +77,10 @@ const modalstyles = StyleSheet.create({
     AddressText: {
       fontSize: 20,
       color: 'black',
-      fontWeight: '100',
+      fontWeight: '300',
       shadow:5,
       width: width-250,
-      marginTop: 10,      
+      marginTop: 10,   
     },
     BulidingNameText: {
       // marginLeft:10,
