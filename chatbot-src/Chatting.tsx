@@ -23,7 +23,7 @@ import {SelectSystemChat} from './Utils/SelectSystemChat';
 import {SuggestedSearch} from './Utils/SuggestedSearch';
 
 const WIDTH = Dimensions.get('window').width;
-export const CHATURL = 'https://ebf6-2001-2d8-6a82-dfc-3418-6b9d-8e45-940d.jp.ngrok.io';
+export const CHATURL = 'http://ec2-13-209-78-169.ap-northeast-2.compute.amazonaws.com:8000';
 
 const styles = StyleSheet.create({
   input: {
