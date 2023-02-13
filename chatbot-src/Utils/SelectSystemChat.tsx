@@ -11,6 +11,7 @@ import React, { useEffect, useState } from 'react';
 import { ActivityIndicator } from 'react-native';
 import { BtnSystemChat } from '../ChatForm/BtnSystemChat';
 import { DefaultSystemChat } from '../ChatForm/DefaultSystemChat';
+import { LinkSystemChat } from '../ChatForm/LinkSystemChat';
 
 import {SystemMealChat} from '../ChatForm/SystemMealChat';
 import { CHATURL } from '../Chatting';
@@ -18,6 +19,7 @@ import { CHATURL } from '../Chatting';
 export const SelectSystemChat = ({text, ukey, scrollView}: any) => {
   const [answer,setAnswer] = useState<string>('');
   const [keyword,setKeyword] = useState<string>('');
+  const [link, setLink] = useState<string>('');
   const [state,setState] = useState(true);
   //#region 서버에서 데이터 받는 부분
   const getData = async ()=>{
@@ -27,6 +29,7 @@ export const SelectSystemChat = ({text, ukey, scrollView}: any) => {
   let result = await axios.post(`${CHATURL}/boriapp/question/`,postdata);
   setAnswer(result.data.Answer);
   setKeyword(result.data.Keyword);
+  setLink(result.data.keyword);
   setState(false);
   };
   //#endregion
@@ -42,7 +45,10 @@ export const SelectSystemChat = ({text, ukey, scrollView}: any) => {
       : 
       keyword !== 'None' ? 
         <BtnSystemChat key={ukey} keyword={keyword} answer={answer} /> 
-        : 
+      : 
+      link !== 'None' ? 
+        <LinkSystemChat linkUrl={link} answer={answer} /> 
+      : 
         <DefaultSystemChat key={ukey} answer={answer} />
     }
     {scrollView.scrollToEnd({animated: true})}

@@ -11,6 +11,7 @@ import { Ws36 } from './MapForm/Ws36';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { Tabs } from './Tabs';
 import axios from 'axios';
+import Bori from './MapForm/K_Map/Bori';
 
 
 export let setNumber:React.Dispatch<React.SetStateAction<number>>;
@@ -43,6 +44,7 @@ function App() {
       {number === 1 ? <Home /> : number === 2 ? <Ws36 map={map}/> : <Chatting />}
     </View>
     <View ><Tabs  setNumber={setNumber} />
+    <Bori/>
     </View>
     </View>
   );

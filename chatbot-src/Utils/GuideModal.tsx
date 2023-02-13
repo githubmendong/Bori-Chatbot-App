@@ -15,7 +15,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import { storeData } from './localStrorage';
+import { storeData } from './LocalStrorage';
 //import { containsKey, getData, removeData, storeData } from "./localStrorage";
 
 const WIDTH = Dimensions.get('window').width;
@@ -104,6 +104,7 @@ const modalstyles = StyleSheet.create({
   imageView: {
     width: WIDTH - 70,
     height: HEIGHT - 140,
+    backgroundColor:'white',
     marginTop: 10,
     marginBottom: 95,
     borderRadius: 30,
