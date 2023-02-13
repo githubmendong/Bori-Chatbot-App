@@ -65,7 +65,6 @@ const modalstyles = StyleSheet.create({
     },
     FloorText: {
       marginBottom: 5,
-      width:60,
       fontSize: 15,
       color: 'black',
       textAlign: 'left',

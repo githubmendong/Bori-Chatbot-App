@@ -104,6 +104,7 @@ const modalstyles = StyleSheet.create({
   imageView: {
     width: WIDTH - 70,
     height: HEIGHT - 140,
+    backgroundColor:'white',
     marginTop: 10,
     marginBottom: 95,
     borderRadius: 30,

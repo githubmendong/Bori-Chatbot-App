@@ -11,12 +11,13 @@ import { Ws36 } from './MapForm/Ws36';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { Tabs } from './Tabs';
 import axios from 'axios';
+import Bori from './MapForm/K_Map/Bori';
 
 
 export let setNumber:React.Dispatch<React.SetStateAction<number>>;
 export let number: number;
 
-export const MAPURLS = 'http://ec2-43-200-123-255.ap-northeast-2.compute.amazonaws.com:3000';
+export const MAPURLS = 'https://48e6-220-68-223-111.jp.ngrok.io';
 function App() {
   [number, setNumber] = useState<number>(1);
 
@@ -43,6 +44,7 @@ function App() {
       {number === 1 ? <Home /> : number === 2 ? <Ws36 map={map}/> : <Chatting />}
     </View>
     <View ><Tabs  setNumber={setNumber} />
+    <Bori/>
     </View>
     </View>
   );
