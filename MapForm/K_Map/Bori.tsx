@@ -18,7 +18,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import Icon from "react-native-vector-icons/FontAwesome";
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { MAPURLS } from '../../App';
 
 const WIDTH = Dimensions.get('window').width;
@@ -35,7 +35,7 @@ function Bori() {
     <View style={styles.list}>
       <Text style={styles.text}>{item.tag}</Text>
       <TouchableOpacity>
-        <Icon name="trash-o" size={25} color="white" onPress={()=>{DeleteBookmark(item)}} style={{marginTop:"auto", marginBottom:"auto" }}></Icon>
+        <Icon name="trash-o" size={25} color="white" onPress={()=>{DeleteBookmark(item);}} style={{marginTop:'auto', marginBottom:'auto' }} />
       </TouchableOpacity>
     </View>
   );
@@ -48,15 +48,18 @@ function Bori() {
     try {
         let getData: any;
         
-        getData = (await axios.get(`${MAPURLS}/bookmark`)).data;
-        setStore(getData)
+        getData = await (await axios.post(`${MAPURLS}/bookmark`,
+       {
+        'id' : '염원',
+       })).data;
+        setStore(getData);
       }
       catch (error) {}
-    }
+    };
 const DeleteBookmark = async (item:any) => {
     await (await axios.post(`${MAPURLS}/bookmark/deletebookmark`,
        {
-        "pkid" : item.pkid,
+        'pkid' : item.pkid,
        })).data;
     LoadBookmark();
 };
@@ -142,7 +145,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginLeft: 10,
     width: WIDTH - 20,
-    height:HEIGHT/13,
+    height:HEIGHT / 13,
     color: 'white',
     backgroundColor: 'rgba(50,50,50,1)',
     flexDirection: 'row',
@@ -170,8 +173,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginLeft: 20,
     fontWeight: 'bold',
-    marginTop:"auto",
-    marginBottom:"auto"
+    marginTop:'auto',
+    marginBottom:'auto',
   },
 });
 

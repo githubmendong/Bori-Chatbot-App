@@ -80,7 +80,7 @@ export const LinkSystemChat = ({linkUrl, answer}: any) => {
             color: '#544fc1',
           }}
           >
-            {linkUrl} 보기
+            이동
           </Text>
           </TouchableOpacity>
         </View>
