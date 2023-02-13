@@ -17,7 +17,7 @@ import Bori from './MapForm/K_Map/Bori';
 export let setNumber:React.Dispatch<React.SetStateAction<number>>;
 export let number: number;
 
-export const MAPURLS = 'https://48e6-220-68-223-111.jp.ngrok.io';
+export const MAPURLS = 'http://ec2-43-200-123-255.ap-northeast-2.compute.amazonaws.com:3000';
 function App() {
   [number, setNumber] = useState<number>(1);
 
