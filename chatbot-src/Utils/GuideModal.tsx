@@ -15,7 +15,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import { storeData } from './localStrorage';
+import { storeData } from './LocalStrorage';
 //import { containsKey, getData, removeData, storeData } from "./localStrorage";
 
 const WIDTH = Dimensions.get('window').width;
