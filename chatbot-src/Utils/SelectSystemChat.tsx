@@ -27,9 +27,11 @@ export const SelectSystemChat = ({text, ukey, scrollView}: any) => {
       Q:text,
   };
   let result = await axios.post(`${CHATURL}/boriapp/question/`,postdata);
+  console.log(result.data);
+  
   setAnswer(result.data.Answer);
   setKeyword(result.data.Keyword);
-  setLink(result.data.keyword);
+  setLink(result.data.URL);
   setState(false);
   };
   //#endregion

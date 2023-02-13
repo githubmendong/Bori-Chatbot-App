@@ -43,7 +43,7 @@ export const Screen = ({_state, _name, map}: any) => {
 
   const BookMarkSave = async () => {
     await axios.post(`${MAPURLS}/bookmark/createbookmark`, {
-        id: '염원',
+        id: '김지성',
         tag: text[0],
         picket: 'Map',
       });
