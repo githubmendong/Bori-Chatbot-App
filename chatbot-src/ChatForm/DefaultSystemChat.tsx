@@ -26,7 +26,7 @@ export const DefaultSystemChat = ({answer}:any)=>{
           style={{height: 80, width: 80}}
         />
         <Text style={{fontSize: 20, marginTop: 50}}>보리</Text>
-      </View>
+      </View> 
       <TouchableOpacity
             activeOpacity = {1}
             style={{
