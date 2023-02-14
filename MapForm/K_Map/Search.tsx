@@ -195,13 +195,13 @@ function Search({webviewRef, _state, map}: any) {
           />
         </View>
 
-        <View>
+        <View style={{ marginTop:10, borderRadius: 10,}}>
           <List _list={list} />
         </View>
       {/* </View> */}
       {/* </KeyboardAvoidingView> */}
       
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', marginBottom:10}}>
       <TouchableOpacity
           onPress={() => {
             onPress();
@@ -214,6 +214,7 @@ function Search({webviewRef, _state, map}: any) {
             borderRadius: 10,
             borderWidth: 0.6,
             // borderColor: 'white',
+            marginTop:20,
             marginBottom: 'auto',
             alignItems: 'center',
             justifyContent: 'center',

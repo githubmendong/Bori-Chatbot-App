@@ -266,6 +266,7 @@ h1 {
   display: inline-block;
   width: 23px;
   height: 23px;
+  margin-Right: 10%;
 }
 .menu li:nth-child(8) a::before {
   content: '';
