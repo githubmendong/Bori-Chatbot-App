@@ -64,21 +64,6 @@ const DeleteBookmark = async (item:any) => {
     LoadBookmark();
 };
 
-  const DATA = [
-    {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-      title: 'First Item',
-    },
-    {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-      title: 'Second Item',
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d72',
-      title: 'Third Item',
-    },
-  ];
-
   return (
     <>
       {visible ? (
@@ -111,7 +96,8 @@ const DeleteBookmark = async (item:any) => {
           </Modal>
         </View>
       ) : (
-        <View style={{position: 'absolute', bottom: 50, right: 20}}>
+        <>
+        <View style={{position: 'absolute', bottom: 10, right: 20}}>
           <TouchableOpacity onPress={ModalView}>
             <Image
               style={{
@@ -127,6 +113,23 @@ const DeleteBookmark = async (item:any) => {
             />
           </TouchableOpacity>
         </View>
+        <View style={{position: 'absolute', bottom: 70, right: 20}}>
+          <TouchableOpacity onPress={ModalView}>
+            <Image
+              style={{
+                width: 40,
+                height: 40,
+                borderRadius: 100,
+                overflow: 'visible',
+                borderWidth: 3,
+              }}
+              source={{
+                uri: 'https://t1.daumcdn.net/cfile/tistory/99BB433359E8C2BF32',
+              }}
+            />
+          </TouchableOpacity>
+        </View>
+        </>
       )}
     </>
   );

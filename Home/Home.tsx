@@ -15,6 +15,7 @@
 import React, { useEffect } from 'react';
 import { Scroll } from './components/Scroll';
 import { BackHandler, PermissionsAndroid, ToastAndroid } from 'react-native';
+import Bori from '../MapForm/K_Map/Bori';
 
 const Home = () => {
   const toastWithDurationHandler = () => {
@@ -49,7 +50,10 @@ const Home = () => {
     ]);
   }, []);
   return (
+    <>
     <Scroll/>
+    <Bori/>
+    </>
   );
 };
 

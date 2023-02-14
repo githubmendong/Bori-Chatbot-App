@@ -23,7 +23,7 @@ import {SelectSystemChat} from './Utils/SelectSystemChat';
 import {SuggestedSearch} from './Utils/SuggestedSearch';
 
 const WIDTH = Dimensions.get('window').width;
-export const CHATURL = 'http://ec2-13-209-78-169.ap-northeast-2.compute.amazonaws.com:8000';
+export const CHATURL = 'http://ec2-3-38-8-151.ap-northeast-2.compute.amazonaws.com:8000';
 
 const styles = StyleSheet.create({
   input: {
