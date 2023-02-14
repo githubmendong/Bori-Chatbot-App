@@ -123,21 +123,24 @@ export const Screen = ({_state, _name, map}: any) => {
                       <Text style={modalstyles.BulidingNumText}>{text[0]}</Text>
                     </View>
                     <View style={{alignItems: 'flex-end', flex: 1}}>
-                      <Pressable onPress={() => onPress()}>
-                        <Text style={modalstyles.CloseStyle}>✖️</Text>
-                      </Pressable>
+                    <Pressable
+                        onPress={() => onPress()}>
+                        <Text style={modalstyles.CloseStyle}>닫기</Text>
+                        </Pressable>
                     </View>
                   </View>
                 </View>
-                <View style={{flexDirection: 'row'}}>
-                  <Image
-                    source={{uri: data.imgname}}
-                    style={modalstyles.image}
-                  />
+                <Text style={modalstyles.BulidingNameText}>{text[1]}</Text>
+                <View style={{flexDirection: 'row', marginTop:-10}}>
+                    <Image 
+                      source={{uri: data.imgname}}
+                      style={modalstyles.image}
+                    />
                   <View>
-                    <Text style={modalstyles.BulidingNameText}>{text[1]}</Text>
-                    <Text style={modalstyles.AddressText}>{data.address}</Text>
-                  </View>
+                  <Text style={modalstyles.AddressText}>
+                      {data.address}
+                    </Text>
+                  </View> 
                 </View>
                 <Text
                   style={{
@@ -145,9 +148,8 @@ export const Screen = ({_state, _name, map}: any) => {
                     color: 'white',
                   }} />
                 <View style={{flexDirection: 'row'}}>
-                  <Text style={modalstyles.FloorAndDepartmentText}>
-                    층별 시설 및 학과
-                  </Text>
+                <Text style={modalstyles.FloorAndDepartmentLine}></Text>
+                <Text style={modalstyles.FloorAndDepartmentText}>층별 시설 및 학과</Text>
                   <Pressable onPress={() => BookMarkSave()}>
                     <Icon
                       name="bookmark-o"
@@ -156,7 +158,7 @@ export const Screen = ({_state, _name, map}: any) => {
                   </Pressable>
                 </View>
                 {/* ------------------------------------------------------------------------------------------- */}
-                <ScrollView style={{borderWidth: 1, borderRadius: 20}}>
+                <ScrollView style={{borderRadius:10}}>
                   {_Screen()}
                 </ScrollView>
                 {/* ------------------------------------------------------------------------------------------- */}

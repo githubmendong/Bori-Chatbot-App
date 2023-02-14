@@ -18,7 +18,7 @@ import {IntroSystemChat} from './ChatForm/IntroSystemChat';
 import {UserChat} from './ChatForm/UserChat';
 import {AutoComplete} from './Utils/AutoComplete';
 import {GuideModal} from './Utils/GuideModal';
-import {containsKey, getData} from './Utils/LocalStrorage';
+import { getData } from './Utils/LocalStrorage';
 import {SelectSystemChat} from './Utils/SelectSystemChat';
 import {SuggestedSearch} from './Utils/SuggestedSearch';
 

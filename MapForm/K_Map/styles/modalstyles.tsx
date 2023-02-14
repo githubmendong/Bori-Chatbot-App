@@ -96,6 +96,7 @@ const modalstyles = StyleSheet.create({
     },
     FloorText: {
       marginBottom: 5,
+      width:60,
       fontSize: 15,
       color: 'black',
       textAlign: 'left',
@@ -111,7 +112,7 @@ const modalstyles = StyleSheet.create({
     image: {
       width: width - 240,
       height: height - 530,
-      marginLeft: 10,
+      marginLeft: 10,      marginBottom:20,
       marginRight: 10,      
       borderRadius: 15,
       // borderWidth:2,
@@ -130,7 +131,6 @@ const modalstyles = StyleSheet.create({
     FloorAndDepartmentLine: {
       top:-10,
       height:1,
-     
       backgroundColor:'#202D43',
       marginBottom: 5,
       fontSize: 20,
