@@ -19,25 +19,49 @@ import {
   View,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { MAPURLS } from '../../App';
+import { MAPURLS, setNumber } from '../../App';
+import { setKeyword } from '../../chatbot-src/ChatForm/BtnSystemChat';
+import { getOriginData, removeData } from '../../chatbot-src/Utils/LocalStrorage';
+import { setSelectedTab } from '../../Tabs';
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 
-function Bori() {
+export const Bori = ()=> {
   const [visible, setVisible] = useState(false);
   const [store, setStore] = useState<any>([]);
   const ModalView = () => {
     setVisible(current => !current);
   };
 
+  const logout = async ()=>{
+    await removeData('account_info');
+    setNumber(0); 
+    setSelectedTab(2);
+  };
+
+  const moveActivity = async (keyword: string, picket: string)=>{
+    if (picket === 'Map'){
+      await setKeyword(keyword);
+      setNumber(2);
+      setSelectedTab(1);
+    }
+    else{
+      await setKeyword(keyword);
+      setNumber(3);
+      setSelectedTab(3);
+    }
+  };
+  
   const Item = ({item}: any) => (
-    <View style={styles.list}>
-      <Text style={styles.text}>{item.tag}</Text>
-      <TouchableOpacity>
+    <TouchableOpacity onPress={()=>{moveActivity(item.tag, item.picket);}} key={item.tag}>
+    <View style={styles.list} key={item.tag}>
+      <Text style={styles.text}>{item.tag} - {item.picket}</Text>
+      <TouchableOpacity >
         <Icon name="trash-o" size={25} color="white" onPress={()=>{DeleteBookmark(item);}} style={{marginTop:'auto', marginBottom:'auto' }} />
       </TouchableOpacity>
     </View>
+    </TouchableOpacity>
   );
 
   useEffect(() => {
@@ -47,10 +71,11 @@ function Bori() {
   const LoadBookmark = async () => {
     try {
         let getData: any;
+        const accountData = (await getOriginData('account_info'))?.replace(/"/g,'');
         
         getData = await (await axios.post(`${MAPURLS}/bookmark`,
        {
-        'id' : '염원',
+        'id' : accountData,
        })).data;
         setStore(getData);
       }
@@ -90,7 +115,7 @@ const DeleteBookmark = async (item:any) => {
               <FlatList
                 data={store}
                 renderItem={({item}) => <Item item={item} />}
-                keyExtractor={item => item.id}
+                keyExtractor={item => item.tag}
               />
             </View>
           </Modal>
@@ -114,7 +139,7 @@ const DeleteBookmark = async (item:any) => {
           </TouchableOpacity>
         </View>
         <View style={{position: 'absolute', bottom: 70, right: 20}}>
-          <TouchableOpacity onPress={ModalView}>
+          <TouchableOpacity onPress={logout}>
             <Image
               style={{
                 width: 40,
@@ -133,7 +158,7 @@ const DeleteBookmark = async (item:any) => {
       )}
     </>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -181,4 +206,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Bori;

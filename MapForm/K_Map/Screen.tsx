@@ -16,6 +16,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {MAPURLS} from '../../App';
+import { getData, storeData } from '../../chatbot-src/Utils/LocalStrorage';
 import {modalstyles} from './styles/modalstyles';
 
 const WIDTH = Dimensions.get('window').width;
@@ -42,8 +43,9 @@ export const Screen = ({_state, _name, map}: any) => {
   };
 
   const BookMarkSave = async () => {
+    const accountData = await getData('account_info');
     await axios.post(`${MAPURLS}/bookmark/createbookmark`, {
-        id: '김지성',
+        id: accountData,
         tag: text[0],
         picket: 'Map',
       });
@@ -132,7 +134,7 @@ export const Screen = ({_state, _name, map}: any) => {
                 </View>
                 <Text style={modalstyles.BulidingNameText}>{text[1]}</Text>
                 <View style={{flexDirection: 'row', marginTop:-10}}>
-                    <Image 
+                    <Image
                       source={{uri: data.imgname}}
                       style={modalstyles.image}
                     />
@@ -140,7 +142,7 @@ export const Screen = ({_state, _name, map}: any) => {
                   <Text style={modalstyles.AddressText}>
                       {data.address}
                     </Text>
-                  </View> 
+                  </View>
                 </View>
                 <Text
                   style={{
@@ -148,7 +150,7 @@ export const Screen = ({_state, _name, map}: any) => {
                     color: 'white',
                   }} />
                 <View style={{flexDirection: 'row'}}>
-                <Text style={modalstyles.FloorAndDepartmentLine}></Text>
+                <Text style={modalstyles.FloorAndDepartmentLine} />
                 <Text style={modalstyles.FloorAndDepartmentText}>층별 시설 및 학과</Text>
                   <Pressable onPress={() => BookMarkSave()}>
                     <Icon

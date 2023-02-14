@@ -14,6 +14,7 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
+import { getKeyword } from './ChatForm/BtnSystemChat';
 import {IntroSystemChat} from './ChatForm/IntroSystemChat';
 import {UserChat} from './ChatForm/UserChat';
 import {AutoComplete} from './Utils/AutoComplete';
@@ -44,19 +45,16 @@ export let GLOBALBOOL: boolean = false;
 export const GBBOOLCH = () => {
   GLOBALBOOL = !GLOBALBOOL;
 };
-// export let NAVIGATIONDATA:any;
 
 export const Chatting = ({}: any) => {
   const date = new Date();
-  // const [menuAddChatting, setMenuAddChatting] = useState<boolean>(false);
   const [state, setState] = useState<boolean>(false);
   const [text, setText] = useState<string>('');
   const [topSearch, setTopSearch] = useState<string[]>([]);
   const [components, setComponents] = useState<JSX.Element[]>([
     <IntroSystemChat key={UKEY} setText={setText} />,
   ]);
-  //http://localhost:8000/boriapp/get/
-  const getThree = async () => {
+  const getSuggestedSearch = async () => {
     const result = await axios.get(`${CHATURL}/boriapp/get/`);
     return setTopSearch([
       result.data.First,
@@ -118,6 +116,13 @@ export const Chatting = ({}: any) => {
       setState(true);
     }
   };
+  useEffect(()=>{
+    const data = getKeyword();
+    console.log(data);
+    if (data !== ''){
+      ExAddChatting(data);
+    }
+  },[]);
 
   useEffect(() => {
     myGetData();
@@ -126,7 +131,7 @@ export const Chatting = ({}: any) => {
 
   useEffect(() => {
     //#region 서버에서 검색어 상위3개 받아오는 코드
-    getThree();
+    getSuggestedSearch();
     //#endregion
   }, [components]);
   const addChattings = (_text: string) => {

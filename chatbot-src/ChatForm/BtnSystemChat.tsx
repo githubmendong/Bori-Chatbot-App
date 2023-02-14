@@ -15,9 +15,10 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { setNumber } from '../../App';
+import { MAPURLS, setNumber } from '../../App';
 import {setTemp} from '../../MapForm/K_Map/KMap';
 import { setSelectedTab } from '../../Tabs';
+import { getData } from '../Utils/LocalStrorage';
 // import { NAVIGATIONDATA } from '../Chatting';
 import {SystemTime} from '../Utils/SytemTime';
 
@@ -37,6 +38,15 @@ export const BtnSystemChat = ({keyword, answer}: any) => {
     setSelectedTab(1);
   };
 
+  const BookMarkSave = async () => {
+    const accountData = await getData('account_info');
+    await axios.post(`${MAPURLS}/bookmark/createbookmark`, {
+        id: accountData,
+        tag: keyword,
+        picket: 'Chat',
+      });
+  };
+
   return (
     <>
       <View
@@ -49,6 +59,18 @@ export const BtnSystemChat = ({keyword, answer}: any) => {
           style={{height: 80, width: 80}}
         />
         <Text style={{fontSize: 20, marginTop: 50}}>보리</Text>
+        <TouchableOpacity onPress={()=>{BookMarkSave();}}>
+        <View style={{
+            marginLeft: 10,
+            marginTop: 40,
+            paddingVertical: 15,
+            paddingHorizontal: 10,
+            backgroundColor: '#39407f',
+            borderRadius: 30,
+            }}>
+          <Text style={{color:'white'}}>북마크</Text>
+        </View>
+        </TouchableOpacity>
       </View>
       <TouchableOpacity
         activeOpacity={1}

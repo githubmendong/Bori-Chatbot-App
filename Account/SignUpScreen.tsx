@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable quotes */
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-native/no-inline-styles */
@@ -8,24 +9,30 @@ import { Alert, ImageBackground,  Text,  TextInput, TouchableOpacity, View} from
 import { MAPURLS, setNumber } from '../App';
 export const SignUpScreen = () => {
   const [checkColor, setCheckColor] = useState<string>('#544fc1');
-  let check:boolean = false;
-  let id:string = '';
+  const [check, setCheck] = useState<boolean>(false);
+  const [id, setID] = useState<string>('');
   let password:string = '';
   let checkPassword:string = '';
 
   const checkID = async ()=>{
+    if (check === true){
+      return;
+    }
+    console.log(id);
+    
     const getCheckResult = await (await axios.post(`${MAPURLS}/account/duplicateInspection`, {
       'id': id,
     })).data;
+
     if (getCheckResult === true){
-      check = true;
+      setCheck(true);
       setCheckColor('grey');
     }
     else {
       Alert.alert('', '이미 존재하는 ID', [
         {
           text: 'Ok',
-          onPress: () => console.log('Ok'),
+          onPress: () => {},
           style: 'cancel',
         },
       ]);
@@ -33,6 +40,7 @@ export const SignUpScreen = () => {
   };
 
   const singUp = async ()=>{
+    console.log(check);
     if (check === false){
       Alert.alert('', '아이디 중복 확인을 해주세요.', [
         {
@@ -52,11 +60,13 @@ export const SignUpScreen = () => {
         },
       ]);
     }
-
-    await axios.post(`${MAPURLS}/account/login`,{
+    console.log("id" + id);
+    const data = await axios.post(`${MAPURLS}/account/createAccount`,{
       'id': id,
       'pw': password,
     });
+    console.log(data.data);
+    setNumber(0);
   };
 
   return (
@@ -89,7 +99,7 @@ export const SignUpScreen = () => {
           flexDirection: 'row',
         }}>
         <TextInput 
-        onChangeText={(value:string)=>{id = value;}}
+        onChangeText={(text:string)=>{setID(text);}}
         style={{
           borderColor: 'black',
           borderWidth: 1,

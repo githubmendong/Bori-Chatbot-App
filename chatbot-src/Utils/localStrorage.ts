@@ -13,7 +13,7 @@ export const storeData = async (key: string, value: any) => {
     }
   };
 
-// select
+// select -> JSON
 export const getData = async (key: string) => {
     try {
     const value = await AsyncStorage.getItem(key);
@@ -25,6 +25,16 @@ export const getData = async (key: string) => {
       console.log(e.message);
     }
   };
+
+export const getOriginData = async (key: string) => {
+  try {
+    const value = await AsyncStorage.getItem(key);
+    return value;
+    } catch (e: any) {
+      console.log(e.message);
+    }
+};
+
 // delete
 export const removeData = async (key: string) => {
     try {

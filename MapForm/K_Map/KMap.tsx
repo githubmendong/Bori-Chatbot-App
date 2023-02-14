@@ -10,7 +10,6 @@ import {Alert, Dimensions, Linking, SectionList, Text} from 'react-native';
 import WebView from 'react-native-webview';
 import {PermissionsAndroid} from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
-import Bori from './Bori';
 import {Screen} from './Screen';
 import Search from './Search';
 import {getKeyword, setKeyword} from '../../chatbot-src/ChatForm/BtnSystemChat';
@@ -106,7 +105,6 @@ function KMap({webviewRef, map}: any) {
         latlng.push(i);
       }
     }
-    console.log(latlng);
 
     const sendData = JSON.stringify(latlng);
     await webviewRef.current.postMessage(sendData);
