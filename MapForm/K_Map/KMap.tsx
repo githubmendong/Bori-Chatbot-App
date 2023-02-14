@@ -20,7 +20,6 @@ export let setTemp: any;
 
 function KMap({webviewRef, map}: any) {
   const AR_LINK = 'ggapp://action?data=0';
-  const AR_WEB_LINK = 'https://www.instagram.com/weon.yeom';
   const AR_LINK_QR = 'ggapp://action?data=1';
   const [state, setState] = useState<boolean>(true);
   const [name, setName] = useState<string>();
@@ -81,27 +80,18 @@ function KMap({webviewRef, map}: any) {
   };
 
   const QR = useCallback(async () => {
-    const supported = await Linking.canOpenURL(AR_LINK_QR);
-    
-    if (supported) {
-      // 설치되어 있으면
+    try {
       await Linking.openURL(AR_LINK_QR);
-    } else {
-      // 앱이 없으면
-      await Linking.openURL(AR_WEB_LINK);
+    } catch (error) {
+      console.log(error);
     }
   },[]);
 
   const AR = useCallback(async () => {
-    // 만약 어플이 설치되어 있으면 true, 없으면 false
-    const supported = await Linking.canOpenURL(AR_LINK);
-
-    if (supported) {
-      // 설치되어 있으면
+    try {
       await Linking.openURL(AR_LINK);
-    } else {
-      // 앱이 없으면
-      await Linking.openURL(AR_WEB_LINK);
+    } catch (error) {
+      console.log(error);
     }
   }, []);
 
