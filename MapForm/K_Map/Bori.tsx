@@ -18,6 +18,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { black } from 'react-native-paper/lib/typescript/styles/themes/v2/colors';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { MAPURLS, setNumber } from '../../App';
 import { setKeyword } from '../../chatbot-src/ChatForm/BtnSystemChat';
@@ -96,18 +97,19 @@ const DeleteBookmark = async (item:any) => {
           <Modal visible={visible}>
             <View style={styles.container}>
               <View style={{flexDirection: 'row'}}>
-                <Text style={styles.header}>Book Mark</Text>
+                <Text style={styles.header}>Bori : Book Mark</Text>
                 <TouchableOpacity style={{top: 20}} onPress={ModalView}>
                   <Image
                     style={{
                       width: 40,
                       height: 40,
-                      borderRadius: 100,
+                      // borderRadius: 100,
                       overflow: 'visible',
                       borderWidth: 3,
+                      marginLeft:20,
                     }}
                     source={{
-                      uri: 'https://mblogthumb-phinf.pstatic.net/20160817_259/retspe_14714118890125sC2j_PNG/%C7%C7%C4%AB%C3%F2_%281%29.png?type=w800',
+                      uri: 'https://cdn-icons-png.flaticon.com/512/189/189254.png',
                     }}
                   />
                 </TouchableOpacity>
@@ -122,23 +124,22 @@ const DeleteBookmark = async (item:any) => {
         </View>
       ) : (
         <>
-        <View style={{position: 'absolute', bottom: 10, right: 20}}>
+        <View style={{position: 'absolute', bottom: 60, right: 20}}>
           <TouchableOpacity onPress={ModalView}>
             <Image
               style={{
                 width: 40,
                 height: 40,
-                borderRadius: 100,
                 overflow: 'visible',
                 borderWidth: 3,
               }}
               source={{
-                uri: 'https://t1.daumcdn.net/cfile/tistory/99BB433359E8C2BF32',
+                uri: 'https://i.ibb.co/wWN2wtc/bookmark.png',
               }}
             />
           </TouchableOpacity>
         </View>
-        <View style={{position: 'absolute', bottom: 70, right: 20}}>
+        <View style={{position: 'absolute', bottom: 10, right: 20}}>
           <TouchableOpacity onPress={logout}>
             <Image
               style={{
@@ -149,7 +150,7 @@ const DeleteBookmark = async (item:any) => {
                 borderWidth: 3,
               }}
               source={{
-                uri: 'https://t1.daumcdn.net/cfile/tistory/99BB433359E8C2BF32',
+                uri: 'https://i.ibb.co/YZKPQyy/login.png',
               }}
             />
           </TouchableOpacity>
@@ -164,6 +165,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'rgba(50,50,50,1)',
+
   },
   list: {
     borderRadius: 10,
