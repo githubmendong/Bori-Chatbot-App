@@ -97,7 +97,7 @@ function KMap({webviewRef, map}: any) {
   const send_screen = async (d_title: any) => {
     const latlng = new Array();
     for (let i of data) {
-      if (i.tag.includes(d_title)) {
+      if ((i.name.split(' '))[0] === d_title) {
         const _data = {
           picket: 'location',
         };
