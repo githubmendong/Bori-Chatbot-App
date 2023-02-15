@@ -13,6 +13,7 @@ import {
   Linking,
   ScrollView,
   Dimensions,
+  TouchableOpacity,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {MAPURLS} from '../../App';
@@ -28,6 +29,8 @@ export const Screen = ({_state, _name, map}: any) => {
   const list: any = map;
   const [text, setText] = useState<any[]>([]);
   const [description, setDescription] = useState<any[]>([]);
+  const [markIcon, setMarkIcon] = useState<string>('bookmark-o');
+  const [check, setCheck] = useState<boolean>(true);
   const name: string = _name;
 
   useEffect(() => {
@@ -38,17 +41,42 @@ export const Screen = ({_state, _name, map}: any) => {
     showdata();
   }, [state]);
 
+  useEffect(()=>{
+    getBookMarkByID();
+  },[text]);
+
+  const getBookMarkByID = async ()=>{
+    const accountData = await getData('account_info');
+    const getBookMark:any[] = await (await axios.post(`${MAPURLS}/bookmark`, {
+      'id' : accountData,
+    })).data;
+    const mapData = getBookMark.map((value)=>{return value.tag;});
+    if (mapData.includes(text[0])) {
+      setMarkIcon('bookmark');
+      setCheck(false);
+    }
+    else
+    {
+      setMarkIcon('bookmark-o');
+      setCheck(true);
+    }
+  };
+
   const onPress = () => {
     setState(current => !current);
   };
 
   const BookMarkSave = async () => {
+    if (check === false){
+      return;
+    }
     const accountData = await getData('account_info');
     await axios.post(`${MAPURLS}/bookmark/createbookmark`, {
         id: accountData,
         tag: text[0],
         picket: 'Map',
       });
+    setMarkIcon('bookmark');
   };
 
   const showdata = () => {
@@ -152,12 +180,13 @@ export const Screen = ({_state, _name, map}: any) => {
                 <View style={{flexDirection: 'row'}}>
                 <Text style={modalstyles.FloorAndDepartmentLine} />
                 <Text style={modalstyles.FloorAndDepartmentText}>층별 시설 및 학과</Text>
-                  <Pressable onPress={() => BookMarkSave()}>
+                  <TouchableOpacity onPress={() => BookMarkSave()}>
                     <Icon
-                      name="bookmark-o"
+                    color={'black'}
+                      name={markIcon}
                       size={35}
                       style={{marginLeft: WIDTH - 270}} />
-                  </Pressable>
+                  </TouchableOpacity>
                 </View>
                 {/* ------------------------------------------------------------------------------------------- */}
                 <ScrollView style={{borderRadius:10}}>

@@ -15,6 +15,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { MAPURLS, setNumber } from '../../App';
 import {setTemp} from '../../MapForm/K_Map/KMap';
 import { setSelectedTab } from '../../Tabs';
@@ -32,19 +33,54 @@ export const getKeyword = (): string=>{
 };
 
 export const BtnSystemChat = ({keyword, answer}: any) => {
+  const [markIcon, setMarkIcon] = useState<string>('bookmark-o');
+  const [check, setCheck] = useState<boolean>(true);
+
   const moveActivity = async ()=>{
     await setKeyword(keyword);
     setNumber(2);
     setSelectedTab(1);
   };
 
-  const BookMarkSave = async () => {
+  useEffect(()=>{
+    getBookMarkByID();
+  },[]);
+
+  const getBookMarkByID = async ()=>{
     const accountData = await getData('account_info');
+    const getBookMark:any[] = await (await axios.post(`${MAPURLS}/bookmark`, {
+      'id' : accountData,
+    })).data;
+    const mapData = getBookMark.map((value)=>{return value.tag;});
+
+    console.log(mapData);
+    console.log(keyword);
+    
+    if (mapData.includes(keyword)) {
+      setMarkIcon('bookmark');
+      setCheck(false);
+    }
+    else
+    {
+      setMarkIcon('bookmark-o');
+      setCheck(true);
+    }
+  };
+
+  const BookMarkSave = async () => {
+    if (check === false){
+      return;
+    }
+
+    setMarkIcon('bookmark');
+    const accountData = await getData('account_info');
+    
     await axios.post(`${MAPURLS}/bookmark/createbookmark`, {
         id: accountData,
         tag: keyword,
         picket: 'Chat',
       });
+    setCheck(false);
   };
 
   return (
@@ -59,17 +95,12 @@ export const BtnSystemChat = ({keyword, answer}: any) => {
           style={{height: 80, width: 80}}
         />
         <Text style={{fontSize: 20, marginTop: 50}}>보리</Text>
-        <TouchableOpacity onPress={()=>{BookMarkSave();}}>
-        <View style={{
-            marginLeft: 10,
-            marginTop: 40,
-            paddingVertical: 15,
-            paddingHorizontal: 10,
-            backgroundColor: '#39407f',
-            borderRadius: 30,
-            }}>
-          <Text style={{color:'white'}}>북마크</Text>
-        </View>
+        <TouchableOpacity onPress={() => BookMarkSave()}>
+                    <Icon
+                    color={'black'}
+                      name={markIcon}
+                      size={35}
+                      style={{marginTop:50, marginLeft:20}} />
         </TouchableOpacity>
       </View>
       <TouchableOpacity

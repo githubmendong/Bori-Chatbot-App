@@ -6,8 +6,9 @@
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable no-unreachable */
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import axios from 'axios';
 import React, {useEffect, useState} from 'react';
-
+import Icon from 'react-native-vector-icons/FontAwesome';
 import {
   Image,
   Linking,
@@ -15,9 +16,54 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { MAPURLS } from '../../App';
+import { getData } from '../Utils/LocalStrorage';
 import {SystemTime} from '../Utils/SytemTime';
 
-export const LinkSystemChat = ({linkUrl, answer}: any) => {
+export const LinkSystemChat = ({linkUrl, answer, text}: any) => {
+  const [markIcon, setMarkIcon] = useState<string>('bookmark-o');
+  const [check, setCheck] = useState<boolean>(true);
+
+  useEffect(()=>{
+    console.log(text);
+    getBookMarkByID();
+  },[]);
+
+  const getBookMarkByID = async ()=>{
+    const accountData = await getData('account_info');
+    const getBookMark:any[] = await (await axios.post(`${MAPURLS}/bookmark`, {
+      'id' : accountData,
+    })).data;
+    const mapData = getBookMark.map((value)=>{return value.tag;});
+
+    if (mapData.includes(text)) {
+      setMarkIcon('bookmark');
+      setCheck(false);
+    }
+    else
+    {
+      setMarkIcon('bookmark-o');
+      setCheck(true);
+    }
+  };
+
+  const BookMarkSave = async () => {
+    if (check === false){
+      return;
+    }
+
+    setMarkIcon('bookmark');
+    const accountData = await getData('account_info');
+    console.log(text);
+    console.log(accountData);
+    await axios.post(`${MAPURLS}/bookmark/createbookmark`, {
+        id: accountData,
+        tag: text,
+        picket: 'Chat',
+      });
+    setCheck(false);
+  };
+
   return (
     <>
       <View
@@ -30,6 +76,13 @@ export const LinkSystemChat = ({linkUrl, answer}: any) => {
           style={{height: 80, width: 80}}
         />
         <Text style={{fontSize: 20, marginTop: 50}}>보리</Text>
+        <TouchableOpacity onPress={() => BookMarkSave()}>
+                    <Icon
+                    color={'black'}
+                      name={markIcon}
+                      size={35}
+                      style={{marginTop:50, marginLeft:20}} />
+        </TouchableOpacity>
       </View>
       <TouchableOpacity
         activeOpacity={1}

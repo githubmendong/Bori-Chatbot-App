@@ -49,16 +49,11 @@ export const SelectSystemChat = ({text, ukey, scrollView}: any) => {
         <BtnSystemChat key={ukey} keyword={keyword} answer={answer} /> 
       : 
       link !== 'None' ? 
-        <LinkSystemChat linkUrl={link} answer={answer} /> 
+        <LinkSystemChat linkUrl={link} answer={answer}  text={text} /> 
       : 
-        <DefaultSystemChat key={ukey} answer={answer} />
+        <DefaultSystemChat key={ukey} answer={answer}/>
     }
     {scrollView.scrollToEnd({animated: true})}
     </>
   );
 };
-
-// function sleep(ms:any) {
-//   const wakeUpTime = Date.now() + ms;
-//   while (Date.now() < wakeUpTime) {}
-// }
