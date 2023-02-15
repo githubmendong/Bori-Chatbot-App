@@ -50,25 +50,46 @@ export const Screen = ({_state, _name, map}: any) => {
     const getBookMark:any[] = await (await axios.post(`${MAPURLS}/bookmark`, {
       'id' : accountData,
     })).data;
-    const chatBookMarkTagData = getBookMark.map((value)=>{return value.tag;});
-    const chatBookMarkPicketData = getBookMark.map((value) => {return value.picket;});
 
-    if (chatBookMarkTagData.includes(text[0])) {
-      const index = chatBookMarkTagData.indexOf(text[0]);
-      if (chatBookMarkPicketData[index] === 'Map'){
-        setMarkIcon('bookmark');
-        setCheck(false);
-      }
-      else {
-        setMarkIcon('bookmark-o');
-        setCheck(true);
+    for (const i of getBookMark){
+      const forBMData:any = i;
+      if (forBMData.tag === text[0]){
+        if (forBMData.picket === 'Map'){
+            setMarkIcon('bookmark');
+            setCheck(false);
+            return;
+        }
       }
     }
-    else
-    {
-      setMarkIcon('bookmark-o');
-      setCheck(true);
-    }
+    setMarkIcon('bookmark-o');
+    setCheck(true);
+    // const chatBookMarkTagData = getBookMark.map((value)=>{return value.tag;});
+    // const chatBookMarkPicketData = getBookMark.map((value) => {return value.picket;});
+
+    // console.log(chatBookMarkTagData);
+    // console.log(chatBookMarkPicketData);
+
+    // if (chatBookMarkTagData.includes(text[0])) {
+    //   for (let i in chatBookMarkTagData){
+    //     if ()
+    //   }
+
+    //   const index = chatBookMarkTagData.indexOf(text[0]);
+
+    //   if (chatBookMarkPicketData[index] === 'Map'){
+    //     setMarkIcon('bookmark');
+    //     setCheck(false);
+    //   }
+    //   else {
+    //     setMarkIcon('bookmark-o');
+    //     setCheck(true);
+    //   }
+    // }
+    // else
+    // {
+    //   setMarkIcon('bookmark-o');
+    //   setCheck(true);
+    // }
   };
 
   const onPress = () => {

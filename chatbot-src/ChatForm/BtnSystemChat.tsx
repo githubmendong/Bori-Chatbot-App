@@ -51,25 +51,19 @@ export const BtnSystemChat = ({keyword, answer}: any) => {
     const getBookMark:any[] = await (await axios.post(`${MAPURLS}/bookmark`, {
       'id' : accountData,
     })).data;
-    const chatBookMarkTagData = getBookMark.map((value)=>{return value.tag;});
-    const chatBookMarkPicketData = getBookMark.map((value) => {return value.picket;});
-    
-    if (chatBookMarkTagData.includes(keyword)) {
-      const index = chatBookMarkTagData.indexOf(keyword);
-      if (chatBookMarkPicketData[index] === 'Map'){
-        setMarkIcon('bookmark');
-        setCheck(false);
-      }
-      else {
-        setMarkIcon('bookmark-o');
-        setCheck(true);
+
+    for (const i of getBookMark){
+      const forBMData:any = i;
+      if (forBMData.tag === keyword){
+        if (forBMData.picket === 'Chat'){
+            setMarkIcon('bookmark');
+            setCheck(false);
+            return;
+        }
       }
     }
-    else
-    {
-      setMarkIcon('bookmark-o');
-      setCheck(true);
-    }
+    setMarkIcon('bookmark-o');
+    setCheck(true);
   };
 
   const BookMarkSave = async () => {
