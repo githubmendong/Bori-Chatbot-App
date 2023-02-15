@@ -14,7 +14,7 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
-import { getKeyword } from './ChatForm/BtnSystemChat';
+import { getKeyword, setKeyword } from './ChatForm/BtnSystemChat';
 import {IntroSystemChat} from './ChatForm/IntroSystemChat';
 import {UserChat} from './ChatForm/UserChat';
 import {AutoComplete} from './Utils/AutoComplete';
@@ -24,6 +24,7 @@ import {SelectSystemChat} from './Utils/SelectSystemChat';
 import {SuggestedSearch} from './Utils/SuggestedSearch';
 
 const WIDTH = Dimensions.get('window').width;
+
 export const CHATURL = 'http://ec2-3-38-8-151.ap-northeast-2.compute.amazonaws.com:8000';
 
 const styles = StyleSheet.create({
@@ -118,10 +119,10 @@ export const Chatting = ({}: any) => {
   };
   useEffect(()=>{
     const data = getKeyword();
-    console.log(data);
     if (data !== ''){
       ExAddChatting(data);
     }
+    setKeyword('');    
   },[]);
 
   useEffect(() => {
