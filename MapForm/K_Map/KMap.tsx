@@ -23,6 +23,7 @@ function KMap({webviewRef, map}: any) {
   const [state, setState] = useState<boolean>(true);
   const [name, setName] = useState<string>();
   const [open, setOpen] = useState<boolean>(false);
+  const [a, setA] = useState<boolean>(false);
   const data: any = map.map;
   [_temp, setTemp] = useState<string>('');
   const handleOnMessage = (e: any) => {
@@ -57,6 +58,7 @@ function KMap({webviewRef, map}: any) {
       for (let temp of data) {
         list.push(temp);
       }
+      setA(true);
 
       const sendData = JSON.stringify(list);
       await webviewRef.current.postMessage(sendData);
@@ -134,13 +136,16 @@ function KMap({webviewRef, map}: any) {
   });
 
   useEffect(() => {
-    const d_title: string = getKeyword();
-    console.log(d_title);
-    if (d_title !== '') {
-      setTimeout(() => send_screen(d_title), 1000);
+    if(a)
+    {
+      const d_title: string = getKeyword();
+      console.log(d_title);
+      if (d_title !== '') {
+        setTimeout(() => send_screen(d_title), 1000);
+      }
+      setKeyword('');
     }
-    setKeyword('');
-  }, [_temp]);
+  }, [a]);
 
   return (
     <>
