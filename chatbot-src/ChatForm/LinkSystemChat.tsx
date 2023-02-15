@@ -34,11 +34,19 @@ export const LinkSystemChat = ({linkUrl, answer, text}: any) => {
     const getBookMark:any[] = await (await axios.post(`${MAPURLS}/bookmark`, {
       'id' : accountData,
     })).data;
-    const mapData = getBookMark.map((value)=>{return value.tag;});
+    const chatBookMarkTagData = getBookMark.map((value)=>{return value.tag;});
+    const chatBookMarkPicketData = getBookMark.map((value) => {return value.picket;});
 
-    if (mapData.includes(text)) {
-      setMarkIcon('bookmark');
-      setCheck(false);
+    if (chatBookMarkTagData.includes(text)) {
+      const index = chatBookMarkTagData.indexOf(text);
+      if (chatBookMarkPicketData[index] === 'Map'){
+        setMarkIcon('bookmark');
+        setCheck(false);
+      }
+      else {
+        setMarkIcon('bookmark-o');
+        setCheck(true);
+      }
     }
     else
     {

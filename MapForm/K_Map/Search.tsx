@@ -21,9 +21,6 @@ import {SearchBar} from '@rneui/themed';
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 
-// onPress={() => onPress()}
-// style={{flex: 1, backgroundColor: 'white'}}
-
 const Item = ({item, onPress}: any) => (
   <TouchableOpacity onPress={onPress} style={styles.touchable}>
     <Text style={styles.title}>{item.title}</Text>
@@ -42,7 +39,7 @@ function Search({webviewRef, _state, map}: any) {
 
   useEffect(() => {
     setState(current => !current);
-    setList(firstlist)
+    setList(firstlist);
   }, [_state]);
 
   useEffect(() => {
@@ -71,7 +68,7 @@ function Search({webviewRef, _state, map}: any) {
         renderItem={renderItem}
         keyExtractor={item => item.id}
         extraData={selectedId}
-        style={{marginBottom:60, height: HEIGHT/2,}}
+        style={{marginBottom:60, height: HEIGHT / 2}}
         ListEmptyComponent={
             <Text style={[styles.touchable, {fontSize: 18, textAlign: 'center'}]}>
               검색결과가 없습니다
@@ -89,7 +86,7 @@ function Search({webviewRef, _state, map}: any) {
       };
       firstlist.push(__data);
     }
-    bubbleSort(firstlist)
+    bubbleSort(firstlist);
     setList(firstlist);
     setData(getData);
   };
@@ -98,16 +95,16 @@ function Search({webviewRef, _state, map}: any) {
     const len = input.length;
     let tmp = null;
 
-    for(let a = 0; a < len; a ++)
+    for (let a = 0; a < len; a++)
     {
-      for(let b = 0; b < len-1; b++)
+      for (let b = 0; b < len - 1; b++)
       {
-        if(input[b].title > input[b+1].title)
+        if (input[b].title > input[b + 1].title)
         { 
           tmp = input[b];
-          input[b] = input[b+1];
-          input[b+1] = tmp
-          tmp = null
+          input[b] = input[b + 1];
+          input[b + 1] = tmp;
+          tmp = null;
         }
       }
     }
@@ -182,7 +179,7 @@ function Search({webviewRef, _state, map}: any) {
               // position: 'absolute'
 
             }}
-            inputStyle={{fontSize: 17,}}
+            inputStyle={{fontSize: 17}}
             inputContainerStyle={{marginTop: 'auto', marginBottom: 'auto'}}
             leftIconContainerStyle={{}}
             rightIconContainerStyle={{}}
@@ -195,7 +192,7 @@ function Search({webviewRef, _state, map}: any) {
           />
         </View>
 
-        <View style={{ marginTop:10, borderRadius: 10,}}>
+        <View style={{ marginTop:10, borderRadius: 10}}>
           <List _list={list} />
         </View>
       {/* </View> */}
@@ -222,7 +219,7 @@ function Search({webviewRef, _state, map}: any) {
             shadowOffset: {width: 0, height: 2},
             shadowOpacity: 0.8,
             shadowRadius: 2,
-            elevation: 1
+            elevation: 1,
           }}>
           <Text style={{color: 'white'}}>뒤로가기</Text>
         </TouchableOpacity>

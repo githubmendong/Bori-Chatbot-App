@@ -50,10 +50,19 @@ export const Screen = ({_state, _name, map}: any) => {
     const getBookMark:any[] = await (await axios.post(`${MAPURLS}/bookmark`, {
       'id' : accountData,
     })).data;
-    const mapData = getBookMark.map((value)=>{return value.tag;});
-    if (mapData.includes(text[0])) {
-      setMarkIcon('bookmark');
-      setCheck(false);
+    const chatBookMarkTagData = getBookMark.map((value)=>{return value.tag;});
+    const chatBookMarkPicketData = getBookMark.map((value) => {return value.picket;});
+
+    if (chatBookMarkTagData.includes(text[0])) {
+      const index = chatBookMarkTagData.indexOf(text[0]);
+      if (chatBookMarkPicketData[index] === 'Map'){
+        setMarkIcon('bookmark');
+        setCheck(false);
+      }
+      else {
+        setMarkIcon('bookmark-o');
+        setCheck(true);
+      }
     }
     else
     {
