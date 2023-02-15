@@ -1,7 +1,4 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-trailing-spaces */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-native/no-inline-styles */
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
@@ -51,9 +48,9 @@ export const LoginScreen = () => {
 
   return (
     <>
-      {state === false ? 
-    <ActivityIndicator color="black" size="large" /> 
-    : 
+      {state === false ?
+    <ActivityIndicator color="black" size="large" />
+    :
     <>
     <View style={{
       alignItems: 'center',
@@ -93,7 +90,7 @@ export const LoginScreen = () => {
         secureTextEntry={true}
         placeholder = "PASSWORD"
         />
-        <TouchableOpacity 
+        <TouchableOpacity
         onPress={()=>{login();}}
         style={{
           marginTop: 50,

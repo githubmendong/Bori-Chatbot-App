@@ -1,15 +1,7 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable react-hooks/exhaustive-deps */
-
 /* eslint-disable react-native/no-inline-styles */
-/* eslint-disable react/self-closing-comp */
-/* eslint-disable no-trailing-spaces */
-/* eslint-disable no-unreachable */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import axios from 'axios';
-import React, {useEffect, useState} from 'react';
-import {ActivityIndicator, Image, Text, TouchableOpacity, View} from 'react-native';
-import { CHATURL } from '../Chatting';
+import React from 'react';
+import {Image, Text, TouchableOpacity, View} from 'react-native';
 import {SystemTime} from '../Utils/SytemTime';
 
 
@@ -26,7 +18,7 @@ export const DefaultSystemChat = ({answer}:any)=>{
           style={{height: 80, width: 80}}
         />
         <Text style={{fontSize: 20, marginTop: 50}}>보리</Text>
-      </View> 
+      </View>
       <TouchableOpacity
             activeOpacity = {1}
             style={{
@@ -55,7 +47,7 @@ export const DefaultSystemChat = ({answer}:any)=>{
             borderTopRightRadius: 30,
             borderBottomLeftRadius: 30,
             borderBottomRightRadius: 30,
-          }}>        
+          }}>
         <Text style={{fontSize:15,lineHeight:24, color: 'black'}}>
           {answer}
         </Text>

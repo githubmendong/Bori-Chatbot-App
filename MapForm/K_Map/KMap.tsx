@@ -1,14 +1,11 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react/react-in-jsx-scope */
-/* eslint-disable keyword-spacing */
 /* eslint-disable no-array-constructor */
-/* eslint-disable no-trailing-spaces */
-/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react/react-in-jsx-scope */
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import {useCallback, useEffect, useState} from 'react';
-import {Alert, Dimensions, Linking, SectionList, Text} from 'react-native';
+import {Linking} from 'react-native';
 import WebView from 'react-native-webview';
-import {PermissionsAndroid} from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
 import {Screen} from './Screen';
 import Search from './Search';
@@ -33,7 +30,7 @@ function KMap({webviewRef, map}: any) {
     } else if (e.nativeEvent.data === 'ar') {
       AR();
     }
-    else if(e.nativeEvent.data === 'qr') {
+    else if (e.nativeEvent.data === 'qr') {
       QR();
     }
     else {
@@ -136,7 +133,7 @@ function KMap({webviewRef, map}: any) {
   });
 
   useEffect(() => {
-    if(a)
+    if (a)
     {
       const d_title: string = getKeyword();
       console.log(d_title);

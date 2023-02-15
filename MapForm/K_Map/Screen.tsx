@@ -63,33 +63,6 @@ export const Screen = ({_state, _name, map}: any) => {
     }
     setMarkIcon('bookmark-o');
     setCheck(true);
-    // const chatBookMarkTagData = getBookMark.map((value)=>{return value.tag;});
-    // const chatBookMarkPicketData = getBookMark.map((value) => {return value.picket;});
-
-    // console.log(chatBookMarkTagData);
-    // console.log(chatBookMarkPicketData);
-
-    // if (chatBookMarkTagData.includes(text[0])) {
-    //   for (let i in chatBookMarkTagData){
-    //     if ()
-    //   }
-
-    //   const index = chatBookMarkTagData.indexOf(text[0]);
-
-    //   if (chatBookMarkPicketData[index] === 'Map'){
-    //     setMarkIcon('bookmark');
-    //     setCheck(false);
-    //   }
-    //   else {
-    //     setMarkIcon('bookmark-o');
-    //     setCheck(true);
-    //   }
-    // }
-    // else
-    // {
-    //   setMarkIcon('bookmark-o');
-    //   setCheck(true);
-    // }
   };
 
   const onPress = () => {

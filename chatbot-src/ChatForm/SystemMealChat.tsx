@@ -1,12 +1,7 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable react-hooks/exhaustive-deps */
-
 /* eslint-disable react-native/no-inline-styles */
-/* eslint-disable react/self-closing-comp */
-/* eslint-disable no-trailing-spaces */
-/* eslint-disable no-unreachable */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React, {useEffect, useState} from 'react';
+
+import React from 'react';
 import {Image, Text, View} from 'react-native';
 import {SystemTime} from '../Utils/SytemTime';
 

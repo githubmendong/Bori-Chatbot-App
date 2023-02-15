@@ -1,7 +1,4 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable no-lone-blocks */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable quotes */
 /* eslint-disable react/react-in-jsx-scope */
 
 import {useState} from 'react';

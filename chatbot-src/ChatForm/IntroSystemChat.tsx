@@ -1,20 +1,11 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable react-hooks/exhaustive-deps */
-
 /* eslint-disable react-native/no-inline-styles */
-/* eslint-disable react/self-closing-comp */
-/* eslint-disable no-trailing-spaces */
-/* eslint-disable no-unreachable */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {
   Image,
-  ScrollView,
-  StyleSheet,
   Text,
-  TextInput,
   View,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
 import {MenuButtons} from '../Utils/MenuButtons';
 import {SystemTime} from '../Utils/SytemTime';
@@ -34,8 +25,8 @@ export const IntroSystemChat = ({setText}:any) => {
           source={require('../assets/Bori2.png')}
         />
         <View style={{
-          borderColor: '#f7f6f7', 
-          borderWidth: 1, 
+          borderColor: '#f7f6f7',
+          borderWidth: 1,
           borderRadius: 15,
           backgroundColor: '#f7f7ff',
           shadowColor: 'black',
@@ -78,7 +69,7 @@ export const IntroSystemChat = ({setText}:any) => {
         elevation: 10,
         marginHorizontal: 40,
       }
-    
+
     }
       >
         <MenuButtons setText={setText} />

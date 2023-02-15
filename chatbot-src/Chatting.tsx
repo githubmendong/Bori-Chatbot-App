@@ -1,6 +1,5 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-trailing-spaces */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
 import axios from 'axios';

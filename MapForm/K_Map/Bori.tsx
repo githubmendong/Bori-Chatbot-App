@@ -1,12 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react/react-in-jsx-scope */
-/* eslint-disable keyword-spacing */
 /* eslint-disable react-native/no-inline-styles */
-/* eslint-disable no-trailing-spaces */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Text} from '@rneui/base';
-import { DialogLoading } from '@rneui/base/dist/Dialog/Dialog.Loading';
 import axios from 'axios';
 import {useEffect, useState} from 'react';
 import {
@@ -18,7 +13,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { black } from 'react-native-paper/lib/typescript/styles/themes/v2/colors';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { MAPURLS, setNumber } from '../../App';
 import { setKeyword } from '../../chatbot-src/ChatForm/BtnSystemChat';
@@ -37,7 +31,7 @@ export const Bori = ()=> {
 
   const logout = async ()=>{
     await removeData('account_info');
-    setNumber(0); 
+    setNumber(0);
     setSelectedTab(2);
   };
 
@@ -47,13 +41,13 @@ export const Bori = ()=> {
       setNumber(2);
       setSelectedTab(1);
     }
-    else{
+    else {
       await setKeyword(keyword);
       setNumber(3);
       setSelectedTab(3);
     }
   };
-  
+
   const Item = ({item}: any) => (
     <TouchableOpacity onPress={()=>{moveActivity(item.tag, item.picket);}} key={item.tag}>
     <View style={styles.list} key={item.tag}>
@@ -73,7 +67,7 @@ export const Bori = ()=> {
     try {
         let getData: any;
         const accountData = (await getOriginData('account_info'))?.replace(/"/g,'');
-        
+
         getData = await (await axios.post(`${MAPURLS}/bookmark`,
        {
         'id' : accountData,

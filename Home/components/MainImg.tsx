@@ -16,23 +16,11 @@ import { MAPURLS } from '../../App';
 import styles from '../styles/styles';
 
 const IMAGES: string[] = [
-  // 'https://i.ibb.co/Q8b0SxG/1.png',
-  // 'https://i.ibb.co/QcMHWtR/7.png',
-  // 'https://i.ibb.co/4Jkshrd/2.png',
-  // 'https://i.ibb.co/kqfbPcJ/3.png',
-  // 'https://i.ibb.co/DVcySXf/4.png',
-  // 'https://i.ibb.co/NCJKfP2/5.png',
-  // 'https://i.ibb.co/GvmZCXx/6.png',
+
 ];
 
 const IMAGEURLS: string[] = [
-  // 'https://sanhak.wsu.ac.kr/',
-  // 'https://www.aacsb.edu/about-us/advocacy/member-spotlight/innovations-that-inspire/2022/solbridge-international-school-of-business',
-  // 'https://startup.wsu.ac.kr:444/board/read.jsp?id=233379&code=startupwsu0701',
-  // 'https://startup.wsu.ac.kr:444/board/read.jsp?id=233379&code=startupwsu0701',
-  // 'https://itedu.wsu.ac.kr:444/page/index.jsp?code=itedu0406',
-  // 'https://www.wsu.ac.kr/board/read.jsp?id=233617&code=community0101',
-  // 'https://business.wsu.ac.kr:444/board/read.jsp?id=233665&code=business0401',
+
 ];
 export const MainImg = () => {
   const [imgActive, setImgActive] = useState(0);

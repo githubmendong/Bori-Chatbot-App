@@ -1,15 +1,13 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-array-constructor */
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable react-native/no-inline-styles */
-/* eslint-disable no-trailing-spaces */
+
 import React, {useEffect, useState} from 'react';
 import {
   Dimensions,
   FlatList,
-  KeyboardAvoidingView,
-  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -18,7 +16,6 @@ import {
 import Modal from 'react-native-modal';
 import {SearchBar} from '@rneui/themed';
 
-const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 
 const Item = ({item, onPress}: any) => (
@@ -100,7 +97,7 @@ function Search({webviewRef, _state, map}: any) {
       for (let b = 0; b < len - 1; b++)
       {
         if (input[b].title > input[b + 1].title)
-        { 
+        {
           tmp = input[b];
           input[b] = input[b + 1];
           input[b + 1] = tmp;
@@ -151,7 +148,7 @@ function Search({webviewRef, _state, map}: any) {
   };
 
   return (
-    
+
     <Modal
       animationIn="slideInLeft"
       animationOut="slideOutLeft"
@@ -162,7 +159,7 @@ function Search({webviewRef, _state, map}: any) {
         {/* <KeyboardAvoidingView behavior="padding" enabled> */}
       {/* <View> */}
         <View>
-        
+
           <SearchBar
             platform="android"
 
@@ -195,22 +192,18 @@ function Search({webviewRef, _state, map}: any) {
         <View style={{ marginTop:10, borderRadius: 10}}>
           <List _list={list} />
         </View>
-      {/* </View> */}
-      {/* </KeyboardAvoidingView> */}
-      
+
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', marginBottom:10}}>
       <TouchableOpacity
           onPress={() => {
             onPress();
           }}
           style={{
-            // position: 'absolute',
             width: 200,
             height: 50,
             backgroundColor: '#142239',
             borderRadius: 10,
             borderWidth: 0.6,
-            // borderColor: 'white',
             marginTop:20,
             marginBottom: 'auto',
             alignItems: 'center',
@@ -226,20 +219,20 @@ function Search({webviewRef, _state, map}: any) {
 
       </View>
     </Modal>
-    
+
   );
 }
 
 const styles = StyleSheet.create({
   title: {
-    
+
     fontSize: 18,
     textAlign: 'center',
     marginBottom: 'auto',
     marginTop: 'auto',
   },
   textInput: {
-    
+
     height: 50,
     width: 30,
     borderRadius: 10,
@@ -254,7 +247,6 @@ const styles = StyleSheet.create({
   },
   touchable: {
     backgroundColor: 'white',
-    // opacity: 0.9,
     top:10,
     width:  300,
     height: 60,

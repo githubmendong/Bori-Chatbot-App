@@ -1,9 +1,8 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable react/react-in-jsx-scope */
-/* eslint-disable keyword-spacing */
 /* eslint-disable no-array-constructor */
-/* eslint-disable no-trailing-spaces */
 /* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react/react-in-jsx-scope */
+
 import { useEffect, useState } from 'react';
 import CompassHeading from 'react-native-compass-heading';
 
@@ -14,7 +13,7 @@ const Sensor = ({webviewRef}:any) => {
       CompassHeading.start(degree_update_rate, ({heading, accuracy}) => {
         setDirection(heading);
       });
-  
+
       return () => {
         CompassHeading.stop();
       };
@@ -36,14 +35,14 @@ const Sensor = ({webviewRef}:any) => {
           const sendData = JSON.stringify(latlng);
           await webviewRef.current.postMessage(sendData);
       }
-      catch(error)
+      catch (error)
       {
 
-      }  
+      }
     };
-    return(
+    return (
       <></>
     );
   };
-  
+
   export default Sensor;

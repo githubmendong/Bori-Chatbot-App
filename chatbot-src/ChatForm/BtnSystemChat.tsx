@@ -1,11 +1,6 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable react-hooks/exhaustive-deps */
-
 /* eslint-disable react-native/no-inline-styles */
-/* eslint-disable react/self-closing-comp */
-/* eslint-disable no-trailing-spaces */
-/* eslint-disable no-unreachable */
-/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 
@@ -17,10 +12,8 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { MAPURLS, setNumber } from '../../App';
-import {setTemp} from '../../MapForm/K_Map/KMap';
 import { setSelectedTab } from '../../Tabs';
 import { getData } from '../Utils/LocalStrorage';
-// import { NAVIGATIONDATA } from '../Chatting';
 import {SystemTime} from '../Utils/SytemTime';
 
 let KEYWORD:string = '';
@@ -73,7 +66,7 @@ export const BtnSystemChat = ({keyword, answer}: any) => {
 
     setMarkIcon('bookmark');
     const accountData = await getData('account_info');
-    
+
     await axios.post(`${MAPURLS}/bookmark/createbookmark`, {
         id: accountData,
         tag: keyword,
@@ -127,11 +120,11 @@ export const BtnSystemChat = ({keyword, answer}: any) => {
             borderTopRightRadius: 30,
             borderBottomLeftRadius: 30,
             borderBottomRightRadius: 30,
-          }}>        
+          }}>
         <Text style={{fontSize:15,lineHeight:24, color: 'black'}}>
           {answer}
         </Text>
-        <TouchableOpacity 
+        <TouchableOpacity
         onPress={()=> {
           moveActivity();
         }}
@@ -144,7 +137,7 @@ export const BtnSystemChat = ({keyword, answer}: any) => {
           paddingTop: 5,
           paddingBottom: 5,
         }}>
-          <Text 
+          <Text
           style={{
             alignItems: 'center',
             textAlign: 'center',

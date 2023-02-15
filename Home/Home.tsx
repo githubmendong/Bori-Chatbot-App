@@ -1,17 +1,6 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-return-assign */
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
-
 import React, { useEffect } from 'react';
 import { Scroll } from './components/Scroll';
 import { BackHandler, PermissionsAndroid, ToastAndroid } from 'react-native';

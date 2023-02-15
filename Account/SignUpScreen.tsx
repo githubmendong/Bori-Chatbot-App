@@ -1,7 +1,4 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable quotes */
-/* eslint-disable no-trailing-spaces */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-native/no-inline-styles */
 import axios from 'axios';
 import React, { useState } from 'react';
@@ -19,7 +16,7 @@ export const SignUpScreen = () => {
       return;
     }
     console.log(id);
-    
+
     const getCheckResult = await (await axios.post(`${MAPURLS}/account/duplicateInspection`, {
       'id': id,
     })).data;
@@ -36,7 +33,7 @@ export const SignUpScreen = () => {
           style: 'cancel',
         },
       ]);
-    }    
+    }
   };
 
   const singUp = async ()=>{
@@ -50,7 +47,7 @@ export const SignUpScreen = () => {
         },
       ]);
     }
-    
+
     if (password !== checkPassword){
       Alert.alert('', '비밀번호가 일치하지 않습니다.', [
         {
@@ -60,7 +57,7 @@ export const SignUpScreen = () => {
         },
       ]);
     }
-    console.log("id" + id);
+    console.log('id' + id);
     const data = await axios.post(`${MAPURLS}/account/createAccount`,{
       'id': id,
       'pw': password,
@@ -98,7 +95,7 @@ export const SignUpScreen = () => {
         <View style={{
           flexDirection: 'row',
         }}>
-        <TextInput 
+        <TextInput
         onChangeText={(text:string)=>{setID(text);}}
         style={{
           borderColor: 'black',
@@ -110,7 +107,7 @@ export const SignUpScreen = () => {
         }}
         placeholder = "ID"
         />
-        <TouchableOpacity 
+        <TouchableOpacity
         onPress={()=>{checkID();}}
         style={{
           borderColor: 'black',
@@ -132,7 +129,7 @@ export const SignUpScreen = () => {
           </Text>
         </TouchableOpacity>
         </View>
-        <TextInput 
+        <TextInput
         onChangeText={(text:string)=>{password = text;}}
         style={{
           borderColor: 'black',
@@ -145,7 +142,7 @@ export const SignUpScreen = () => {
         secureTextEntry={true}
         placeholder = "PASSWORD"
         />
-        <TextInput 
+        <TextInput
         onChangeText={(text:string)=>{checkPassword = text;}}
         style={{
           borderColor: 'black',
@@ -158,7 +155,7 @@ export const SignUpScreen = () => {
         secureTextEntry={true}
         placeholder = "CHECK PASSWORD"
         />
-        <TouchableOpacity 
+        <TouchableOpacity
         onPress={()=>{singUp();}}
         style={{
           marginTop: 40,

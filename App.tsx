@@ -1,18 +1,15 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable no-trailing-spaces */
 /* eslint-disable react-native/no-inline-styles */
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/react-in-jsx-scope */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Chatting } from './chatbot-src/Chatting';
 import Home from './Home/Home';
 import { useEffect, useState } from 'react';
 import { Ws36 } from './MapForm/Ws36';
-import { Text, TouchableOpacity, View } from 'react-native';
 import { Tabs } from './Tabs';
 import axios from 'axios';
 import { LoginScreen } from './Account/LoginScreen';
 import { SignUpScreen } from './Account/SignUpScreen';
+import {View} from 'react-native';
 
 
 export let setNumber:React.Dispatch<React.SetStateAction<number>>;
@@ -26,7 +23,7 @@ function App() {
   const getMapData = async ()=>{
     try {
       let getData: any;
-      
+
       getData = (await axios.get(`${MAPURLS}/borimap`)).data;
       setMap(getData);
     }

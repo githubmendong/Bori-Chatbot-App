@@ -1,19 +1,12 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-hooks/exhaustive-deps */
-
-/* eslint-disable react-native/no-inline-styles */
-/* eslint-disable react/self-closing-comp */
 /* eslint-disable no-trailing-spaces */
-/* eslint-disable no-unreachable */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator } from 'react-native';
 import { BtnSystemChat } from '../ChatForm/BtnSystemChat';
 import { DefaultSystemChat } from '../ChatForm/DefaultSystemChat';
 import { LinkSystemChat } from '../ChatForm/LinkSystemChat';
-
-import {SystemMealChat} from '../ChatForm/SystemMealChat';
 import { CHATURL } from '../Chatting';
 
 export const SelectSystemChat = ({text, ukey, scrollView}: any) => {

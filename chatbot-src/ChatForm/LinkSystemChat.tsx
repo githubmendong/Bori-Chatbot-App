@@ -1,11 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-hooks/exhaustive-deps */
-
 /* eslint-disable react-native/no-inline-styles */
-/* eslint-disable react/self-closing-comp */
-/* eslint-disable no-trailing-spaces */
-/* eslint-disable no-unreachable */
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -111,11 +107,11 @@ export const LinkSystemChat = ({linkUrl, answer, text}: any) => {
             borderTopRightRadius: 30,
             borderBottomLeftRadius: 30,
             borderBottomRightRadius: 30,
-          }}>        
+          }}>
         <Text style={{fontSize:15,lineHeight:24, color: 'black'}}>
           {answer}
         </Text>
-        <TouchableOpacity 
+        <TouchableOpacity
         onPress={()=> {
             Linking.openURL(linkUrl);
         }}
@@ -128,7 +124,7 @@ export const LinkSystemChat = ({linkUrl, answer, text}: any) => {
           paddingTop: 5,
           paddingBottom: 5,
         }}>
-          <Text 
+          <Text
           style={{
             alignItems: 'center',
             textAlign: 'center',
