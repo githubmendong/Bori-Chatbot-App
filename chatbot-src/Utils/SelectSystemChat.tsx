@@ -14,7 +14,8 @@ export const SelectSystemChat = ({text, ukey, scrollView}: any) => {
   const [keyword,setKeyword] = useState<string>('');
   const [link, setLink] = useState<string>('');
   const [state,setState] = useState(true);
-  //#region 서버에서 데이터 받는 부분
+
+  //#region 서버에서 질문에 대한 대답을 받는 코드
   const getData = async ()=>{
     const postdata = {
       Q:text,

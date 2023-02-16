@@ -1,5 +1,4 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable no-trailing-spaces */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
 import axios from 'axios';
@@ -21,11 +20,13 @@ import {GuideModal} from './Utils/GuideModal';
 import { getData } from './Utils/LocalStrorage';
 import {SelectSystemChat} from './Utils/SelectSystemChat';
 import {SuggestedSearch} from './Utils/SuggestedSearch';
-
+// 현재 디스플레이의 WIDTH값
 const WIDTH = Dimensions.get('window').width;
 
+// 챗봇 모듈이 저장되어 있는 AWS DJANGO서버에 연결되는 URL
 export const CHATURL = 'http://ec2-3-38-8-151.ap-northeast-2.compute.amazonaws.com:8000';
 
+// input 디자인
 const styles = StyleSheet.create({
   input: {
     backgroundColor: 'white',
@@ -47,13 +48,15 @@ export const GBBOOLCH = () => {
 };
 
 export const Chatting = ({}: any) => {
-  const date = new Date();
+  const date = new Date(); // 타입스크립트의 시간을 받아오는 객체
   const [state, setState] = useState<boolean>(false);
   const [text, setText] = useState<string>('');
   const [topSearch, setTopSearch] = useState<string[]>([]);
   const [components, setComponents] = useState<JSX.Element[]>([
     <IntroSystemChat key={UKEY} setText={setText} />,
-  ]);
+  ]); // 채팅창의 채팅 폼이 담기는 컴포넌트 State변수 기본적으로 Intro채팅이 존재
+
+  // 서버로부터 검색 순위 상위 3개를 가져오는 함수 useEffect에서 사용
   const getSuggestedSearch = async () => {
     const result = await axios.get(`${CHATURL}/boriapp/get/`);
     return setTopSearch([
@@ -63,6 +66,8 @@ export const Chatting = ({}: any) => {
     ]);
   };
 
+  // 하루동안 다시보지 않기를 구현하는 코드 AsyncStorage를 사용
+  // useEffet를 통해 앱이 렌더링 되었을 때 호출
   const myGetData = async () => {
     let day: number = 0;
     let hours: number = 0;
@@ -116,12 +121,13 @@ export const Chatting = ({}: any) => {
       setState(true);
     }
   };
+
   useEffect(()=>{
     const data = getKeyword();
     if (data !== ''){
       ExAddChatting(data);
     }
-    setKeyword('');    
+    setKeyword('');
   },[]);
 
   useEffect(() => {
@@ -134,6 +140,9 @@ export const Chatting = ({}: any) => {
     getSuggestedSearch();
     //#endregion
   }, [components]);
+
+  // 채팅창에 채팅을 추가하는 함수
+  // 유저 입력창이 비어있다면 채팅이 추가되지 않는다.
   const addChattings = (_text: string) => {
     if (text.length === 0) {
       return;
@@ -151,8 +160,8 @@ export const Chatting = ({}: any) => {
     ]);
 
     setText('');
-    // scrollView.scrollToEnd({animated: true});
   };
+
   useEffect(() => {
     addChattings(text);
   }, [GLOBALBOOL]);
@@ -161,6 +170,7 @@ export const Chatting = ({}: any) => {
     setText(value);
   };
 
+  //addChatting 함수와 비슷하지만 유저입력창이 비어있어도 채팅이 추가된다.
   const ExAddChatting = (_text: string) => {
     UKEY++;
     setComponents([
@@ -174,7 +184,6 @@ export const Chatting = ({}: any) => {
       />,
     ]);
     setText('');
-    // scrollView.scrollToEnd({animated: true});
   };
 
   return (
@@ -194,10 +203,6 @@ export const Chatting = ({}: any) => {
             alignSelf: 'center',
             justifyContent: 'center',
             alignItems: 'center',
-            // borderColor: '#b7c5ff',
-            // borderWidth: 1,
-            // borderRadius: 10,
-            // backgroundColor: 'white',
             width: 50,
             height: 35,
           }}
